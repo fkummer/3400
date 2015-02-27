@@ -1,0 +1,104 @@
+/* Sweep
+ by BARRAGAN <http://barraganstudio.com> 
+ This example code is in the public domain.
+
+ modified 8 Nov 2013
+ by Scott Fitzgerald
+ http://arduino.cc/en/Tutorial/Sweep
+*/ 
+
+#include <Servo.h> 
+ 
+Servo myservo1;  // left wheel
+                
+Servo myservo2; // right wheel
+ 
+int pos = 0;    // variable to store the servo position 
+int i;
+int n;
+void setup() 
+{ 
+  //Serial.begin(9600);
+  myservo1.attach(9);  // attaches the servo on pin 9 to the servo object 
+  myservo2.attach(10);
+  //pinMode(11, OUTPUT);
+} 
+ 
+void loop() 
+{ 
+  /*analogWrite(11, 255);
+  for(pos = 0; pos <= 180; pos += 1) // goes from 0 degrees to 180 degrees 
+  {                                  // in steps of 1 degree 
+    
+    myservo.write(pos);              // tell servo to go to position in variable 'pos' 
+    Serial.println(myservo.read());
+    //delay(15);                       // waits 15ms for the servo to reach the position 
+  } 
+  analogWrite(11, 0); 
+  for(pos = 180; pos>=0; pos-=1)     // goes from 180 degrees to 0 degrees 
+  { 
+       
+    myservo.write(pos);    // tell servo to go to position in variable 'pos' 
+    Serial.println(myservo.read());
+    delay(15);                       // waits 15ms for the servo to reach the position 
+  } */
+  //test
+  for (n = 1; n<9; n++){  
+    gearbox(n);
+    delay (1000);
+  }
+  gearbox(0);
+  delay(2000);
+  //myservo1.write(83);
+  //myservo2.write(97);
+} 
+
+void gearbox(int x){
+  switch (x){
+    case (0): //STOP
+      for(i = myservo1.read(); i >=0; i--){
+        myservo1.write(i);
+        myservo2.write(i);
+        delay(100);
+      }
+      
+      break;
+    case (1): //FULL_FORWARD
+      myservo1.write(0);
+      myservo2.write(180);
+      break;
+    case (2): //FULL_BACKWARD
+      myservo1.write(180);
+      myservo2.write(0);
+      break;
+    case (3): //FAST_FORWARD
+      myservo1.write(60);
+      myservo2.write(120);
+      break;
+    case (4): //SLOW_FORWARD
+      myservo1.write(85);
+      myservo2.write(95);
+      break;
+    case (5): //FAST_BACKWARD
+      myservo1.write(120);
+      myservo2.write(60);
+      break;
+    case (6): //SLOW_BACKWARD
+      myservo1.write(95);
+      myservo2.write(85);
+      break;
+    case (7): //TURN_LEFT
+      myservo1.write(83);
+      myservo2.write(83);
+      delay(1000);
+      gearbox(0);
+      break;
+    case (8): //TURN_RIGHT
+      myservo1.write(97);
+      myservo2.write(97);
+      delay(1000);  
+      gearbox(0);
+      break;
+  }
+      
+}

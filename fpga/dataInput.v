@@ -9,11 +9,11 @@ module dataInput(
 );
 
 input		CLOCK_50;
-input	[7:0]	DATA_IN; //8 bit data from GPIO
+input	[9:0]	DATA_IN; //8 bit data from GPIO
 input 		ENABLE_IN; //write enable from GPIO
 input		RESET;
 
-output	[4:0]	COORD; //coordinate for data
+output	[7:0]	COORD; //coordinate for data
 output  [1:0] 	VALUE; //value at coordinate
 output		ENABLE_OUT;
 
@@ -24,9 +24,9 @@ wire		parity;
 
 
 
-assign COORD = DATA_IN[7:3];
+assign COORD = DATA_IN[9:3];
 assign VALUE = DATA_IN[2:1];
-assign parity = DATA_IN[7]^DATA_IN[6]^DATA_IN[5]^DATA_IN[4]^DATA_IN[3]^DATA_IN[2]^DATA_IN[1]^DATA_IN[0]; //allows for parity detection to be added in future
+assign parity = DATA_IN[9]^DATA_IN[8]^DATA_IN[7]^DATA_IN[6]^DATA_IN[5]^DATA_IN[4]^DATA_IN[3]^DATA_IN[2]^DATA_IN[1]^DATA_IN[0]; //allows for parity detection to be added in future
 
 
 

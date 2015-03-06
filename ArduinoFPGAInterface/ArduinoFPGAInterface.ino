@@ -24,18 +24,18 @@ int byte1[8];
 int byte2[8];
 
 void setup(){
-  pinMode(OUTPUT, coord1);
-  pinMode(OUTPUT, coord2);
-  pinMode(OUTPUT, coord3);
-  pinMode(OUTPUT, coord4);
-  pinMode(OUTPUT, coord5);
-  pinMode(OUTPUT, coord6);
-  pinMode(OUTPUT, coord7);
-  pinMode(OUTPUT, coord8);
-  pinMode(OUTPUT, color1);
-  pinMode(OUTPUT, color2);
+  pinMode(coord1, OUTPUT);
+  pinMode(coord2, OUTPUT);
+  pinMode(coord3, OUTPUT);
+  pinMode(coord4, OUTPUT);
+  pinMode(coord5, OUTPUT);
+  pinMode(coord6, OUTPUT);
+  pinMode(coord7, OUTPUT);
+  pinMode(coord8, OUTPUT);
+  pinMode(color1, OUTPUT);
+  pinMode(color2, OUTPUT);
   //pinMode(OUTPUT, parity);
-  pinMode(OUTPUT, enable);
+  pinMode(enable, OUTPUT);
   Serial.begin(9600);
 }
 
@@ -44,8 +44,8 @@ void loop(){
   if(Serial.available() > 1){
     
  
-    inputBuffer[0] = 0xAA; 
-    inputBuffer[1] = 0xBB;
+    inputBuffer[0] = 0x54; 
+    inputBuffer[1] = 0x05;
     
     //byte mask = 0x01;
     for(int i = 0; i<8; i++){
@@ -97,6 +97,7 @@ void loop(){
     currPin++;
   }
   }
+  
   
   
     

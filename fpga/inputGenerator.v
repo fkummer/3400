@@ -4,11 +4,13 @@ X_COORD,
 Y_COORD,
 VALUE,
 ENABLE,
-reset
+reset,
+click
 );
 
 input			clk;
 input			reset;
+input 		click;
 
 output	[3:0]	X_COORD;
 output	[3:0]	Y_COORD;
@@ -19,28 +21,46 @@ reg 		[3:0] X_COORD;
 reg		[3:0] Y_COORD;
 reg		ENABLE;
 
-reg		[15:0] counter;
+reg		[23:0] counter;
 
-wire		VALUE;
+wire		[1:0] VALUE;
 
-assign VALUE = 2'b10;
+assign VALUE = 2'b01;
 
-
+/*
 always @(posedge clk) begin
 		if(reset) begin
-			counter=16'b0;
+			counter=24'b0;
 			X_COORD=4'b0;
 			Y_COORD=4'b0;
 		end else begin
-			counter <= counter+1;
-			if(counter==16'hffff) begin
-				X_COORD <= X_COORD+1;
+			counter <= counter-24'b1;
+			if(counter==16'd0) begin
 				ENABLE <= 1'b1;
-				if(X_COORD==4'b1111) begin
-					Y_COORD <= Y_COORD+1;
+				if(X_COORD==4'b1010) begin
+					Y_COORD <= Y_COORD+4'b01;
+					X_COORD <= 4'b0;
+				end else begin
+					X_COORD <= X_COORD+4'b1;
 				end
 			end else begin
 				ENABLE <= 1'b0;
+			end
+		end
+end
+*/
+
+always @(negedge click) begin
+		if(reset) begin
+			X_COORD=4'b0;
+			Y_COORD=4'b0;
+		end else begin
+			ENABLE <= 1'b1;
+					if(X_COORD==4'b1010) begin
+						Y_COORD <= Y_COORD+4'b01;
+						X_COORD <= 4'b0;
+					end else begin
+						X_COORD <= X_COORD+4'b1;
 			end
 		end
 end

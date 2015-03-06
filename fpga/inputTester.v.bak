@@ -1,0 +1,16 @@
+module inputTester(
+X_COORD,
+Y_COORD,
+VALUE,
+ENABLE
+);
+
+assign X_COORD = 4'b0;
+assign Y_COORD = 4'b0;
+assign VALUE = 2'b11;
+assign ENABLE = 1;
+
+
+
+
+endmodule

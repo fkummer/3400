@@ -1,0 +1,38 @@
+/*This code is for the IR sensor*/
+
+int frontIRPin = A5; // analog input from the IR sensor
+int leftIRPin = A4;
+int rightIRPin = A3;
+
+void setup(){
+  Serial.begin(9600);
+  pinMode(frontIRPin, INPUT);
+  pinMode(leftIRPin, INPUT);
+  pinMode(rightIRPin, INPUT);
+}
+
+void loop(){
+  float frontVolt = analogRead(frontIRPin)*5/1024;
+  float leftVolt = analogRead(leftIRPin)*5/1024;
+  float rightVolt = analogRead(rightIRPin)*5/1024;
+  Serial.println(frontVolt);
+  if (frontVolt > 0.4){
+    //gearbox(0);
+    if (leftVolt > 0.4){
+      if (rightVolt > 0.4){
+        //gearbox(7);
+        //gearbox(7);
+      }
+      else{
+        //gearbox(8);
+      }
+    }
+    else if (rightVolt > 0.4){
+      //gearbox(7);
+    }
+    else{
+      //to be determined ( no walls on sides)
+    }
+  }
+  
+}

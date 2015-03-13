@@ -80,7 +80,7 @@ blockArray pixelArray(
 
 dataInput arduino(
 	.CLOCK_50(CLOCK_50),
-	.DATA_IN({GPIO[24],GPIO[25],GPIO[26],GPIO[27],GPIO[28],GPIO[29],GPIO[30],GPIO[31],GPIO[32],GPIO[33]}),
+	.DATA_IN({GPIO[25],GPIO[24],GPIO[27],GPIO[26],GPIO[29],GPIO[28],GPIO[31],GPIO[30],GPIO[33],GPIO[32]}),
 	.ENABLE_IN(GPIO[1]),
 	.X_COORD(pixel_w_x),
 	.Y_COORD(pixel_w_y),
@@ -114,8 +114,8 @@ inputGenerator tester(
 assign pixel_w_index [7:4] = pixel_w_x;
 assign pixel_w_index [3:0] = pixel_w_y;
 
-assign pixel_r_index[7:4] = PIXEL_COORD_X[9:6]; //shift by 5 for pixel->block transform
-assign pixel_r_index[3:0] = PIXEL_COORD_Y[9:6];
+assign pixel_r_index[7:4] = PIXEL_COORD_X[8:5]; //shift by 5 for pixel->block transform
+assign pixel_r_index[3:0] = PIXEL_COORD_Y[8:5];
 
 //=======================================================
 //  Structural coding
@@ -128,9 +128,10 @@ assign reset = ~KEY[0];
 
 //translate 2 bit pixel array values to 8 bit RGB
 // 8'bGGG_RRR_BB 
-assign PIXEL_COLOR = (pixel_out == 2'b00)? 8'b111_000_00 : //full red
-							(pixel_out == 2'b01)? 8'b000_011_00 : // 1/2 green
-							(pixel_out == 2'b10)? 8'b000_000_01 : // 1/4 blue
+assign PIXEL_COLOR = (PIXEL_COORD_X[9]==1) ?  8'b000_000_00 : //black if x>640
+							(pixel_out == 2'b00)? 8'b001_011_11 : //full red
+							(pixel_out == 2'b01)? 8'b000_111_00 : // 1/2 green
+							(pixel_out == 2'b10)? 8'b110_000_01 : // 1/4 blue
 								8'b101_101_00;
 							/*(pixel_out == 2'b11 && PIXEL_COORD_X < 200)? 8'b100_100_01 : // gray
 							(pixel_out == 2'b11 && PIXEL_COORD_X < 400)? 8'b111_111_11 : // white

@@ -27,7 +27,7 @@ wire		[1:0] VALUE;
 
 assign VALUE = 2'b01;
 
-/*
+
 always @(posedge clk) begin
 		if(reset) begin
 			counter=24'b0;
@@ -38,8 +38,12 @@ always @(posedge clk) begin
 			if(counter==16'd0) begin
 				ENABLE <= 1'b1;
 				if(X_COORD==4'b1010) begin
-					Y_COORD <= Y_COORD+4'b01;
 					X_COORD <= 4'b0;
+					if(Y_COORD == 4'b1000) begin
+						Y_COORD <= 4'b0000;
+					end else begin
+						Y_COORD <= Y_COORD+4'b01;
+					end
 				end else begin
 					X_COORD <= X_COORD+4'b1;
 				end
@@ -48,8 +52,8 @@ always @(posedge clk) begin
 			end
 		end
 end
-*/
 
+/*
 always @(negedge click) begin
 		if(reset) begin
 			X_COORD=4'b0;
@@ -64,6 +68,6 @@ always @(negedge click) begin
 			end
 		end
 end
-
+*/
 
 endmodule

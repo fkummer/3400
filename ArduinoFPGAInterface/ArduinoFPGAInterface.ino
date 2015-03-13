@@ -22,7 +22,9 @@
 int inputBuffer[2];
 int byte1[8];
 int byte2[8];
-
+int possibleInputs[6] = {0x54, 0x46, 0x57, 0x27, 0x85, 0x15}; //list of possible inputs(acts as RF inputs)
+int possibleColors[6] = {0x05,0x04,0x03,0x02,0x04,0x05}; //list of possible colors(acts as RF inputs)
+int count = 0;
 void setup(){
   pinMode(coord1, OUTPUT);
   pinMode(coord2, OUTPUT);
@@ -41,20 +43,21 @@ void setup(){
 
 void loop(){
 
-  if(Serial.available() > 1){
+  if(Serial.available() > 0){ //upon availability, do analysis
     
- 
-    inputBuffer[0] = 0x54; 
-    inputBuffer[1] = 0x05;
+    
+    
+    inputBuffer[0] = possibleInputs[count]; //get this case input values
+    inputBuffer[1] = possibleColors[count];
     
     //byte mask = 0x01;
-    for(int i = 0; i<8; i++){
+    for(int i = 0; i<8; i++){ //read bits
       
       byte1[i] = bitRead(inputBuffer[0], i);
       
       byte2[i] = bitRead(inputBuffer[1], i);
       
-    }
+    } 
     
    Serial.print("Byte 1:");
     for(int i = 7; i>=0; i--){
@@ -74,10 +77,9 @@ void loop(){
     inputBuffer[0] = 0x00;
     inputBuffer[1] = 0x00;
     Serial.read();
-    Serial.read();
     
     int currPin = 2;
-  for(int i = 0; i<8; i++){
+  for(int i = 7; i>=0; i--){ //output bits
     Serial.println(currPin);
     if(byte1[i] == 1){
       digitalWrite(currPin, HIGH);
@@ -87,7 +89,7 @@ void loop(){
     currPin++;
   }
   
-  for(int j = 0; j<3; j++){
+  for(int j = 0; j<2; j++){
     Serial.println(currPin);
     if(byte2[j] == 1){
       digitalWrite(currPin, HIGH);
@@ -96,9 +98,14 @@ void loop(){
     }
     currPin++;
   }
+  digitalWrite(enable,HIGH); //set enable high for a single clock cycle
+  digitalWrite(enable,LOW);
   }
   
-  
+  if(count = 5){
+    count = 0;
+  }else{ 
+  count = count++;}
   
     
 

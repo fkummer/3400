@@ -45,7 +45,7 @@ void loop(){
     
  
     inputBuffer[0] = 0x54; 
-    inputBuffer[1] = 0x0F;
+    inputBuffer[1] = 0x05;
     
     //byte mask = 0x01;
     for(int i = 0; i<8; i++){

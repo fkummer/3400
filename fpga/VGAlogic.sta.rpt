@@ -1,0 +1,1353 @@
+TimeQuest Timing Analyzer report for VGAlogic
+Fri Mar 13 15:57:46 2015
+Quartus II 32-bit Version 13.0.0 Build 156 04/24/2013 SJ Full Version
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. TimeQuest Timing Analyzer Summary
+  3. Parallel Compilation
+  4. SDC File List
+  5. Clocks
+  6. Slow 1200mV 85C Model Fmax Summary
+  7. Timing Closure Recommendations
+  8. Slow 1200mV 85C Model Setup Summary
+  9. Slow 1200mV 85C Model Hold Summary
+ 10. Slow 1200mV 85C Model Recovery Summary
+ 11. Slow 1200mV 85C Model Removal Summary
+ 12. Slow 1200mV 85C Model Minimum Pulse Width Summary
+ 13. Slow 1200mV 85C Model Setup: 'CLOCK_50'
+ 14. Slow 1200mV 85C Model Hold: 'CLOCK_50'
+ 15. Slow 1200mV 85C Model Minimum Pulse Width: 'CLOCK_50'
+ 16. Setup Times
+ 17. Hold Times
+ 18. Clock to Output Times
+ 19. Minimum Clock to Output Times
+ 20. Slow 1200mV 85C Model Metastability Report
+ 21. Slow 1200mV 0C Model Fmax Summary
+ 22. Slow 1200mV 0C Model Setup Summary
+ 23. Slow 1200mV 0C Model Hold Summary
+ 24. Slow 1200mV 0C Model Recovery Summary
+ 25. Slow 1200mV 0C Model Removal Summary
+ 26. Slow 1200mV 0C Model Minimum Pulse Width Summary
+ 27. Slow 1200mV 0C Model Setup: 'CLOCK_50'
+ 28. Slow 1200mV 0C Model Hold: 'CLOCK_50'
+ 29. Slow 1200mV 0C Model Minimum Pulse Width: 'CLOCK_50'
+ 30. Setup Times
+ 31. Hold Times
+ 32. Clock to Output Times
+ 33. Minimum Clock to Output Times
+ 34. Slow 1200mV 0C Model Metastability Report
+ 35. Fast 1200mV 0C Model Setup Summary
+ 36. Fast 1200mV 0C Model Hold Summary
+ 37. Fast 1200mV 0C Model Recovery Summary
+ 38. Fast 1200mV 0C Model Removal Summary
+ 39. Fast 1200mV 0C Model Minimum Pulse Width Summary
+ 40. Fast 1200mV 0C Model Setup: 'CLOCK_50'
+ 41. Fast 1200mV 0C Model Hold: 'CLOCK_50'
+ 42. Fast 1200mV 0C Model Minimum Pulse Width: 'CLOCK_50'
+ 43. Setup Times
+ 44. Hold Times
+ 45. Clock to Output Times
+ 46. Minimum Clock to Output Times
+ 47. Fast 1200mV 0C Model Metastability Report
+ 48. Multicorner Timing Analysis Summary
+ 49. Setup Times
+ 50. Hold Times
+ 51. Clock to Output Times
+ 52. Minimum Clock to Output Times
+ 53. Board Trace Model Assignments
+ 54. Input Transition Times
+ 55. Signal Integrity Metrics (Slow 1200mv 0c Model)
+ 56. Signal Integrity Metrics (Slow 1200mv 85c Model)
+ 57. Signal Integrity Metrics (Fast 1200mv 0c Model)
+ 58. Setup Transfers
+ 59. Hold Transfers
+ 60. Report TCCS
+ 61. Report RSKM
+ 62. Unconstrained Paths
+ 63. TimeQuest Timing Analyzer Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++--------------------------------------------------------------------------+
+; TimeQuest Timing Analyzer Summary                                        ;
++--------------------+-----------------------------------------------------+
+; Quartus II Version ; Version 13.0.0 Build 156 04/24/2013 SJ Full Version ;
+; Revision Name      ; VGAlogic                                            ;
+; Device Family      ; Cyclone IV E                                        ;
+; Device Name        ; EP4CE22F17C6                                        ;
+; Timing Models      ; Final                                               ;
+; Delay Model        ; Combined                                            ;
+; Rise/Fall Delays   ; Enabled                                             ;
++--------------------+-----------------------------------------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 2           ;
+; Maximum allowed            ; 2           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 2           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ; < 0.1%      ;
++----------------------------+-------------+
+
+
++---------------------------------------------------+
+; SDC File List                                     ;
++---------------+--------+--------------------------+
+; SDC File Path ; Status ; Read at                  ;
++---------------+--------+--------------------------+
+; VGAlogic.SDC  ; OK     ; Fri Mar 13 15:57:43 2015 ;
++---------------+--------+--------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clocks                                                                                                                                                                               ;
++------------+------+--------+-----------+-------+--------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+--------------+
+; Clock Name ; Type ; Period ; Frequency ; Rise  ; Fall   ; Duty Cycle ; Divide by ; Multiply by ; Phase ; Offset ; Edge List ; Edge Shift ; Inverted ; Master ; Source ; Targets      ;
++------------+------+--------+-----------+-------+--------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+--------------+
+; CLOCK_50   ; Base ; 20.000 ; 50.0 MHz  ; 0.000 ; 10.000 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { CLOCK_50 } ;
++------------+------+--------+-----------+-------+--------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+--------------+
+
+
++-----------------------------------------------------------------------------------------------------------+
+; Slow 1200mV 85C Model Fmax Summary                                                                        ;
++------------+-----------------+------------+---------------------------------------------------------------+
+; Fmax       ; Restricted Fmax ; Clock Name ; Note                                                          ;
++------------+-----------------+------------+---------------------------------------------------------------+
+; 1424.5 MHz ; 250.0 MHz       ; CLOCK_50   ; limit due to minimum period restriction (max I/O toggle rate) ;
++------------+-----------------+------------+---------------------------------------------------------------+
+This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
+
+
+----------------------------------
+; Timing Closure Recommendations ;
+----------------------------------
+HTML report is unavailable in plain text report export.
+
+
++-------------------------------------+
+; Slow 1200mV 85C Model Setup Summary ;
++----------+--------+-----------------+
+; Clock    ; Slack  ; End Point TNS   ;
++----------+--------+-----------------+
+; CLOCK_50 ; 19.298 ; 0.000           ;
++----------+--------+-----------------+
+
+
++------------------------------------+
+; Slow 1200mV 85C Model Hold Summary ;
++----------+-------+-----------------+
+; Clock    ; Slack ; End Point TNS   ;
++----------+-------+-----------------+
+; CLOCK_50 ; 0.385 ; 0.000           ;
++----------+-------+-----------------+
+
+
+------------------------------------------
+; Slow 1200mV 85C Model Recovery Summary ;
+------------------------------------------
+No paths to report.
+
+
+-----------------------------------------
+; Slow 1200mV 85C Model Removal Summary ;
+-----------------------------------------
+No paths to report.
+
+
++---------------------------------------------------+
+; Slow 1200mV 85C Model Minimum Pulse Width Summary ;
++----------+-------+--------------------------------+
+; Clock    ; Slack ; End Point TNS                  ;
++----------+-------+--------------------------------+
+; CLOCK_50 ; 9.569 ; 0.000                          ;
++----------+-------+--------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Slow 1200mV 85C Model Setup: 'CLOCK_50'                                                             ;
++--------+-----------+----------+--------------+-------------+--------------+------------+------------+
+; Slack  ; From Node ; To Node  ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++--------+-----------+----------+--------------+-------------+--------------+------------+------------+
+; 19.298 ; CLOCK_25  ; CLOCK_25 ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.038     ; 0.659      ;
++--------+-----------+----------+--------------+-------------+--------------+------------+------------+
+
+
++----------------------------------------------------------------------------------------------------+
+; Slow 1200mV 85C Model Hold: 'CLOCK_50'                                                             ;
++-------+-----------+----------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node ; To Node  ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+-----------+----------+--------------+-------------+--------------+------------+------------+
+; 0.385 ; CLOCK_25  ; CLOCK_25 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.038      ; 0.580      ;
++-------+-----------+----------+--------------+-------------+--------------+------------+------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Slow 1200mV 85C Model Minimum Pulse Width: 'CLOCK_50'                                                                 ;
++-------+--------------+----------------+-----------------+----------+------------+-------------------------------------+
+; Slack ; Actual Width ; Required Width ; Type            ; Clock    ; Clock Edge ; Target                              ;
++-------+--------------+----------------+-----------------+----------+------------+-------------------------------------+
+; 9.569 ; 9.753        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; CLOCK_25                            ;
+; 9.592 ; 9.776        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[108][0] ;
+; 9.592 ; 9.776        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[108][1] ;
+; 9.592 ; 9.776        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[113][0] ;
+; 9.592 ; 9.776        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[113][1] ;
+; 9.592 ; 9.776        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[115][0] ;
+; 9.592 ; 9.776        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[115][1] ;
+; 9.592 ; 9.776        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[117][0] ;
+; 9.592 ; 9.776        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[117][1] ;
+; 9.592 ; 9.776        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[149][0] ;
+; 9.592 ; 9.776        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[149][1] ;
+; 9.592 ; 9.776        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[164][0] ;
+; 9.592 ; 9.776        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[164][1] ;
+; 9.592 ; 9.776        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[17][0]  ;
+; 9.592 ; 9.776        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[17][1]  ;
+; 9.592 ; 9.776        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[192][0] ;
+; 9.592 ; 9.776        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[192][1] ;
+; 9.592 ; 9.776        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[224][0] ;
+; 9.592 ; 9.776        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[224][1] ;
+; 9.592 ; 9.776        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[233][0] ;
+; 9.592 ; 9.776        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[233][1] ;
+; 9.592 ; 9.776        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[234][0] ;
+; 9.592 ; 9.776        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[234][1] ;
+; 9.592 ; 9.776        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[249][0] ;
+; 9.592 ; 9.776        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[249][1] ;
+; 9.592 ; 9.776        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[2][0]   ;
+; 9.592 ; 9.776        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[2][1]   ;
+; 9.592 ; 9.776        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[32][0]  ;
+; 9.592 ; 9.776        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[32][1]  ;
+; 9.592 ; 9.776        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[48][0]  ;
+; 9.592 ; 9.776        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[48][1]  ;
+; 9.592 ; 9.776        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[85][0]  ;
+; 9.592 ; 9.776        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[85][1]  ;
+; 9.593 ; 9.777        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[130][0] ;
+; 9.593 ; 9.777        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[130][1] ;
+; 9.593 ; 9.777        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[1][0]   ;
+; 9.593 ; 9.777        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[1][1]   ;
+; 9.593 ; 9.777        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[65][0]  ;
+; 9.593 ; 9.777        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[65][1]  ;
+; 9.593 ; 9.777        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[66][0]  ;
+; 9.593 ; 9.777        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[66][1]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[10][0]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[10][1]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[112][0] ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[112][1] ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[114][0] ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[114][1] ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[132][0] ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[132][1] ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[14][0]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[14][1]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[152][0] ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[152][1] ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[154][0] ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[154][1] ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[178][0] ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[178][1] ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[19][0]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[19][1]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[215][0] ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[215][1] ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[217][0] ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[217][1] ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[21][0]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[21][1]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[25][0]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[25][1]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[26][0]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[26][1]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[37][0]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[37][1]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[3][0]   ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[3][1]   ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[46][0]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[46][1]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[4][0]   ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[4][1]   ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[50][0]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[50][1]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[68][0]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[68][1]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[88][0]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[88][1]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[89][0]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[89][1]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[90][0]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[90][1]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[9][0]   ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[9][1]   ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[0][0]   ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[0][1]   ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[100][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[100][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[102][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[102][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[104][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[104][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[105][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[105][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[110][0] ;
++-------+--------------+----------------+-----------------+----------+------------+-------------------------------------+
+
+
++-----------------------------------------------------------------------+
+; Setup Times                                                           ;
++-----------+------------+-------+-------+------------+-----------------+
+; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------+------------+-------+-------+------------+-----------------+
+; GPIO[*]   ; CLOCK_50   ; 6.889 ; 7.506 ; Rise       ; CLOCK_50        ;
+;  GPIO[1]  ; CLOCK_50   ; 5.109 ; 5.869 ; Rise       ; CLOCK_50        ;
+;  GPIO[24] ; CLOCK_50   ; 6.866 ; 7.506 ; Rise       ; CLOCK_50        ;
+;  GPIO[25] ; CLOCK_50   ; 6.889 ; 7.428 ; Rise       ; CLOCK_50        ;
+;  GPIO[26] ; CLOCK_50   ; 6.692 ; 7.267 ; Rise       ; CLOCK_50        ;
+;  GPIO[27] ; CLOCK_50   ; 6.720 ; 7.444 ; Rise       ; CLOCK_50        ;
+;  GPIO[28] ; CLOCK_50   ; 6.504 ; 7.040 ; Rise       ; CLOCK_50        ;
+;  GPIO[29] ; CLOCK_50   ; 6.349 ; 6.886 ; Rise       ; CLOCK_50        ;
+;  GPIO[30] ; CLOCK_50   ; 6.589 ; 7.301 ; Rise       ; CLOCK_50        ;
+;  GPIO[31] ; CLOCK_50   ; 6.374 ; 7.082 ; Rise       ; CLOCK_50        ;
+;  GPIO[32] ; CLOCK_50   ; 5.322 ; 6.132 ; Rise       ; CLOCK_50        ;
+;  GPIO[33] ; CLOCK_50   ; 5.861 ; 6.579 ; Rise       ; CLOCK_50        ;
+; KEY[*]    ; CLOCK_50   ; 6.223 ; 6.922 ; Rise       ; CLOCK_50        ;
+;  KEY[0]   ; CLOCK_50   ; 6.223 ; 6.922 ; Rise       ; CLOCK_50        ;
++-----------+------------+-------+-------+------------+-----------------+
+
+
++-------------------------------------------------------------------------+
+; Hold Times                                                              ;
++-----------+------------+--------+--------+------------+-----------------+
+; Data Port ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
++-----------+------------+--------+--------+------------+-----------------+
+; GPIO[*]   ; CLOCK_50   ; -1.692 ; -2.301 ; Rise       ; CLOCK_50        ;
+;  GPIO[1]  ; CLOCK_50   ; -2.776 ; -3.383 ; Rise       ; CLOCK_50        ;
+;  GPIO[24] ; CLOCK_50   ; -3.519 ; -4.066 ; Rise       ; CLOCK_50        ;
+;  GPIO[25] ; CLOCK_50   ; -3.431 ; -4.006 ; Rise       ; CLOCK_50        ;
+;  GPIO[26] ; CLOCK_50   ; -3.288 ; -3.881 ; Rise       ; CLOCK_50        ;
+;  GPIO[27] ; CLOCK_50   ; -3.353 ; -4.022 ; Rise       ; CLOCK_50        ;
+;  GPIO[28] ; CLOCK_50   ; -3.509 ; -4.116 ; Rise       ; CLOCK_50        ;
+;  GPIO[29] ; CLOCK_50   ; -3.349 ; -3.969 ; Rise       ; CLOCK_50        ;
+;  GPIO[30] ; CLOCK_50   ; -3.699 ; -4.295 ; Rise       ; CLOCK_50        ;
+;  GPIO[31] ; CLOCK_50   ; -3.436 ; -4.075 ; Rise       ; CLOCK_50        ;
+;  GPIO[32] ; CLOCK_50   ; -1.704 ; -2.318 ; Rise       ; CLOCK_50        ;
+;  GPIO[33] ; CLOCK_50   ; -1.692 ; -2.301 ; Rise       ; CLOCK_50        ;
+; KEY[*]    ; CLOCK_50   ; -1.592 ; -2.186 ; Rise       ; CLOCK_50        ;
+;  KEY[0]   ; CLOCK_50   ; -1.592 ; -2.186 ; Rise       ; CLOCK_50        ;
++-----------+------------+--------+--------+------------+-----------------+
+
+
++-------------------------------------------------------------------------+
+; Clock to Output Times                                                   ;
++-----------+------------+--------+--------+------------+-----------------+
+; Data Port ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
++-----------+------------+--------+--------+------------+-----------------+
+; GPIO[*]   ; CLOCK_50   ; 16.291 ; 16.138 ; Rise       ; CLOCK_50        ;
+;  GPIO[9]  ; CLOCK_50   ; 15.429 ; 15.511 ; Rise       ; CLOCK_50        ;
+;  GPIO[11] ; CLOCK_50   ; 14.936 ; 14.812 ; Rise       ; CLOCK_50        ;
+;  GPIO[13] ; CLOCK_50   ; 15.397 ; 15.398 ; Rise       ; CLOCK_50        ;
+;  GPIO[15] ; CLOCK_50   ; 16.291 ; 16.138 ; Rise       ; CLOCK_50        ;
+;  GPIO[17] ; CLOCK_50   ; 14.921 ; 14.830 ; Rise       ; CLOCK_50        ;
+;  GPIO[19] ; CLOCK_50   ; 14.324 ; 14.369 ; Rise       ; CLOCK_50        ;
+;  GPIO[21] ; CLOCK_50   ; 14.493 ; 14.332 ; Rise       ; CLOCK_50        ;
+;  GPIO[23] ; CLOCK_50   ; 14.197 ; 14.039 ; Rise       ; CLOCK_50        ;
++-----------+------------+--------+--------+------------+-----------------+
+
+
++-------------------------------------------------------------------------+
+; Minimum Clock to Output Times                                           ;
++-----------+------------+--------+--------+------------+-----------------+
+; Data Port ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
++-----------+------------+--------+--------+------------+-----------------+
+; GPIO[*]   ; CLOCK_50   ; 8.875  ; 8.773  ; Rise       ; CLOCK_50        ;
+;  GPIO[9]  ; CLOCK_50   ; 10.539 ; 10.600 ; Rise       ; CLOCK_50        ;
+;  GPIO[11] ; CLOCK_50   ; 9.584  ; 9.504  ; Rise       ; CLOCK_50        ;
+;  GPIO[13] ; CLOCK_50   ; 9.965  ; 9.995  ; Rise       ; CLOCK_50        ;
+;  GPIO[15] ; CLOCK_50   ; 11.030 ; 10.792 ; Rise       ; CLOCK_50        ;
+;  GPIO[17] ; CLOCK_50   ; 10.038 ; 9.960  ; Rise       ; CLOCK_50        ;
+;  GPIO[19] ; CLOCK_50   ; 9.049  ; 9.033  ; Rise       ; CLOCK_50        ;
+;  GPIO[21] ; CLOCK_50   ; 9.145  ; 9.032  ; Rise       ; CLOCK_50        ;
+;  GPIO[23] ; CLOCK_50   ; 8.875  ; 8.773  ; Rise       ; CLOCK_50        ;
++-----------+------------+--------+--------+------------+-----------------+
+
+
+----------------------------------------------
+; Slow 1200mV 85C Model Metastability Report ;
+----------------------------------------------
+No synchronizer chains to report.
+
+
++------------------------------------------------------------------------------------------------------------+
+; Slow 1200mV 0C Model Fmax Summary                                                                          ;
++-------------+-----------------+------------+---------------------------------------------------------------+
+; Fmax        ; Restricted Fmax ; Clock Name ; Note                                                          ;
++-------------+-----------------+------------+---------------------------------------------------------------+
+; 1607.72 MHz ; 250.0 MHz       ; CLOCK_50   ; limit due to minimum period restriction (max I/O toggle rate) ;
++-------------+-----------------+------------+---------------------------------------------------------------+
+This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
+
+
++------------------------------------+
+; Slow 1200mV 0C Model Setup Summary ;
++----------+--------+----------------+
+; Clock    ; Slack  ; End Point TNS  ;
++----------+--------+----------------+
+; CLOCK_50 ; 19.378 ; 0.000          ;
++----------+--------+----------------+
+
+
++-----------------------------------+
+; Slow 1200mV 0C Model Hold Summary ;
++----------+-------+----------------+
+; Clock    ; Slack ; End Point TNS  ;
++----------+-------+----------------+
+; CLOCK_50 ; 0.341 ; 0.000          ;
++----------+-------+----------------+
+
+
+-----------------------------------------
+; Slow 1200mV 0C Model Recovery Summary ;
+-----------------------------------------
+No paths to report.
+
+
+----------------------------------------
+; Slow 1200mV 0C Model Removal Summary ;
+----------------------------------------
+No paths to report.
+
+
++--------------------------------------------------+
+; Slow 1200mV 0C Model Minimum Pulse Width Summary ;
++----------+-------+-------------------------------+
+; Clock    ; Slack ; End Point TNS                 ;
++----------+-------+-------------------------------+
+; CLOCK_50 ; 9.563 ; 0.000                         ;
++----------+-------+-------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Slow 1200mV 0C Model Setup: 'CLOCK_50'                                                              ;
++--------+-----------+----------+--------------+-------------+--------------+------------+------------+
+; Slack  ; From Node ; To Node  ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++--------+-----------+----------+--------------+-------------+--------------+------------+------------+
+; 19.378 ; CLOCK_25  ; CLOCK_25 ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.034     ; 0.583      ;
++--------+-----------+----------+--------------+-------------+--------------+------------+------------+
+
+
++----------------------------------------------------------------------------------------------------+
+; Slow 1200mV 0C Model Hold: 'CLOCK_50'                                                              ;
++-------+-----------+----------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node ; To Node  ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+-----------+----------+--------------+-------------+--------------+------------+------------+
+; 0.341 ; CLOCK_25  ; CLOCK_25 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.034      ; 0.519      ;
++-------+-----------+----------+--------------+-------------+--------------+------------+------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Slow 1200mV 0C Model Minimum Pulse Width: 'CLOCK_50'                                                                  ;
++-------+--------------+----------------+-----------------+----------+------------+-------------------------------------+
+; Slack ; Actual Width ; Required Width ; Type            ; Clock    ; Clock Edge ; Target                              ;
++-------+--------------+----------------+-----------------+----------+------------+-------------------------------------+
+; 9.563 ; 9.747        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; CLOCK_25                            ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[10][0]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[10][1]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[130][0] ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[130][1] ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[14][0]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[14][1]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[1][0]   ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[1][1]   ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[217][0] ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[217][1] ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[21][0]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[21][1]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[233][0] ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[233][1] ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[234][0] ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[234][1] ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[26][0]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[26][1]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[37][0]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[37][1]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[46][0]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[46][1]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[4][0]   ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[4][1]   ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[65][0]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[65][1]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[66][0]  ;
+; 9.595 ; 9.779        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[66][1]  ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[102][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[102][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[103][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[103][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[106][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[106][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[107][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[107][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[108][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[108][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[110][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[110][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[112][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[112][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[113][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[113][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[114][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[114][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[115][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[115][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[117][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[117][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[126][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[126][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[132][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[132][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[135][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[135][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[139][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[139][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[144][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[144][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[147][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[147][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[149][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[149][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[151][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[151][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[152][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[152][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[153][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[153][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[154][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[154][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[157][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[157][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[164][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[164][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[168][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[168][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[169][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[170][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[170][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[172][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[172][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[173][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[173][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[174][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[174][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[175][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[175][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[177][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[177][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[178][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[178][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[179][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[179][1] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[17][0]  ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[17][1]  ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[190][0] ;
+; 9.596 ; 9.780        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[190][1] ;
++-------+--------------+----------------+-----------------+----------+------------+-------------------------------------+
+
+
++-----------------------------------------------------------------------+
+; Setup Times                                                           ;
++-----------+------------+-------+-------+------------+-----------------+
+; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------+------------+-------+-------+------------+-----------------+
+; GPIO[*]   ; CLOCK_50   ; 6.168 ; 6.680 ; Rise       ; CLOCK_50        ;
+;  GPIO[1]  ; CLOCK_50   ; 4.603 ; 5.149 ; Rise       ; CLOCK_50        ;
+;  GPIO[24] ; CLOCK_50   ; 6.168 ; 6.668 ; Rise       ; CLOCK_50        ;
+;  GPIO[25] ; CLOCK_50   ; 6.144 ; 6.680 ; Rise       ; CLOCK_50        ;
+;  GPIO[26] ; CLOCK_50   ; 5.978 ; 6.524 ; Rise       ; CLOCK_50        ;
+;  GPIO[27] ; CLOCK_50   ; 6.050 ; 6.584 ; Rise       ; CLOCK_50        ;
+;  GPIO[28] ; CLOCK_50   ; 5.669 ; 6.257 ; Rise       ; CLOCK_50        ;
+;  GPIO[29] ; CLOCK_50   ; 5.570 ; 6.106 ; Rise       ; CLOCK_50        ;
+;  GPIO[30] ; CLOCK_50   ; 5.870 ; 6.417 ; Rise       ; CLOCK_50        ;
+;  GPIO[31] ; CLOCK_50   ; 5.727 ; 6.234 ; Rise       ; CLOCK_50        ;
+;  GPIO[32] ; CLOCK_50   ; 4.799 ; 5.385 ; Rise       ; CLOCK_50        ;
+;  GPIO[33] ; CLOCK_50   ; 5.287 ; 5.805 ; Rise       ; CLOCK_50        ;
+; KEY[*]    ; CLOCK_50   ; 5.617 ; 6.092 ; Rise       ; CLOCK_50        ;
+;  KEY[0]   ; CLOCK_50   ; 5.617 ; 6.092 ; Rise       ; CLOCK_50        ;
++-----------+------------+-------+-------+------------+-----------------+
+
+
++-------------------------------------------------------------------------+
+; Hold Times                                                              ;
++-----------+------------+--------+--------+------------+-----------------+
+; Data Port ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
++-----------+------------+--------+--------+------------+-----------------+
+; GPIO[*]   ; CLOCK_50   ; -1.463 ; -1.972 ; Rise       ; CLOCK_50        ;
+;  GPIO[1]  ; CLOCK_50   ; -2.444 ; -2.948 ; Rise       ; CLOCK_50        ;
+;  GPIO[24] ; CLOCK_50   ; -3.071 ; -3.584 ; Rise       ; CLOCK_50        ;
+;  GPIO[25] ; CLOCK_50   ; -3.022 ; -3.533 ; Rise       ; CLOCK_50        ;
+;  GPIO[26] ; CLOCK_50   ; -2.901 ; -3.413 ; Rise       ; CLOCK_50        ;
+;  GPIO[27] ; CLOCK_50   ; -2.956 ; -3.494 ; Rise       ; CLOCK_50        ;
+;  GPIO[28] ; CLOCK_50   ; -3.046 ; -3.624 ; Rise       ; CLOCK_50        ;
+;  GPIO[29] ; CLOCK_50   ; -2.954 ; -3.466 ; Rise       ; CLOCK_50        ;
+;  GPIO[30] ; CLOCK_50   ; -3.265 ; -3.783 ; Rise       ; CLOCK_50        ;
+;  GPIO[31] ; CLOCK_50   ; -3.062 ; -3.611 ; Rise       ; CLOCK_50        ;
+;  GPIO[32] ; CLOCK_50   ; -1.474 ; -1.990 ; Rise       ; CLOCK_50        ;
+;  GPIO[33] ; CLOCK_50   ; -1.463 ; -1.972 ; Rise       ; CLOCK_50        ;
+; KEY[*]    ; CLOCK_50   ; -1.341 ; -1.856 ; Rise       ; CLOCK_50        ;
+;  KEY[0]   ; CLOCK_50   ; -1.341 ; -1.856 ; Rise       ; CLOCK_50        ;
++-----------+------------+--------+--------+------------+-----------------+
+
+
++-------------------------------------------------------------------------+
+; Clock to Output Times                                                   ;
++-----------+------------+--------+--------+------------+-----------------+
+; Data Port ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
++-----------+------------+--------+--------+------------+-----------------+
+; GPIO[*]   ; CLOCK_50   ; 14.596 ; 14.262 ; Rise       ; CLOCK_50        ;
+;  GPIO[9]  ; CLOCK_50   ; 13.927 ; 13.890 ; Rise       ; CLOCK_50        ;
+;  GPIO[11] ; CLOCK_50   ; 13.405 ; 13.233 ; Rise       ; CLOCK_50        ;
+;  GPIO[13] ; CLOCK_50   ; 13.814 ; 13.741 ; Rise       ; CLOCK_50        ;
+;  GPIO[15] ; CLOCK_50   ; 14.596 ; 14.262 ; Rise       ; CLOCK_50        ;
+;  GPIO[17] ; CLOCK_50   ; 13.435 ; 13.276 ; Rise       ; CLOCK_50        ;
+;  GPIO[19] ; CLOCK_50   ; 12.873 ; 12.814 ; Rise       ; CLOCK_50        ;
+;  GPIO[21] ; CLOCK_50   ; 12.979 ; 12.833 ; Rise       ; CLOCK_50        ;
+;  GPIO[23] ; CLOCK_50   ; 12.710 ; 12.559 ; Rise       ; CLOCK_50        ;
++-----------+------------+--------+--------+------------+-----------------+
+
+
++-----------------------------------------------------------------------+
+; Minimum Clock to Output Times                                         ;
++-----------+------------+-------+-------+------------+-----------------+
+; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------+------------+-------+-------+------------+-----------------+
+; GPIO[*]   ; CLOCK_50   ; 8.026 ; 7.892 ; Rise       ; CLOCK_50        ;
+;  GPIO[9]  ; CLOCK_50   ; 9.591 ; 9.491 ; Rise       ; CLOCK_50        ;
+;  GPIO[11] ; CLOCK_50   ; 8.690 ; 8.533 ; Rise       ; CLOCK_50        ;
+;  GPIO[13] ; CLOCK_50   ; 9.041 ; 8.995 ; Rise       ; CLOCK_50        ;
+;  GPIO[15] ; CLOCK_50   ; 9.922 ; 9.556 ; Rise       ; CLOCK_50        ;
+;  GPIO[17] ; CLOCK_50   ; 9.058 ; 8.962 ; Rise       ; CLOCK_50        ;
+;  GPIO[19] ; CLOCK_50   ; 8.191 ; 8.116 ; Rise       ; CLOCK_50        ;
+;  GPIO[21] ; CLOCK_50   ; 8.270 ; 8.131 ; Rise       ; CLOCK_50        ;
+;  GPIO[23] ; CLOCK_50   ; 8.026 ; 7.892 ; Rise       ; CLOCK_50        ;
++-----------+------------+-------+-------+------------+-----------------+
+
+
+---------------------------------------------
+; Slow 1200mV 0C Model Metastability Report ;
+---------------------------------------------
+No synchronizer chains to report.
+
+
++------------------------------------+
+; Fast 1200mV 0C Model Setup Summary ;
++----------+--------+----------------+
+; Clock    ; Slack  ; End Point TNS  ;
++----------+--------+----------------+
+; CLOCK_50 ; 19.606 ; 0.000          ;
++----------+--------+----------------+
+
+
++-----------------------------------+
+; Fast 1200mV 0C Model Hold Summary ;
++----------+-------+----------------+
+; Clock    ; Slack ; End Point TNS  ;
++----------+-------+----------------+
+; CLOCK_50 ; 0.208 ; 0.000          ;
++----------+-------+----------------+
+
+
+-----------------------------------------
+; Fast 1200mV 0C Model Recovery Summary ;
+-----------------------------------------
+No paths to report.
+
+
+----------------------------------------
+; Fast 1200mV 0C Model Removal Summary ;
+----------------------------------------
+No paths to report.
+
+
++--------------------------------------------------+
+; Fast 1200mV 0C Model Minimum Pulse Width Summary ;
++----------+-------+-------------------------------+
+; Clock    ; Slack ; End Point TNS                 ;
++----------+-------+-------------------------------+
+; CLOCK_50 ; 9.270 ; 0.000                         ;
++----------+-------+-------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Fast 1200mV 0C Model Setup: 'CLOCK_50'                                                              ;
++--------+-----------+----------+--------------+-------------+--------------+------------+------------+
+; Slack  ; From Node ; To Node  ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++--------+-----------+----------+--------------+-------------+--------------+------------+------------+
+; 19.606 ; CLOCK_25  ; CLOCK_25 ; CLOCK_50     ; CLOCK_50    ; 20.000       ; -0.022     ; 0.359      ;
++--------+-----------+----------+--------------+-------------+--------------+------------+------------+
+
+
++----------------------------------------------------------------------------------------------------+
+; Fast 1200mV 0C Model Hold: 'CLOCK_50'                                                              ;
++-------+-----------+----------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node ; To Node  ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+-----------+----------+--------------+-------------+--------------+------------+------------+
+; 0.208 ; CLOCK_25  ; CLOCK_25 ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.022      ; 0.314      ;
++-------+-----------+----------+--------------+-------------+--------------+------------+------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Fast 1200mV 0C Model Minimum Pulse Width: 'CLOCK_50'                                                                  ;
++-------+--------------+----------------+-----------------+----------+------------+-------------------------------------+
+; Slack ; Actual Width ; Required Width ; Type            ; Clock    ; Clock Edge ; Target                              ;
++-------+--------------+----------------+-----------------+----------+------------+-------------------------------------+
+; 9.270 ; 9.454        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[149][0] ;
+; 9.270 ; 9.454        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[149][1] ;
+; 9.270 ; 9.454        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[164][0] ;
+; 9.270 ; 9.454        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[164][1] ;
+; 9.270 ; 9.454        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[1][0]   ;
+; 9.270 ; 9.454        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[1][1]   ;
+; 9.270 ; 9.454        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[65][0]  ;
+; 9.270 ; 9.454        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[65][1]  ;
+; 9.271 ; 9.455        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[108][0] ;
+; 9.271 ; 9.455        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[108][1] ;
+; 9.271 ; 9.455        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[113][0] ;
+; 9.271 ; 9.455        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[113][1] ;
+; 9.271 ; 9.455        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[115][0] ;
+; 9.271 ; 9.455        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[115][1] ;
+; 9.271 ; 9.455        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[117][0] ;
+; 9.271 ; 9.455        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[117][1] ;
+; 9.271 ; 9.455        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[130][0] ;
+; 9.271 ; 9.455        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[130][1] ;
+; 9.271 ; 9.455        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[17][0]  ;
+; 9.271 ; 9.455        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[17][1]  ;
+; 9.271 ; 9.455        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[192][0] ;
+; 9.271 ; 9.455        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[192][1] ;
+; 9.271 ; 9.455        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[224][0] ;
+; 9.271 ; 9.455        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[224][1] ;
+; 9.271 ; 9.455        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[233][0] ;
+; 9.271 ; 9.455        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[233][1] ;
+; 9.271 ; 9.455        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[234][0] ;
+; 9.271 ; 9.455        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[234][1] ;
+; 9.271 ; 9.455        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[249][0] ;
+; 9.271 ; 9.455        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[249][1] ;
+; 9.271 ; 9.455        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[2][0]   ;
+; 9.271 ; 9.455        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[2][1]   ;
+; 9.271 ; 9.455        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[32][0]  ;
+; 9.271 ; 9.455        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[32][1]  ;
+; 9.271 ; 9.455        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[48][0]  ;
+; 9.271 ; 9.455        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[48][1]  ;
+; 9.271 ; 9.455        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[66][0]  ;
+; 9.271 ; 9.455        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[66][1]  ;
+; 9.271 ; 9.455        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[85][0]  ;
+; 9.271 ; 9.455        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[85][1]  ;
+; 9.272 ; 9.456        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[196][0] ;
+; 9.272 ; 9.456        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[196][1] ;
+; 9.272 ; 9.456        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[197][0] ;
+; 9.272 ; 9.456        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[197][1] ;
+; 9.272 ; 9.456        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[19][0]  ;
+; 9.272 ; 9.456        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[19][1]  ;
+; 9.272 ; 9.456        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[212][0] ;
+; 9.272 ; 9.456        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[212][1] ;
+; 9.272 ; 9.456        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[213][0] ;
+; 9.272 ; 9.456        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[213][1] ;
+; 9.272 ; 9.456        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[216][0] ;
+; 9.272 ; 9.456        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[216][1] ;
+; 9.272 ; 9.456        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[248][0] ;
+; 9.272 ; 9.456        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[248][1] ;
+; 9.272 ; 9.456        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[29][0]  ;
+; 9.272 ; 9.456        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[29][1]  ;
+; 9.272 ; 9.456        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[3][0]   ;
+; 9.272 ; 9.456        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[3][1]   ;
+; 9.272 ; 9.456        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[61][0]  ;
+; 9.272 ; 9.456        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[61][1]  ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[104][0] ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[104][1] ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[105][0] ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[105][1] ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[106][0] ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[106][1] ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[107][0] ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[107][1] ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[109][0] ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[109][1] ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[10][0]  ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[10][1]  ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[111][0] ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[111][1] ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[112][0] ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[112][1] ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[114][0] ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[114][1] ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[124][0] ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[124][1] ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[127][0] ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[127][1] ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[129][0] ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[129][1] ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[132][0] ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[132][1] ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[133][0] ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[133][1] ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[136][0] ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[136][1] ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[137][0] ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[137][1] ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[138][0] ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[138][1] ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[13][0]  ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[13][1]  ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[143][0] ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[143][1] ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[146][0] ;
+; 9.273 ; 9.457        ; 0.184          ; Low Pulse Width ; CLOCK_50 ; Rise       ; blockArray:pixelArray|array[146][1] ;
++-------+--------------+----------------+-----------------+----------+------------+-------------------------------------+
+
+
++-----------------------------------------------------------------------+
+; Setup Times                                                           ;
++-----------+------------+-------+-------+------------+-----------------+
+; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------+------------+-------+-------+------------+-----------------+
+; GPIO[*]   ; CLOCK_50   ; 4.118 ; 4.974 ; Rise       ; CLOCK_50        ;
+;  GPIO[1]  ; CLOCK_50   ; 2.901 ; 3.948 ; Rise       ; CLOCK_50        ;
+;  GPIO[24] ; CLOCK_50   ; 3.990 ; 4.974 ; Rise       ; CLOCK_50        ;
+;  GPIO[25] ; CLOCK_50   ; 4.118 ; 4.653 ; Rise       ; CLOCK_50        ;
+;  GPIO[26] ; CLOCK_50   ; 4.028 ; 4.785 ; Rise       ; CLOCK_50        ;
+;  GPIO[27] ; CLOCK_50   ; 3.991 ; 4.949 ; Rise       ; CLOCK_50        ;
+;  GPIO[28] ; CLOCK_50   ; 3.796 ; 4.401 ; Rise       ; CLOCK_50        ;
+;  GPIO[29] ; CLOCK_50   ; 3.739 ; 4.290 ; Rise       ; CLOCK_50        ;
+;  GPIO[30] ; CLOCK_50   ; 3.641 ; 4.808 ; Rise       ; CLOCK_50        ;
+;  GPIO[31] ; CLOCK_50   ; 3.543 ; 4.696 ; Rise       ; CLOCK_50        ;
+;  GPIO[32] ; CLOCK_50   ; 3.063 ; 4.175 ; Rise       ; CLOCK_50        ;
+;  GPIO[33] ; CLOCK_50   ; 3.304 ; 4.425 ; Rise       ; CLOCK_50        ;
+; KEY[*]    ; CLOCK_50   ; 3.481 ; 4.630 ; Rise       ; CLOCK_50        ;
+;  KEY[0]   ; CLOCK_50   ; 3.481 ; 4.630 ; Rise       ; CLOCK_50        ;
++-----------+------------+-------+-------+------------+-----------------+
+
+
++-------------------------------------------------------------------------+
+; Hold Times                                                              ;
++-----------+------------+--------+--------+------------+-----------------+
+; Data Port ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
++-----------+------------+--------+--------+------------+-----------------+
+; GPIO[*]   ; CLOCK_50   ; -0.962 ; -1.777 ; Rise       ; CLOCK_50        ;
+;  GPIO[1]  ; CLOCK_50   ; -1.573 ; -2.423 ; Rise       ; CLOCK_50        ;
+;  GPIO[24] ; CLOCK_50   ; -2.016 ; -2.786 ; Rise       ; CLOCK_50        ;
+;  GPIO[25] ; CLOCK_50   ; -1.964 ; -2.738 ; Rise       ; CLOCK_50        ;
+;  GPIO[26] ; CLOCK_50   ; -1.873 ; -2.679 ; Rise       ; CLOCK_50        ;
+;  GPIO[27] ; CLOCK_50   ; -1.904 ; -2.795 ; Rise       ; CLOCK_50        ;
+;  GPIO[28] ; CLOCK_50   ; -1.980 ; -2.805 ; Rise       ; CLOCK_50        ;
+;  GPIO[29] ; CLOCK_50   ; -1.871 ; -2.757 ; Rise       ; CLOCK_50        ;
+;  GPIO[30] ; CLOCK_50   ; -2.077 ; -2.982 ; Rise       ; CLOCK_50        ;
+;  GPIO[31] ; CLOCK_50   ; -2.002 ; -2.816 ; Rise       ; CLOCK_50        ;
+;  GPIO[32] ; CLOCK_50   ; -0.975 ; -1.791 ; Rise       ; CLOCK_50        ;
+;  GPIO[33] ; CLOCK_50   ; -0.962 ; -1.777 ; Rise       ; CLOCK_50        ;
+; KEY[*]    ; CLOCK_50   ; -0.924 ; -1.732 ; Rise       ; CLOCK_50        ;
+;  KEY[0]   ; CLOCK_50   ; -0.924 ; -1.732 ; Rise       ; CLOCK_50        ;
++-----------+------------+--------+--------+------------+-----------------+
+
+
++-----------------------------------------------------------------------+
+; Clock to Output Times                                                 ;
++-----------+------------+-------+-------+------------+-----------------+
+; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------+------------+-------+-------+------------+-----------------+
+; GPIO[*]   ; CLOCK_50   ; 9.819 ; 9.798 ; Rise       ; CLOCK_50        ;
+;  GPIO[9]  ; CLOCK_50   ; 8.941 ; 9.223 ; Rise       ; CLOCK_50        ;
+;  GPIO[11] ; CLOCK_50   ; 8.738 ; 8.759 ; Rise       ; CLOCK_50        ;
+;  GPIO[13] ; CLOCK_50   ; 9.013 ; 9.153 ; Rise       ; CLOCK_50        ;
+;  GPIO[15] ; CLOCK_50   ; 9.819 ; 9.798 ; Rise       ; CLOCK_50        ;
+;  GPIO[17] ; CLOCK_50   ; 8.725 ; 8.714 ; Rise       ; CLOCK_50        ;
+;  GPIO[19] ; CLOCK_50   ; 8.355 ; 8.492 ; Rise       ; CLOCK_50        ;
+;  GPIO[21] ; CLOCK_50   ; 8.462 ; 8.405 ; Rise       ; CLOCK_50        ;
+;  GPIO[23] ; CLOCK_50   ; 8.304 ; 8.207 ; Rise       ; CLOCK_50        ;
++-----------+------------+-------+-------+------------+-----------------+
+
+
++-----------------------------------------------------------------------+
+; Minimum Clock to Output Times                                         ;
++-----------+------------+-------+-------+------------+-----------------+
+; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------+------------+-------+-------+------------+-----------------+
+; GPIO[*]   ; CLOCK_50   ; 5.071 ; 5.058 ; Rise       ; CLOCK_50        ;
+;  GPIO[9]  ; CLOCK_50   ; 6.051 ; 6.384 ; Rise       ; CLOCK_50        ;
+;  GPIO[11] ; CLOCK_50   ; 5.486 ; 5.528 ; Rise       ; CLOCK_50        ;
+;  GPIO[13] ; CLOCK_50   ; 5.701 ; 5.851 ; Rise       ; CLOCK_50        ;
+;  GPIO[15] ; CLOCK_50   ; 6.678 ; 6.549 ; Rise       ; CLOCK_50        ;
+;  GPIO[17] ; CLOCK_50   ; 5.909 ; 5.830 ; Rise       ; CLOCK_50        ;
+;  GPIO[19] ; CLOCK_50   ; 5.160 ; 5.247 ; Rise       ; CLOCK_50        ;
+;  GPIO[21] ; CLOCK_50   ; 5.214 ; 5.241 ; Rise       ; CLOCK_50        ;
+;  GPIO[23] ; CLOCK_50   ; 5.071 ; 5.058 ; Rise       ; CLOCK_50        ;
++-----------+------------+-------+-------+------------+-----------------+
+
+
+---------------------------------------------
+; Fast 1200mV 0C Model Metastability Report ;
+---------------------------------------------
+No synchronizer chains to report.
+
+
++------------------------------------------------------------------------------+
+; Multicorner Timing Analysis Summary                                          ;
++------------------+--------+-------+----------+---------+---------------------+
+; Clock            ; Setup  ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
++------------------+--------+-------+----------+---------+---------------------+
+; Worst-case Slack ; 19.298 ; 0.208 ; N/A      ; N/A     ; 9.270               ;
+;  CLOCK_50        ; 19.298 ; 0.208 ; N/A      ; N/A     ; 9.270               ;
+; Design-wide TNS  ; 0.0    ; 0.0   ; 0.0      ; 0.0     ; 0.0                 ;
+;  CLOCK_50        ; 0.000  ; 0.000 ; N/A      ; N/A     ; 0.000               ;
++------------------+--------+-------+----------+---------+---------------------+
+
+
++-----------------------------------------------------------------------+
+; Setup Times                                                           ;
++-----------+------------+-------+-------+------------+-----------------+
+; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------+------------+-------+-------+------------+-----------------+
+; GPIO[*]   ; CLOCK_50   ; 6.889 ; 7.506 ; Rise       ; CLOCK_50        ;
+;  GPIO[1]  ; CLOCK_50   ; 5.109 ; 5.869 ; Rise       ; CLOCK_50        ;
+;  GPIO[24] ; CLOCK_50   ; 6.866 ; 7.506 ; Rise       ; CLOCK_50        ;
+;  GPIO[25] ; CLOCK_50   ; 6.889 ; 7.428 ; Rise       ; CLOCK_50        ;
+;  GPIO[26] ; CLOCK_50   ; 6.692 ; 7.267 ; Rise       ; CLOCK_50        ;
+;  GPIO[27] ; CLOCK_50   ; 6.720 ; 7.444 ; Rise       ; CLOCK_50        ;
+;  GPIO[28] ; CLOCK_50   ; 6.504 ; 7.040 ; Rise       ; CLOCK_50        ;
+;  GPIO[29] ; CLOCK_50   ; 6.349 ; 6.886 ; Rise       ; CLOCK_50        ;
+;  GPIO[30] ; CLOCK_50   ; 6.589 ; 7.301 ; Rise       ; CLOCK_50        ;
+;  GPIO[31] ; CLOCK_50   ; 6.374 ; 7.082 ; Rise       ; CLOCK_50        ;
+;  GPIO[32] ; CLOCK_50   ; 5.322 ; 6.132 ; Rise       ; CLOCK_50        ;
+;  GPIO[33] ; CLOCK_50   ; 5.861 ; 6.579 ; Rise       ; CLOCK_50        ;
+; KEY[*]    ; CLOCK_50   ; 6.223 ; 6.922 ; Rise       ; CLOCK_50        ;
+;  KEY[0]   ; CLOCK_50   ; 6.223 ; 6.922 ; Rise       ; CLOCK_50        ;
++-----------+------------+-------+-------+------------+-----------------+
+
+
++-------------------------------------------------------------------------+
+; Hold Times                                                              ;
++-----------+------------+--------+--------+------------+-----------------+
+; Data Port ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
++-----------+------------+--------+--------+------------+-----------------+
+; GPIO[*]   ; CLOCK_50   ; -0.962 ; -1.777 ; Rise       ; CLOCK_50        ;
+;  GPIO[1]  ; CLOCK_50   ; -1.573 ; -2.423 ; Rise       ; CLOCK_50        ;
+;  GPIO[24] ; CLOCK_50   ; -2.016 ; -2.786 ; Rise       ; CLOCK_50        ;
+;  GPIO[25] ; CLOCK_50   ; -1.964 ; -2.738 ; Rise       ; CLOCK_50        ;
+;  GPIO[26] ; CLOCK_50   ; -1.873 ; -2.679 ; Rise       ; CLOCK_50        ;
+;  GPIO[27] ; CLOCK_50   ; -1.904 ; -2.795 ; Rise       ; CLOCK_50        ;
+;  GPIO[28] ; CLOCK_50   ; -1.980 ; -2.805 ; Rise       ; CLOCK_50        ;
+;  GPIO[29] ; CLOCK_50   ; -1.871 ; -2.757 ; Rise       ; CLOCK_50        ;
+;  GPIO[30] ; CLOCK_50   ; -2.077 ; -2.982 ; Rise       ; CLOCK_50        ;
+;  GPIO[31] ; CLOCK_50   ; -2.002 ; -2.816 ; Rise       ; CLOCK_50        ;
+;  GPIO[32] ; CLOCK_50   ; -0.975 ; -1.791 ; Rise       ; CLOCK_50        ;
+;  GPIO[33] ; CLOCK_50   ; -0.962 ; -1.777 ; Rise       ; CLOCK_50        ;
+; KEY[*]    ; CLOCK_50   ; -0.924 ; -1.732 ; Rise       ; CLOCK_50        ;
+;  KEY[0]   ; CLOCK_50   ; -0.924 ; -1.732 ; Rise       ; CLOCK_50        ;
++-----------+------------+--------+--------+------------+-----------------+
+
+
++-------------------------------------------------------------------------+
+; Clock to Output Times                                                   ;
++-----------+------------+--------+--------+------------+-----------------+
+; Data Port ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
++-----------+------------+--------+--------+------------+-----------------+
+; GPIO[*]   ; CLOCK_50   ; 16.291 ; 16.138 ; Rise       ; CLOCK_50        ;
+;  GPIO[9]  ; CLOCK_50   ; 15.429 ; 15.511 ; Rise       ; CLOCK_50        ;
+;  GPIO[11] ; CLOCK_50   ; 14.936 ; 14.812 ; Rise       ; CLOCK_50        ;
+;  GPIO[13] ; CLOCK_50   ; 15.397 ; 15.398 ; Rise       ; CLOCK_50        ;
+;  GPIO[15] ; CLOCK_50   ; 16.291 ; 16.138 ; Rise       ; CLOCK_50        ;
+;  GPIO[17] ; CLOCK_50   ; 14.921 ; 14.830 ; Rise       ; CLOCK_50        ;
+;  GPIO[19] ; CLOCK_50   ; 14.324 ; 14.369 ; Rise       ; CLOCK_50        ;
+;  GPIO[21] ; CLOCK_50   ; 14.493 ; 14.332 ; Rise       ; CLOCK_50        ;
+;  GPIO[23] ; CLOCK_50   ; 14.197 ; 14.039 ; Rise       ; CLOCK_50        ;
++-----------+------------+--------+--------+------------+-----------------+
+
+
++-----------------------------------------------------------------------+
+; Minimum Clock to Output Times                                         ;
++-----------+------------+-------+-------+------------+-----------------+
+; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------+------------+-------+-------+------------+-----------------+
+; GPIO[*]   ; CLOCK_50   ; 5.071 ; 5.058 ; Rise       ; CLOCK_50        ;
+;  GPIO[9]  ; CLOCK_50   ; 6.051 ; 6.384 ; Rise       ; CLOCK_50        ;
+;  GPIO[11] ; CLOCK_50   ; 5.486 ; 5.528 ; Rise       ; CLOCK_50        ;
+;  GPIO[13] ; CLOCK_50   ; 5.701 ; 5.851 ; Rise       ; CLOCK_50        ;
+;  GPIO[15] ; CLOCK_50   ; 6.678 ; 6.549 ; Rise       ; CLOCK_50        ;
+;  GPIO[17] ; CLOCK_50   ; 5.909 ; 5.830 ; Rise       ; CLOCK_50        ;
+;  GPIO[19] ; CLOCK_50   ; 5.160 ; 5.247 ; Rise       ; CLOCK_50        ;
+;  GPIO[21] ; CLOCK_50   ; 5.214 ; 5.241 ; Rise       ; CLOCK_50        ;
+;  GPIO[23] ; CLOCK_50   ; 5.071 ; 5.058 ; Rise       ; CLOCK_50        ;
++-----------+------------+-------+-------+------------+-----------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Board Trace Model Assignments                                                                                                                                                                                                                                                                                                                                                                                    ;
++---------------+--------------+-------------------+-------------------------+-------------------------+---------------+---------------------+----------------+------------------+--------+------------------+------------------------+------------------------+--------------+---------------+-----------------+-------+---------------------+--------------------+---------------+-----------------+-------------+
+; Pin           ; I/O Standard ; Near Tline Length ; Near Tline L per Length ; Near Tline C per Length ; Near Series R ; Near Differential R ; Near Pull-up R ; Near Pull-down R ; Near C ; Far Tline Length ; Far Tline L per Length ; Far Tline C per Length ; Far Series R ; Far Pull-up R ; Far Pull-down R ; Far C ; Termination Voltage ; Far Differential R ; EBD File Name ; EBD Signal Name ; EBD Far-end ;
++---------------+--------------+-------------------+-------------------------+-------------------------+---------------+---------------------+----------------+------------------+--------+------------------+------------------------+------------------------+--------------+---------------+-----------------+-------+---------------------+--------------------+---------------+-----------------+-------------+
+; GPIO[0]       ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO[2]       ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO[3]       ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO[4]       ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO[6]       ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO[8]       ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO[10]      ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO[12]      ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO[14]      ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO[16]      ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO[18]      ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO[20]      ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO[22]      ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO[1]       ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO[5]       ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO[7]       ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO[9]       ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO[11]      ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO[13]      ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO[15]      ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO[17]      ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO[19]      ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO[21]      ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO[23]      ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO[24]      ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO[25]      ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO[26]      ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO[27]      ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO[28]      ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO[29]      ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO[30]      ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO[31]      ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO[32]      ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO[33]      ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; ~ALTERA_DCLK~ ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; ~ALTERA_nCEO~ ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
++---------------+--------------+-------------------+-------------------------+-------------------------+---------------+---------------------+----------------+------------------+--------+------------------+------------------------+------------------------+--------------+---------------+-----------------+-------+---------------------+--------------------+---------------+-----------------+-------------+
+
+
++----------------------------------------------------------------------------+
+; Input Transition Times                                                     ;
++-------------------------+--------------+-----------------+-----------------+
+; Pin                     ; I/O Standard ; 10-90 Rise Time ; 90-10 Fall Time ;
++-------------------------+--------------+-----------------+-----------------+
+; KEY[1]                  ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; GPIO_IN[0]              ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; GPIO_IN[1]              ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; GPIO[0]                 ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; GPIO[2]                 ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; GPIO[3]                 ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; GPIO[4]                 ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; GPIO[6]                 ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; GPIO[8]                 ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; GPIO[10]                ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; GPIO[12]                ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; GPIO[14]                ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; GPIO[16]                ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; GPIO[18]                ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; GPIO[20]                ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; GPIO[22]                ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; GPIO[1]                 ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; GPIO[5]                 ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; GPIO[7]                 ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; GPIO[9]                 ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; GPIO[11]                ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; GPIO[13]                ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; GPIO[15]                ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; GPIO[17]                ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; GPIO[19]                ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; GPIO[21]                ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; GPIO[23]                ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; GPIO[24]                ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; GPIO[25]                ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; GPIO[26]                ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; GPIO[27]                ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; GPIO[28]                ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; GPIO[29]                ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; GPIO[30]                ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; GPIO[31]                ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; GPIO[32]                ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; GPIO[33]                ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; KEY[0]                  ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; CLOCK_50                ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; ~ALTERA_ASDO_DATA1~     ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; ~ALTERA_FLASH_nCE_nCSO~ ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; ~ALTERA_DATA0~          ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
++-------------------------+--------------+-----------------+-----------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Signal Integrity Metrics (Slow 1200mv 0c Model)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; Pin           ; I/O Standard ; Board Delay on Rise ; Board Delay on Fall ; Steady State Voh at FPGA Pin ; Steady State Vol at FPGA Pin ; Voh Max at FPGA Pin ; Vol Min at FPGA Pin ; Ringback Voltage on Rise at FPGA Pin ; Ringback Voltage on Fall at FPGA Pin ; 10-90 Rise Time at FPGA Pin ; 90-10 Fall Time at FPGA Pin ; Monotonic Rise at FPGA Pin ; Monotonic Fall at FPGA Pin ; Steady State Voh at Far-end ; Steady State Vol at Far-end ; Voh Max at Far-end ; Vol Min at Far-end ; Ringback Voltage on Rise at Far-end ; Ringback Voltage on Fall at Far-end ; 10-90 Rise Time at Far-end ; 90-10 Fall Time at Far-end ; Monotonic Rise at Far-end ; Monotonic Fall at Far-end ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; GPIO[0]       ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.24e-08 V                   ; 3.14 V              ; -0.115 V            ; 0.31 V                               ; 0.241 V                              ; 5.06e-10 s                  ; 4.37e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 2.24e-08 V                  ; 3.14 V             ; -0.115 V           ; 0.31 V                              ; 0.241 V                             ; 5.06e-10 s                 ; 4.37e-10 s                 ; No                        ; No                        ;
+; GPIO[2]       ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.24e-08 V                   ; 3.14 V              ; -0.115 V            ; 0.31 V                               ; 0.241 V                              ; 5.06e-10 s                  ; 4.37e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 2.24e-08 V                  ; 3.14 V             ; -0.115 V           ; 0.31 V                              ; 0.241 V                             ; 5.06e-10 s                 ; 4.37e-10 s                 ; No                        ; No                        ;
+; GPIO[3]       ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.24e-08 V                   ; 3.14 V              ; -0.115 V            ; 0.31 V                               ; 0.241 V                              ; 5.06e-10 s                  ; 4.37e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 2.24e-08 V                  ; 3.14 V             ; -0.115 V           ; 0.31 V                              ; 0.241 V                             ; 5.06e-10 s                 ; 4.37e-10 s                 ; No                        ; No                        ;
+; GPIO[4]       ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.24e-08 V                   ; 3.14 V              ; -0.115 V            ; 0.31 V                               ; 0.241 V                              ; 5.06e-10 s                  ; 4.37e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 2.24e-08 V                  ; 3.14 V             ; -0.115 V           ; 0.31 V                              ; 0.241 V                             ; 5.06e-10 s                 ; 4.37e-10 s                 ; No                        ; No                        ;
+; GPIO[6]       ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.24e-08 V                   ; 3.14 V              ; -0.115 V            ; 0.31 V                               ; 0.241 V                              ; 5.06e-10 s                  ; 4.37e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 2.24e-08 V                  ; 3.14 V             ; -0.115 V           ; 0.31 V                              ; 0.241 V                             ; 5.06e-10 s                 ; 4.37e-10 s                 ; No                        ; No                        ;
+; GPIO[8]       ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.24e-08 V                   ; 3.14 V              ; -0.115 V            ; 0.31 V                               ; 0.241 V                              ; 5.06e-10 s                  ; 4.37e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 2.24e-08 V                  ; 3.14 V             ; -0.115 V           ; 0.31 V                              ; 0.241 V                             ; 5.06e-10 s                 ; 4.37e-10 s                 ; No                        ; No                        ;
+; GPIO[10]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.24e-08 V                   ; 3.14 V              ; -0.115 V            ; 0.31 V                               ; 0.241 V                              ; 5.06e-10 s                  ; 4.37e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 2.24e-08 V                  ; 3.14 V             ; -0.115 V           ; 0.31 V                              ; 0.241 V                             ; 5.06e-10 s                 ; 4.37e-10 s                 ; No                        ; No                        ;
+; GPIO[12]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.24e-08 V                   ; 3.14 V              ; -0.115 V            ; 0.31 V                               ; 0.241 V                              ; 5.06e-10 s                  ; 4.37e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 2.24e-08 V                  ; 3.14 V             ; -0.115 V           ; 0.31 V                              ; 0.241 V                             ; 5.06e-10 s                 ; 4.37e-10 s                 ; No                        ; No                        ;
+; GPIO[14]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.24e-08 V                   ; 3.14 V              ; -0.115 V            ; 0.31 V                               ; 0.241 V                              ; 5.06e-10 s                  ; 4.37e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 2.24e-08 V                  ; 3.14 V             ; -0.115 V           ; 0.31 V                              ; 0.241 V                             ; 5.06e-10 s                 ; 4.37e-10 s                 ; No                        ; No                        ;
+; GPIO[16]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.24e-08 V                   ; 3.14 V              ; -0.115 V            ; 0.31 V                               ; 0.241 V                              ; 5.06e-10 s                  ; 4.37e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 2.24e-08 V                  ; 3.14 V             ; -0.115 V           ; 0.31 V                              ; 0.241 V                             ; 5.06e-10 s                 ; 4.37e-10 s                 ; No                        ; No                        ;
+; GPIO[18]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.24e-08 V                   ; 3.14 V              ; -0.115 V            ; 0.31 V                               ; 0.241 V                              ; 5.06e-10 s                  ; 4.37e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 2.24e-08 V                  ; 3.14 V             ; -0.115 V           ; 0.31 V                              ; 0.241 V                             ; 5.06e-10 s                 ; 4.37e-10 s                 ; No                        ; No                        ;
+; GPIO[20]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.24e-08 V                   ; 3.14 V              ; -0.115 V            ; 0.31 V                               ; 0.241 V                              ; 5.06e-10 s                  ; 4.37e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 2.24e-08 V                  ; 3.14 V             ; -0.115 V           ; 0.31 V                              ; 0.241 V                             ; 5.06e-10 s                 ; 4.37e-10 s                 ; No                        ; No                        ;
+; GPIO[22]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.24e-08 V                   ; 3.14 V              ; -0.115 V            ; 0.31 V                               ; 0.241 V                              ; 5.06e-10 s                  ; 4.37e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 2.24e-08 V                  ; 3.14 V             ; -0.115 V           ; 0.31 V                              ; 0.241 V                             ; 5.06e-10 s                 ; 4.37e-10 s                 ; No                        ; No                        ;
+; GPIO[1]       ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.24e-08 V                   ; 3.14 V              ; -0.115 V            ; 0.31 V                               ; 0.241 V                              ; 5.06e-10 s                  ; 4.37e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 2.24e-08 V                  ; 3.14 V             ; -0.115 V           ; 0.31 V                              ; 0.241 V                             ; 5.06e-10 s                 ; 4.37e-10 s                 ; No                        ; No                        ;
+; GPIO[5]       ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.24e-08 V                   ; 3.14 V              ; -0.115 V            ; 0.31 V                               ; 0.241 V                              ; 5.06e-10 s                  ; 4.37e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 2.24e-08 V                  ; 3.14 V             ; -0.115 V           ; 0.31 V                              ; 0.241 V                             ; 5.06e-10 s                 ; 4.37e-10 s                 ; No                        ; No                        ;
+; GPIO[7]       ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.24e-08 V                   ; 3.14 V              ; -0.115 V            ; 0.31 V                               ; 0.241 V                              ; 5.06e-10 s                  ; 4.37e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 2.24e-08 V                  ; 3.14 V             ; -0.115 V           ; 0.31 V                              ; 0.241 V                             ; 5.06e-10 s                 ; 4.37e-10 s                 ; No                        ; No                        ;
+; GPIO[9]       ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.24e-08 V                   ; 3.14 V              ; -0.115 V            ; 0.31 V                               ; 0.241 V                              ; 5.06e-10 s                  ; 4.37e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 2.24e-08 V                  ; 3.14 V             ; -0.115 V           ; 0.31 V                              ; 0.241 V                             ; 5.06e-10 s                 ; 4.37e-10 s                 ; No                        ; No                        ;
+; GPIO[11]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.24e-08 V                   ; 3.14 V              ; -0.115 V            ; 0.31 V                               ; 0.241 V                              ; 5.06e-10 s                  ; 4.37e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 2.24e-08 V                  ; 3.14 V             ; -0.115 V           ; 0.31 V                              ; 0.241 V                             ; 5.06e-10 s                 ; 4.37e-10 s                 ; No                        ; No                        ;
+; GPIO[13]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.24e-08 V                   ; 3.14 V              ; -0.115 V            ; 0.31 V                               ; 0.241 V                              ; 5.06e-10 s                  ; 4.37e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 2.24e-08 V                  ; 3.14 V             ; -0.115 V           ; 0.31 V                              ; 0.241 V                             ; 5.06e-10 s                 ; 4.37e-10 s                 ; No                        ; No                        ;
+; GPIO[15]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.24e-08 V                   ; 3.09 V              ; -0.0123 V           ; 0.281 V                              ; 0.305 V                              ; 4.54e-09 s                  ; 3.32e-09 s                  ; No                         ; No                         ; 3.08 V                      ; 2.24e-08 V                  ; 3.09 V             ; -0.0123 V          ; 0.281 V                             ; 0.305 V                             ; 4.54e-09 s                 ; 3.32e-09 s                 ; No                        ; No                        ;
+; GPIO[17]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.24e-08 V                   ; 3.14 V              ; -0.115 V            ; 0.31 V                               ; 0.241 V                              ; 5.06e-10 s                  ; 4.37e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 2.24e-08 V                  ; 3.14 V             ; -0.115 V           ; 0.31 V                              ; 0.241 V                             ; 5.06e-10 s                 ; 4.37e-10 s                 ; No                        ; No                        ;
+; GPIO[19]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.24e-08 V                   ; 3.14 V              ; -0.115 V            ; 0.31 V                               ; 0.241 V                              ; 5.06e-10 s                  ; 4.37e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 2.24e-08 V                  ; 3.14 V             ; -0.115 V           ; 0.31 V                              ; 0.241 V                             ; 5.06e-10 s                 ; 4.37e-10 s                 ; No                        ; No                        ;
+; GPIO[21]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.24e-08 V                   ; 3.14 V              ; -0.115 V            ; 0.31 V                               ; 0.241 V                              ; 5.06e-10 s                  ; 4.37e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 2.24e-08 V                  ; 3.14 V             ; -0.115 V           ; 0.31 V                              ; 0.241 V                             ; 5.06e-10 s                 ; 4.37e-10 s                 ; No                        ; No                        ;
+; GPIO[23]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.24e-08 V                   ; 3.14 V              ; -0.115 V            ; 0.31 V                               ; 0.241 V                              ; 5.06e-10 s                  ; 4.37e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 2.24e-08 V                  ; 3.14 V             ; -0.115 V           ; 0.31 V                              ; 0.241 V                             ; 5.06e-10 s                 ; 4.37e-10 s                 ; No                        ; No                        ;
+; GPIO[24]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.24e-08 V                   ; 3.14 V              ; -0.115 V            ; 0.31 V                               ; 0.241 V                              ; 5.06e-10 s                  ; 4.37e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 2.24e-08 V                  ; 3.14 V             ; -0.115 V           ; 0.31 V                              ; 0.241 V                             ; 5.06e-10 s                 ; 4.37e-10 s                 ; No                        ; No                        ;
+; GPIO[25]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.24e-08 V                   ; 3.14 V              ; -0.115 V            ; 0.31 V                               ; 0.241 V                              ; 5.06e-10 s                  ; 4.37e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 2.24e-08 V                  ; 3.14 V             ; -0.115 V           ; 0.31 V                              ; 0.241 V                             ; 5.06e-10 s                 ; 4.37e-10 s                 ; No                        ; No                        ;
+; GPIO[26]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.24e-08 V                   ; 3.14 V              ; -0.115 V            ; 0.31 V                               ; 0.241 V                              ; 5.06e-10 s                  ; 4.37e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 2.24e-08 V                  ; 3.14 V             ; -0.115 V           ; 0.31 V                              ; 0.241 V                             ; 5.06e-10 s                 ; 4.37e-10 s                 ; No                        ; No                        ;
+; GPIO[27]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.24e-08 V                   ; 3.14 V              ; -0.115 V            ; 0.31 V                               ; 0.241 V                              ; 5.06e-10 s                  ; 4.37e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 2.24e-08 V                  ; 3.14 V             ; -0.115 V           ; 0.31 V                              ; 0.241 V                             ; 5.06e-10 s                 ; 4.37e-10 s                 ; No                        ; No                        ;
+; GPIO[28]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.24e-08 V                   ; 3.09 V              ; -0.0123 V           ; 0.281 V                              ; 0.305 V                              ; 4.54e-09 s                  ; 3.32e-09 s                  ; No                         ; No                         ; 3.08 V                      ; 2.24e-08 V                  ; 3.09 V             ; -0.0123 V          ; 0.281 V                             ; 0.305 V                             ; 4.54e-09 s                 ; 3.32e-09 s                 ; No                        ; No                        ;
+; GPIO[29]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.24e-08 V                   ; 3.14 V              ; -0.115 V            ; 0.31 V                               ; 0.241 V                              ; 5.06e-10 s                  ; 4.37e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 2.24e-08 V                  ; 3.14 V             ; -0.115 V           ; 0.31 V                              ; 0.241 V                             ; 5.06e-10 s                 ; 4.37e-10 s                 ; No                        ; No                        ;
+; GPIO[30]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.24e-08 V                   ; 3.14 V              ; -0.115 V            ; 0.31 V                               ; 0.241 V                              ; 5.06e-10 s                  ; 4.37e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 2.24e-08 V                  ; 3.14 V             ; -0.115 V           ; 0.31 V                              ; 0.241 V                             ; 5.06e-10 s                 ; 4.37e-10 s                 ; No                        ; No                        ;
+; GPIO[31]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.24e-08 V                   ; 3.14 V              ; -0.115 V            ; 0.31 V                               ; 0.241 V                              ; 5.06e-10 s                  ; 4.37e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 2.24e-08 V                  ; 3.14 V             ; -0.115 V           ; 0.31 V                              ; 0.241 V                             ; 5.06e-10 s                 ; 4.37e-10 s                 ; No                        ; No                        ;
+; GPIO[32]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.24e-08 V                   ; 3.14 V              ; -0.115 V            ; 0.31 V                               ; 0.241 V                              ; 5.06e-10 s                  ; 4.37e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 2.24e-08 V                  ; 3.14 V             ; -0.115 V           ; 0.31 V                              ; 0.241 V                             ; 5.06e-10 s                 ; 4.37e-10 s                 ; No                        ; No                        ;
+; GPIO[33]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.24e-08 V                   ; 3.14 V              ; -0.115 V            ; 0.31 V                               ; 0.241 V                              ; 5.06e-10 s                  ; 4.37e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 2.24e-08 V                  ; 3.14 V             ; -0.115 V           ; 0.31 V                              ; 0.241 V                             ; 5.06e-10 s                 ; 4.37e-10 s                 ; No                        ; No                        ;
+; ~ALTERA_DCLK~ ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 8.05e-09 V                   ; 3.21 V              ; -0.181 V            ; 0.16 V                               ; 0.253 V                              ; 2.77e-10 s                  ; 2.32e-10 s                  ; No                         ; Yes                        ; 3.08 V                      ; 8.05e-09 V                  ; 3.21 V             ; -0.181 V           ; 0.16 V                              ; 0.253 V                             ; 2.77e-10 s                 ; 2.32e-10 s                 ; No                        ; Yes                       ;
+; ~ALTERA_nCEO~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 5.61e-09 V                   ; 2.38 V              ; -0.00274 V          ; 0.141 V                              ; 0.006 V                              ; 4.7e-10 s                   ; 6.02e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 5.61e-09 V                  ; 2.38 V             ; -0.00274 V         ; 0.141 V                             ; 0.006 V                             ; 4.7e-10 s                  ; 6.02e-10 s                 ; Yes                       ; Yes                       ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Signal Integrity Metrics (Slow 1200mv 85c Model)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; Pin           ; I/O Standard ; Board Delay on Rise ; Board Delay on Fall ; Steady State Voh at FPGA Pin ; Steady State Vol at FPGA Pin ; Voh Max at FPGA Pin ; Vol Min at FPGA Pin ; Ringback Voltage on Rise at FPGA Pin ; Ringback Voltage on Fall at FPGA Pin ; 10-90 Rise Time at FPGA Pin ; 90-10 Fall Time at FPGA Pin ; Monotonic Rise at FPGA Pin ; Monotonic Fall at FPGA Pin ; Steady State Voh at Far-end ; Steady State Vol at Far-end ; Voh Max at Far-end ; Vol Min at Far-end ; Ringback Voltage on Rise at Far-end ; Ringback Voltage on Fall at Far-end ; 10-90 Rise Time at Far-end ; 90-10 Fall Time at Far-end ; Monotonic Rise at Far-end ; Monotonic Fall at Far-end ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; GPIO[0]       ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.99e-06 V                   ; 3.11 V              ; -0.0717 V           ; 0.209 V                              ; 0.168 V                              ; 6.66e-10 s                  ; 6.19e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 2.99e-06 V                  ; 3.11 V             ; -0.0717 V          ; 0.209 V                             ; 0.168 V                             ; 6.66e-10 s                 ; 6.19e-10 s                 ; Yes                       ; No                        ;
+; GPIO[2]       ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.99e-06 V                   ; 3.11 V              ; -0.0717 V           ; 0.209 V                              ; 0.168 V                              ; 6.66e-10 s                  ; 6.19e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 2.99e-06 V                  ; 3.11 V             ; -0.0717 V          ; 0.209 V                             ; 0.168 V                             ; 6.66e-10 s                 ; 6.19e-10 s                 ; Yes                       ; No                        ;
+; GPIO[3]       ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.99e-06 V                   ; 3.11 V              ; -0.0717 V           ; 0.209 V                              ; 0.168 V                              ; 6.66e-10 s                  ; 6.19e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 2.99e-06 V                  ; 3.11 V             ; -0.0717 V          ; 0.209 V                             ; 0.168 V                             ; 6.66e-10 s                 ; 6.19e-10 s                 ; Yes                       ; No                        ;
+; GPIO[4]       ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.99e-06 V                   ; 3.11 V              ; -0.0717 V           ; 0.209 V                              ; 0.168 V                              ; 6.66e-10 s                  ; 6.19e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 2.99e-06 V                  ; 3.11 V             ; -0.0717 V          ; 0.209 V                             ; 0.168 V                             ; 6.66e-10 s                 ; 6.19e-10 s                 ; Yes                       ; No                        ;
+; GPIO[6]       ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.99e-06 V                   ; 3.11 V              ; -0.0717 V           ; 0.209 V                              ; 0.168 V                              ; 6.66e-10 s                  ; 6.19e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 2.99e-06 V                  ; 3.11 V             ; -0.0717 V          ; 0.209 V                             ; 0.168 V                             ; 6.66e-10 s                 ; 6.19e-10 s                 ; Yes                       ; No                        ;
+; GPIO[8]       ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.99e-06 V                   ; 3.11 V              ; -0.0717 V           ; 0.209 V                              ; 0.168 V                              ; 6.66e-10 s                  ; 6.19e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 2.99e-06 V                  ; 3.11 V             ; -0.0717 V          ; 0.209 V                             ; 0.168 V                             ; 6.66e-10 s                 ; 6.19e-10 s                 ; Yes                       ; No                        ;
+; GPIO[10]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.99e-06 V                   ; 3.11 V              ; -0.0717 V           ; 0.209 V                              ; 0.168 V                              ; 6.66e-10 s                  ; 6.19e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 2.99e-06 V                  ; 3.11 V             ; -0.0717 V          ; 0.209 V                             ; 0.168 V                             ; 6.66e-10 s                 ; 6.19e-10 s                 ; Yes                       ; No                        ;
+; GPIO[12]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.99e-06 V                   ; 3.11 V              ; -0.0717 V           ; 0.209 V                              ; 0.168 V                              ; 6.66e-10 s                  ; 6.19e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 2.99e-06 V                  ; 3.11 V             ; -0.0717 V          ; 0.209 V                             ; 0.168 V                             ; 6.66e-10 s                 ; 6.19e-10 s                 ; Yes                       ; No                        ;
+; GPIO[14]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.99e-06 V                   ; 3.11 V              ; -0.0717 V           ; 0.209 V                              ; 0.168 V                              ; 6.66e-10 s                  ; 6.19e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 2.99e-06 V                  ; 3.11 V             ; -0.0717 V          ; 0.209 V                             ; 0.168 V                             ; 6.66e-10 s                 ; 6.19e-10 s                 ; Yes                       ; No                        ;
+; GPIO[16]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.99e-06 V                   ; 3.11 V              ; -0.0717 V           ; 0.209 V                              ; 0.168 V                              ; 6.66e-10 s                  ; 6.19e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 2.99e-06 V                  ; 3.11 V             ; -0.0717 V          ; 0.209 V                             ; 0.168 V                             ; 6.66e-10 s                 ; 6.19e-10 s                 ; Yes                       ; No                        ;
+; GPIO[18]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.99e-06 V                   ; 3.11 V              ; -0.0717 V           ; 0.209 V                              ; 0.168 V                              ; 6.66e-10 s                  ; 6.19e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 2.99e-06 V                  ; 3.11 V             ; -0.0717 V          ; 0.209 V                             ; 0.168 V                             ; 6.66e-10 s                 ; 6.19e-10 s                 ; Yes                       ; No                        ;
+; GPIO[20]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.99e-06 V                   ; 3.11 V              ; -0.0717 V           ; 0.209 V                              ; 0.168 V                              ; 6.66e-10 s                  ; 6.19e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 2.99e-06 V                  ; 3.11 V             ; -0.0717 V          ; 0.209 V                             ; 0.168 V                             ; 6.66e-10 s                 ; 6.19e-10 s                 ; Yes                       ; No                        ;
+; GPIO[22]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.99e-06 V                   ; 3.11 V              ; -0.0717 V           ; 0.209 V                              ; 0.168 V                              ; 6.66e-10 s                  ; 6.19e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 2.99e-06 V                  ; 3.11 V             ; -0.0717 V          ; 0.209 V                             ; 0.168 V                             ; 6.66e-10 s                 ; 6.19e-10 s                 ; Yes                       ; No                        ;
+; GPIO[1]       ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.99e-06 V                   ; 3.11 V              ; -0.0717 V           ; 0.209 V                              ; 0.168 V                              ; 6.66e-10 s                  ; 6.19e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 2.99e-06 V                  ; 3.11 V             ; -0.0717 V          ; 0.209 V                             ; 0.168 V                             ; 6.66e-10 s                 ; 6.19e-10 s                 ; Yes                       ; No                        ;
+; GPIO[5]       ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.99e-06 V                   ; 3.11 V              ; -0.0717 V           ; 0.209 V                              ; 0.168 V                              ; 6.66e-10 s                  ; 6.19e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 2.99e-06 V                  ; 3.11 V             ; -0.0717 V          ; 0.209 V                             ; 0.168 V                             ; 6.66e-10 s                 ; 6.19e-10 s                 ; Yes                       ; No                        ;
+; GPIO[7]       ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.99e-06 V                   ; 3.11 V              ; -0.0717 V           ; 0.209 V                              ; 0.168 V                              ; 6.66e-10 s                  ; 6.19e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 2.99e-06 V                  ; 3.11 V             ; -0.0717 V          ; 0.209 V                             ; 0.168 V                             ; 6.66e-10 s                 ; 6.19e-10 s                 ; Yes                       ; No                        ;
+; GPIO[9]       ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.99e-06 V                   ; 3.11 V              ; -0.0717 V           ; 0.209 V                              ; 0.168 V                              ; 6.66e-10 s                  ; 6.19e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 2.99e-06 V                  ; 3.11 V             ; -0.0717 V          ; 0.209 V                             ; 0.168 V                             ; 6.66e-10 s                 ; 6.19e-10 s                 ; Yes                       ; No                        ;
+; GPIO[11]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.99e-06 V                   ; 3.11 V              ; -0.0717 V           ; 0.209 V                              ; 0.168 V                              ; 6.66e-10 s                  ; 6.19e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 2.99e-06 V                  ; 3.11 V             ; -0.0717 V          ; 0.209 V                             ; 0.168 V                             ; 6.66e-10 s                 ; 6.19e-10 s                 ; Yes                       ; No                        ;
+; GPIO[13]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.99e-06 V                   ; 3.11 V              ; -0.0717 V           ; 0.209 V                              ; 0.168 V                              ; 6.66e-10 s                  ; 6.19e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 2.99e-06 V                  ; 3.11 V             ; -0.0717 V          ; 0.209 V                             ; 0.168 V                             ; 6.66e-10 s                 ; 6.19e-10 s                 ; Yes                       ; No                        ;
+; GPIO[15]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.99e-06 V                   ; 3.08 V              ; -0.00675 V          ; 0.232 V                              ; 0.283 V                              ; 5.31e-09 s                  ; 4.2e-09 s                   ; Yes                        ; No                         ; 3.08 V                      ; 2.99e-06 V                  ; 3.08 V             ; -0.00675 V         ; 0.232 V                             ; 0.283 V                             ; 5.31e-09 s                 ; 4.2e-09 s                  ; Yes                       ; No                        ;
+; GPIO[17]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.99e-06 V                   ; 3.11 V              ; -0.0717 V           ; 0.209 V                              ; 0.168 V                              ; 6.66e-10 s                  ; 6.19e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 2.99e-06 V                  ; 3.11 V             ; -0.0717 V          ; 0.209 V                             ; 0.168 V                             ; 6.66e-10 s                 ; 6.19e-10 s                 ; Yes                       ; No                        ;
+; GPIO[19]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.99e-06 V                   ; 3.11 V              ; -0.0717 V           ; 0.209 V                              ; 0.168 V                              ; 6.66e-10 s                  ; 6.19e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 2.99e-06 V                  ; 3.11 V             ; -0.0717 V          ; 0.209 V                             ; 0.168 V                             ; 6.66e-10 s                 ; 6.19e-10 s                 ; Yes                       ; No                        ;
+; GPIO[21]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.99e-06 V                   ; 3.11 V              ; -0.0717 V           ; 0.209 V                              ; 0.168 V                              ; 6.66e-10 s                  ; 6.19e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 2.99e-06 V                  ; 3.11 V             ; -0.0717 V          ; 0.209 V                             ; 0.168 V                             ; 6.66e-10 s                 ; 6.19e-10 s                 ; Yes                       ; No                        ;
+; GPIO[23]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.99e-06 V                   ; 3.11 V              ; -0.0717 V           ; 0.209 V                              ; 0.168 V                              ; 6.66e-10 s                  ; 6.19e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 2.99e-06 V                  ; 3.11 V             ; -0.0717 V          ; 0.209 V                             ; 0.168 V                             ; 6.66e-10 s                 ; 6.19e-10 s                 ; Yes                       ; No                        ;
+; GPIO[24]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.99e-06 V                   ; 3.11 V              ; -0.0717 V           ; 0.209 V                              ; 0.168 V                              ; 6.66e-10 s                  ; 6.19e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 2.99e-06 V                  ; 3.11 V             ; -0.0717 V          ; 0.209 V                             ; 0.168 V                             ; 6.66e-10 s                 ; 6.19e-10 s                 ; Yes                       ; No                        ;
+; GPIO[25]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.99e-06 V                   ; 3.11 V              ; -0.0717 V           ; 0.209 V                              ; 0.168 V                              ; 6.66e-10 s                  ; 6.19e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 2.99e-06 V                  ; 3.11 V             ; -0.0717 V          ; 0.209 V                             ; 0.168 V                             ; 6.66e-10 s                 ; 6.19e-10 s                 ; Yes                       ; No                        ;
+; GPIO[26]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.99e-06 V                   ; 3.11 V              ; -0.0717 V           ; 0.209 V                              ; 0.168 V                              ; 6.66e-10 s                  ; 6.19e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 2.99e-06 V                  ; 3.11 V             ; -0.0717 V          ; 0.209 V                             ; 0.168 V                             ; 6.66e-10 s                 ; 6.19e-10 s                 ; Yes                       ; No                        ;
+; GPIO[27]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.99e-06 V                   ; 3.11 V              ; -0.0717 V           ; 0.209 V                              ; 0.168 V                              ; 6.66e-10 s                  ; 6.19e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 2.99e-06 V                  ; 3.11 V             ; -0.0717 V          ; 0.209 V                             ; 0.168 V                             ; 6.66e-10 s                 ; 6.19e-10 s                 ; Yes                       ; No                        ;
+; GPIO[28]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.99e-06 V                   ; 3.08 V              ; -0.00675 V          ; 0.232 V                              ; 0.283 V                              ; 5.31e-09 s                  ; 4.2e-09 s                   ; Yes                        ; No                         ; 3.08 V                      ; 2.99e-06 V                  ; 3.08 V             ; -0.00675 V         ; 0.232 V                             ; 0.283 V                             ; 5.31e-09 s                 ; 4.2e-09 s                  ; Yes                       ; No                        ;
+; GPIO[29]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.99e-06 V                   ; 3.11 V              ; -0.0717 V           ; 0.209 V                              ; 0.168 V                              ; 6.66e-10 s                  ; 6.19e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 2.99e-06 V                  ; 3.11 V             ; -0.0717 V          ; 0.209 V                             ; 0.168 V                             ; 6.66e-10 s                 ; 6.19e-10 s                 ; Yes                       ; No                        ;
+; GPIO[30]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.99e-06 V                   ; 3.11 V              ; -0.0717 V           ; 0.209 V                              ; 0.168 V                              ; 6.66e-10 s                  ; 6.19e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 2.99e-06 V                  ; 3.11 V             ; -0.0717 V          ; 0.209 V                             ; 0.168 V                             ; 6.66e-10 s                 ; 6.19e-10 s                 ; Yes                       ; No                        ;
+; GPIO[31]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.99e-06 V                   ; 3.11 V              ; -0.0717 V           ; 0.209 V                              ; 0.168 V                              ; 6.66e-10 s                  ; 6.19e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 2.99e-06 V                  ; 3.11 V             ; -0.0717 V          ; 0.209 V                             ; 0.168 V                             ; 6.66e-10 s                 ; 6.19e-10 s                 ; Yes                       ; No                        ;
+; GPIO[32]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.99e-06 V                   ; 3.11 V              ; -0.0717 V           ; 0.209 V                              ; 0.168 V                              ; 6.66e-10 s                  ; 6.19e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 2.99e-06 V                  ; 3.11 V             ; -0.0717 V          ; 0.209 V                             ; 0.168 V                             ; 6.66e-10 s                 ; 6.19e-10 s                 ; Yes                       ; No                        ;
+; GPIO[33]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 2.99e-06 V                   ; 3.11 V              ; -0.0717 V           ; 0.209 V                              ; 0.168 V                              ; 6.66e-10 s                  ; 6.19e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 2.99e-06 V                  ; 3.11 V             ; -0.0717 V          ; 0.209 V                             ; 0.168 V                             ; 6.66e-10 s                 ; 6.19e-10 s                 ; Yes                       ; No                        ;
+; ~ALTERA_DCLK~ ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 1.02e-06 V                   ; 3.14 V              ; -0.123 V            ; 0.134 V                              ; 0.323 V                              ; 3.02e-10 s                  ; 2.85e-10 s                  ; Yes                        ; No                         ; 3.08 V                      ; 1.02e-06 V                  ; 3.14 V             ; -0.123 V           ; 0.134 V                             ; 0.323 V                             ; 3.02e-10 s                 ; 2.85e-10 s                 ; Yes                       ; No                        ;
+; ~ALTERA_nCEO~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 9.45e-07 V                   ; 2.35 V              ; -0.00643 V          ; 0.081 V                              ; 0.031 V                              ; 5.31e-10 s                  ; 7.59e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 9.45e-07 V                  ; 2.35 V             ; -0.00643 V         ; 0.081 V                             ; 0.031 V                             ; 5.31e-10 s                 ; 7.59e-10 s                 ; Yes                       ; Yes                       ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Signal Integrity Metrics (Fast 1200mv 0c Model)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; Pin           ; I/O Standard ; Board Delay on Rise ; Board Delay on Fall ; Steady State Voh at FPGA Pin ; Steady State Vol at FPGA Pin ; Voh Max at FPGA Pin ; Vol Min at FPGA Pin ; Ringback Voltage on Rise at FPGA Pin ; Ringback Voltage on Fall at FPGA Pin ; 10-90 Rise Time at FPGA Pin ; 90-10 Fall Time at FPGA Pin ; Monotonic Rise at FPGA Pin ; Monotonic Fall at FPGA Pin ; Steady State Voh at Far-end ; Steady State Vol at Far-end ; Voh Max at Far-end ; Vol Min at Far-end ; Ringback Voltage on Rise at Far-end ; Ringback Voltage on Fall at Far-end ; 10-90 Rise Time at Far-end ; 90-10 Fall Time at Far-end ; Monotonic Rise at Far-end ; Monotonic Fall at Far-end ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; GPIO[0]       ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.57 V              ; -0.141 V            ; 0.301 V                              ; 0.239 V                              ; 4.61e-10 s                  ; 4.2e-10 s                   ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.57 V             ; -0.141 V           ; 0.301 V                             ; 0.239 V                             ; 4.61e-10 s                 ; 4.2e-10 s                  ; No                        ; No                        ;
+; GPIO[2]       ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.57 V              ; -0.141 V            ; 0.301 V                              ; 0.239 V                              ; 4.61e-10 s                  ; 4.2e-10 s                   ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.57 V             ; -0.141 V           ; 0.301 V                             ; 0.239 V                             ; 4.61e-10 s                 ; 4.2e-10 s                  ; No                        ; No                        ;
+; GPIO[3]       ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.57 V              ; -0.141 V            ; 0.301 V                              ; 0.239 V                              ; 4.61e-10 s                  ; 4.2e-10 s                   ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.57 V             ; -0.141 V           ; 0.301 V                             ; 0.239 V                             ; 4.61e-10 s                 ; 4.2e-10 s                  ; No                        ; No                        ;
+; GPIO[4]       ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.57 V              ; -0.141 V            ; 0.301 V                              ; 0.239 V                              ; 4.61e-10 s                  ; 4.2e-10 s                   ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.57 V             ; -0.141 V           ; 0.301 V                             ; 0.239 V                             ; 4.61e-10 s                 ; 4.2e-10 s                  ; No                        ; No                        ;
+; GPIO[6]       ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.57 V              ; -0.141 V            ; 0.301 V                              ; 0.239 V                              ; 4.61e-10 s                  ; 4.2e-10 s                   ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.57 V             ; -0.141 V           ; 0.301 V                             ; 0.239 V                             ; 4.61e-10 s                 ; 4.2e-10 s                  ; No                        ; No                        ;
+; GPIO[8]       ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.57 V              ; -0.141 V            ; 0.301 V                              ; 0.239 V                              ; 4.61e-10 s                  ; 4.2e-10 s                   ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.57 V             ; -0.141 V           ; 0.301 V                             ; 0.239 V                             ; 4.61e-10 s                 ; 4.2e-10 s                  ; No                        ; No                        ;
+; GPIO[10]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.57 V              ; -0.141 V            ; 0.301 V                              ; 0.239 V                              ; 4.61e-10 s                  ; 4.2e-10 s                   ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.57 V             ; -0.141 V           ; 0.301 V                             ; 0.239 V                             ; 4.61e-10 s                 ; 4.2e-10 s                  ; No                        ; No                        ;
+; GPIO[12]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.57 V              ; -0.141 V            ; 0.301 V                              ; 0.239 V                              ; 4.61e-10 s                  ; 4.2e-10 s                   ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.57 V             ; -0.141 V           ; 0.301 V                             ; 0.239 V                             ; 4.61e-10 s                 ; 4.2e-10 s                  ; No                        ; No                        ;
+; GPIO[14]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.57 V              ; -0.141 V            ; 0.301 V                              ; 0.239 V                              ; 4.61e-10 s                  ; 4.2e-10 s                   ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.57 V             ; -0.141 V           ; 0.301 V                             ; 0.239 V                             ; 4.61e-10 s                 ; 4.2e-10 s                  ; No                        ; No                        ;
+; GPIO[16]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.57 V              ; -0.141 V            ; 0.301 V                              ; 0.239 V                              ; 4.61e-10 s                  ; 4.2e-10 s                   ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.57 V             ; -0.141 V           ; 0.301 V                             ; 0.239 V                             ; 4.61e-10 s                 ; 4.2e-10 s                  ; No                        ; No                        ;
+; GPIO[18]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.57 V              ; -0.141 V            ; 0.301 V                              ; 0.239 V                              ; 4.61e-10 s                  ; 4.2e-10 s                   ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.57 V             ; -0.141 V           ; 0.301 V                             ; 0.239 V                             ; 4.61e-10 s                 ; 4.2e-10 s                  ; No                        ; No                        ;
+; GPIO[20]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.57 V              ; -0.141 V            ; 0.301 V                              ; 0.239 V                              ; 4.61e-10 s                  ; 4.2e-10 s                   ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.57 V             ; -0.141 V           ; 0.301 V                             ; 0.239 V                             ; 4.61e-10 s                 ; 4.2e-10 s                  ; No                        ; No                        ;
+; GPIO[22]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.57 V              ; -0.141 V            ; 0.301 V                              ; 0.239 V                              ; 4.61e-10 s                  ; 4.2e-10 s                   ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.57 V             ; -0.141 V           ; 0.301 V                             ; 0.239 V                             ; 4.61e-10 s                 ; 4.2e-10 s                  ; No                        ; No                        ;
+; GPIO[1]       ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.57 V              ; -0.141 V            ; 0.301 V                              ; 0.239 V                              ; 4.61e-10 s                  ; 4.2e-10 s                   ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.57 V             ; -0.141 V           ; 0.301 V                             ; 0.239 V                             ; 4.61e-10 s                 ; 4.2e-10 s                  ; No                        ; No                        ;
+; GPIO[5]       ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.57 V              ; -0.141 V            ; 0.301 V                              ; 0.239 V                              ; 4.61e-10 s                  ; 4.2e-10 s                   ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.57 V             ; -0.141 V           ; 0.301 V                             ; 0.239 V                             ; 4.61e-10 s                 ; 4.2e-10 s                  ; No                        ; No                        ;
+; GPIO[7]       ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.57 V              ; -0.141 V            ; 0.301 V                              ; 0.239 V                              ; 4.61e-10 s                  ; 4.2e-10 s                   ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.57 V             ; -0.141 V           ; 0.301 V                             ; 0.239 V                             ; 4.61e-10 s                 ; 4.2e-10 s                  ; No                        ; No                        ;
+; GPIO[9]       ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.57 V              ; -0.141 V            ; 0.301 V                              ; 0.239 V                              ; 4.61e-10 s                  ; 4.2e-10 s                   ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.57 V             ; -0.141 V           ; 0.301 V                             ; 0.239 V                             ; 4.61e-10 s                 ; 4.2e-10 s                  ; No                        ; No                        ;
+; GPIO[11]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.57 V              ; -0.141 V            ; 0.301 V                              ; 0.239 V                              ; 4.61e-10 s                  ; 4.2e-10 s                   ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.57 V             ; -0.141 V           ; 0.301 V                             ; 0.239 V                             ; 4.61e-10 s                 ; 4.2e-10 s                  ; No                        ; No                        ;
+; GPIO[13]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.57 V              ; -0.141 V            ; 0.301 V                              ; 0.239 V                              ; 4.61e-10 s                  ; 4.2e-10 s                   ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.57 V             ; -0.141 V           ; 0.301 V                             ; 0.239 V                             ; 4.61e-10 s                 ; 4.2e-10 s                  ; No                        ; No                        ;
+; GPIO[15]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.48 V              ; -0.0173 V           ; 0.356 V                              ; 0.324 V                              ; 3.89e-09 s                  ; 3.06e-09 s                  ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.48 V             ; -0.0173 V          ; 0.356 V                             ; 0.324 V                             ; 3.89e-09 s                 ; 3.06e-09 s                 ; No                        ; No                        ;
+; GPIO[17]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.57 V              ; -0.141 V            ; 0.301 V                              ; 0.239 V                              ; 4.61e-10 s                  ; 4.2e-10 s                   ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.57 V             ; -0.141 V           ; 0.301 V                             ; 0.239 V                             ; 4.61e-10 s                 ; 4.2e-10 s                  ; No                        ; No                        ;
+; GPIO[19]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.57 V              ; -0.141 V            ; 0.301 V                              ; 0.239 V                              ; 4.61e-10 s                  ; 4.2e-10 s                   ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.57 V             ; -0.141 V           ; 0.301 V                             ; 0.239 V                             ; 4.61e-10 s                 ; 4.2e-10 s                  ; No                        ; No                        ;
+; GPIO[21]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.57 V              ; -0.141 V            ; 0.301 V                              ; 0.239 V                              ; 4.61e-10 s                  ; 4.2e-10 s                   ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.57 V             ; -0.141 V           ; 0.301 V                             ; 0.239 V                             ; 4.61e-10 s                 ; 4.2e-10 s                  ; No                        ; No                        ;
+; GPIO[23]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.57 V              ; -0.141 V            ; 0.301 V                              ; 0.239 V                              ; 4.61e-10 s                  ; 4.2e-10 s                   ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.57 V             ; -0.141 V           ; 0.301 V                             ; 0.239 V                             ; 4.61e-10 s                 ; 4.2e-10 s                  ; No                        ; No                        ;
+; GPIO[24]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.57 V              ; -0.141 V            ; 0.301 V                              ; 0.239 V                              ; 4.61e-10 s                  ; 4.2e-10 s                   ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.57 V             ; -0.141 V           ; 0.301 V                             ; 0.239 V                             ; 4.61e-10 s                 ; 4.2e-10 s                  ; No                        ; No                        ;
+; GPIO[25]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.57 V              ; -0.141 V            ; 0.301 V                              ; 0.239 V                              ; 4.61e-10 s                  ; 4.2e-10 s                   ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.57 V             ; -0.141 V           ; 0.301 V                             ; 0.239 V                             ; 4.61e-10 s                 ; 4.2e-10 s                  ; No                        ; No                        ;
+; GPIO[26]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.57 V              ; -0.141 V            ; 0.301 V                              ; 0.239 V                              ; 4.61e-10 s                  ; 4.2e-10 s                   ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.57 V             ; -0.141 V           ; 0.301 V                             ; 0.239 V                             ; 4.61e-10 s                 ; 4.2e-10 s                  ; No                        ; No                        ;
+; GPIO[27]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.57 V              ; -0.141 V            ; 0.301 V                              ; 0.239 V                              ; 4.61e-10 s                  ; 4.2e-10 s                   ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.57 V             ; -0.141 V           ; 0.301 V                             ; 0.239 V                             ; 4.61e-10 s                 ; 4.2e-10 s                  ; No                        ; No                        ;
+; GPIO[28]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.48 V              ; -0.0173 V           ; 0.356 V                              ; 0.324 V                              ; 3.89e-09 s                  ; 3.06e-09 s                  ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.48 V             ; -0.0173 V          ; 0.356 V                             ; 0.324 V                             ; 3.89e-09 s                 ; 3.06e-09 s                 ; No                        ; No                        ;
+; GPIO[29]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.57 V              ; -0.141 V            ; 0.301 V                              ; 0.239 V                              ; 4.61e-10 s                  ; 4.2e-10 s                   ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.57 V             ; -0.141 V           ; 0.301 V                             ; 0.239 V                             ; 4.61e-10 s                 ; 4.2e-10 s                  ; No                        ; No                        ;
+; GPIO[30]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.57 V              ; -0.141 V            ; 0.301 V                              ; 0.239 V                              ; 4.61e-10 s                  ; 4.2e-10 s                   ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.57 V             ; -0.141 V           ; 0.301 V                             ; 0.239 V                             ; 4.61e-10 s                 ; 4.2e-10 s                  ; No                        ; No                        ;
+; GPIO[31]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.57 V              ; -0.141 V            ; 0.301 V                              ; 0.239 V                              ; 4.61e-10 s                  ; 4.2e-10 s                   ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.57 V             ; -0.141 V           ; 0.301 V                             ; 0.239 V                             ; 4.61e-10 s                 ; 4.2e-10 s                  ; No                        ; No                        ;
+; GPIO[32]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.57 V              ; -0.141 V            ; 0.301 V                              ; 0.239 V                              ; 4.61e-10 s                  ; 4.2e-10 s                   ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.57 V             ; -0.141 V           ; 0.301 V                             ; 0.239 V                             ; 4.61e-10 s                 ; 4.2e-10 s                  ; No                        ; No                        ;
+; GPIO[33]      ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 1.85e-07 V                   ; 3.57 V              ; -0.141 V            ; 0.301 V                              ; 0.239 V                              ; 4.61e-10 s                  ; 4.2e-10 s                   ; No                         ; No                         ; 3.46 V                      ; 1.85e-07 V                  ; 3.57 V             ; -0.141 V           ; 0.301 V                             ; 0.239 V                             ; 4.61e-10 s                 ; 4.2e-10 s                  ; No                        ; No                        ;
+; ~ALTERA_DCLK~ ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 6.54e-08 V                   ; 3.66 V              ; -0.258 V            ; 0.41 V                               ; 0.318 V                              ; 1.57e-10 s                  ; 2.15e-10 s                  ; No                         ; Yes                        ; 3.46 V                      ; 6.54e-08 V                  ; 3.66 V             ; -0.258 V           ; 0.41 V                              ; 0.318 V                             ; 1.57e-10 s                 ; 2.15e-10 s                 ; No                        ; Yes                       ;
+; ~ALTERA_nCEO~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 3.54e-08 V                   ; 2.7 V               ; -0.00943 V          ; 0.276 V                              ; 0.035 V                              ; 3.19e-10 s                  ; 4.99e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 3.54e-08 V                  ; 2.7 V              ; -0.00943 V         ; 0.276 V                             ; 0.035 V                             ; 3.19e-10 s                 ; 4.99e-10 s                 ; No                        ; Yes                       ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+
+
++-------------------------------------------------------------------+
+; Setup Transfers                                                   ;
++------------+----------+----------+----------+----------+----------+
+; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++------------+----------+----------+----------+----------+----------+
+; CLOCK_50   ; CLOCK_50 ; 1        ; 0        ; 0        ; 0        ;
++------------+----------+----------+----------+----------+----------+
+Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
+
+
++-------------------------------------------------------------------+
+; Hold Transfers                                                    ;
++------------+----------+----------+----------+----------+----------+
+; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++------------+----------+----------+----------+----------+----------+
+; CLOCK_50   ; CLOCK_50 ; 1        ; 0        ; 0        ; 0        ;
++------------+----------+----------+----------+----------+----------+
+Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
+
+
+---------------
+; Report TCCS ;
+---------------
+No dedicated SERDES Transmitter circuitry present in device or used in design
+
+
+---------------
+; Report RSKM ;
+---------------
+No dedicated SERDES Receiver circuitry present in device or used in design
+
+
++------------------------------------------------+
+; Unconstrained Paths                            ;
++---------------------------------+-------+------+
+; Property                        ; Setup ; Hold ;
++---------------------------------+-------+------+
+; Illegal Clocks                  ; 0     ; 0    ;
+; Unconstrained Clocks            ; 1     ; 1    ;
+; Unconstrained Input Ports       ; 12    ; 12   ;
+; Unconstrained Input Port Paths  ; 5632  ; 5632 ;
+; Unconstrained Output Ports      ; 10    ; 10   ;
+; Unconstrained Output Port Paths ; 3159  ; 3159 ;
++---------------------------------+-------+------+
+
+
++------------------------------------+
+; TimeQuest Timing Analyzer Messages ;
++------------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 32-bit TimeQuest Timing Analyzer
+    Info: Version 13.0.0 Build 156 04/24/2013 SJ Full Version
+    Info: Processing started: Fri Mar 13 15:57:41 2015
+Info: Command: quartus_sta VGAlogic -c VGAlogic
+Info: qsta_default_script.tcl version: #1
+Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
+Info (21076): High junction temperature operating condition is not set. Assuming a default value of '85'.
+Info (21076): Low junction temperature operating condition is not set. Assuming a default value of '0'.
+Info (332104): Reading SDC File: 'VGAlogic.SDC'
+Info (332151): Clock uncertainty is not calculated until you update the timing netlist.
+Warning (332060): Node: CLOCK_25 was determined to be a clock but was found without an associated clock assignment.
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in TimeQuest to see clock uncertainties.
+Info: Found TIMEQUEST_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
+Info: Analyzing Slow 1200mV 85C Model
+Info (332146): Worst-case setup slack is 19.298
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):    19.298         0.000 CLOCK_50 
+Info (332146): Worst-case hold slack is 0.385
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):     0.385         0.000 CLOCK_50 
+Info (332140): No Recovery paths to report
+Info (332140): No Removal paths to report
+Info (332146): Worst-case minimum pulse width slack is 9.569
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):     9.569         0.000 CLOCK_50 
+Info: Analyzing Slow 1200mV 0C Model
+Info (334003): Started post-fitting delay annotation
+Info (334004): Delay annotation completed successfully
+Warning (332060): Node: CLOCK_25 was determined to be a clock but was found without an associated clock assignment.
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in TimeQuest to see clock uncertainties.
+Info (332146): Worst-case setup slack is 19.378
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):    19.378         0.000 CLOCK_50 
+Info (332146): Worst-case hold slack is 0.341
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):     0.341         0.000 CLOCK_50 
+Info (332140): No Recovery paths to report
+Info (332140): No Removal paths to report
+Info (332146): Worst-case minimum pulse width slack is 9.563
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):     9.563         0.000 CLOCK_50 
+Info: Analyzing Fast 1200mV 0C Model
+Warning (332060): Node: CLOCK_25 was determined to be a clock but was found without an associated clock assignment.
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in TimeQuest to see clock uncertainties.
+Info (332146): Worst-case setup slack is 19.606
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):    19.606         0.000 CLOCK_50 
+Info (332146): Worst-case hold slack is 0.208
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):     0.208         0.000 CLOCK_50 
+Info (332140): No Recovery paths to report
+Info (332140): No Removal paths to report
+Info (332146): Worst-case minimum pulse width slack is 9.270
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):     9.270         0.000 CLOCK_50 
+Info (332102): Design is not fully constrained for setup requirements
+Info (332102): Design is not fully constrained for hold requirements
+Info: Quartus II 32-bit TimeQuest Timing Analyzer was successful. 0 errors, 3 warnings
+    Info: Peak virtual memory: 395 megabytes
+    Info: Processing ended: Fri Mar 13 15:57:46 2015
+    Info: Elapsed time: 00:00:05
+    Info: Total CPU time (on all processors): 00:00:04
+
+

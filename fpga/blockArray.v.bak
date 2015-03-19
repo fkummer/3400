@@ -1,0 +1,36 @@
+module blockArray (
+	CLOCK,
+	INDEX,
+	IN,
+	W_EN,
+	OUT,
+	RESET
+);
+
+input CLOCK;
+input [9:0] INDEX;
+input [1:0] IN;
+input W_EN;
+output [1:0] OUT;
+input RESET;
+
+reg [1:0] array[1023:0];
+reg [1:0] pre_out;
+reg [9:0] i;
+
+always @(posedge CLOCK) begin
+	if (RESET) begin
+		for (i=0; i < 1024; i=i+1) begin
+			array[i][0] <= i[5] ^ i[0];
+			array[i][1] <= 1'b0;
+		end
+	end
+	else if (W_EN == 1) begin
+		array[INDEX] <= IN;
+	end
+	pre_out <= array[INDEX]; //might cause a problem but honestly who cares
+end
+
+assign OUT = pre_out;
+	
+endmodule

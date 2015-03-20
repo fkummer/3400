@@ -128,7 +128,7 @@ assign reset = ~KEY[0];
 
 //translate 2 bit pixel array values to 8 bit RGB
 // 8'bGGG_RRR_BB 
-assign PIXEL_COLOR = (PIXEL_COORD_X[9]==1) ?  8'b000_000_00 : //black if x>640
+assign PIXEL_COLOR = (PIXEL_COORD_X[9]==1) ?  8'b000_000_00 : //black if x>512
 							(pixel_out == 2'b00)? 8'b001_011_11 : //full red
 							(pixel_out == 2'b01)? 8'b000_111_00 : // 1/2 green
 							(pixel_out == 2'b10)? 8'b110_000_01 : // 1/4 blue

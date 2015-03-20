@@ -1,5 +1,5 @@
 Analysis & Synthesis report for VGAlogic
-Fri Mar 13 15:57:21 2015
+Fri Mar 20 16:07:18 2015
 Quartus II 32-bit Version 13.0.0 Build 156 04/24/2013 SJ Full Version
 
 
@@ -43,7 +43,7 @@ applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Fri Mar 13 15:57:21 2015       ;
+; Analysis & Synthesis Status        ; Successful - Fri Mar 20 16:07:18 2015       ;
 ; Quartus II 32-bit Version          ; 13.0.0 Build 156 04/24/2013 SJ Full Version ;
 ; Revision Name                      ; VGAlogic                                    ;
 ; Top-level Entity Name              ; VGAlogic                                    ;
@@ -52,7 +52,7 @@ applicable agreement for further details.
 ;     Total combinational functions  ; 680                                         ;
 ;     Dedicated logic registers      ; 533                                         ;
 ; Total registers                    ; 533                                         ;
-; Total pins                         ; 39                                          ;
+; Total pins                         ; 75                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
 ; Embedded Multiplier 9-bit elements ; 0                                           ;
@@ -197,12 +197,12 @@ applicable agreement for further details.
 ;     -- Dedicated logic registers            ; 533            ;
 ;     -- I/O registers                        ; 0              ;
 ;                                             ;                ;
-; I/O pins                                    ; 39             ;
+; I/O pins                                    ; 75             ;
 ; Embedded Multiplier 9-bit elements          ; 0              ;
 ; Maximum fan-out node                        ; CLOCK_50~input ;
 ; Maximum fan-out                             ; 513            ;
-; Total fan-out                               ; 4308           ;
-; Average fan-out                             ; 3.25           ;
+; Total fan-out                               ; 4378           ;
+; Average fan-out                             ; 3.06           ;
 +---------------------------------------------+----------------+
 
 
@@ -211,7 +211,7 @@ applicable agreement for further details.
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------+--------------+
 ; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name             ; Library Name ;
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------+--------------+
-; |VGAlogic                  ; 680 (1)           ; 533 (1)      ; 0           ; 0            ; 0       ; 0         ; 39   ; 0            ; |VGAlogic                       ;              ;
+; |VGAlogic                  ; 680 (1)           ; 533 (1)      ; 0           ; 0            ; 0       ; 0         ; 75   ; 0            ; |VGAlogic                       ;              ;
 ;    |VGADriver:driver|      ; 49 (49)           ; 20 (20)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGAlogic|VGADriver:driver      ;              ;
 ;    |blockArray:pixelArray| ; 630 (630)         ; 512 (512)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGAlogic|blockArray:pixelArray ;              ;
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------+--------------+
@@ -516,7 +516,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:03     ;
+; Top            ; 00:00:04     ;
 +----------------+--------------+
 
 
@@ -526,7 +526,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus II 32-bit Analysis & Synthesis
     Info: Version 13.0.0 Build 156 04/24/2013 SJ Full Version
-    Info: Processing started: Fri Mar 13 15:57:15 2015
+    Info: Processing started: Fri Mar 20 16:07:11 2015
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off VGAlogic -c VGAlogic
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
 Info (12021): Found 1 design units, including 1 entities, in source file vgalogic.v
@@ -557,18 +557,19 @@ Warning (13034): The following nodes have both tri-state and non-tri-state drive
     Warning (13035): Inserted always-enabled tri-state buffer between "GPIO[21]" and its non-tri-state driver.
     Warning (13035): Inserted always-enabled tri-state buffer between "GPIO[23]" and its non-tri-state driver.
 Warning (13039): The following bidir pins have no drivers
-    Warning (13040): Bidir "GPIO[1]" has no driver
-    Warning (13040): Bidir "GPIO[24]" has no driver
-    Warning (13040): Bidir "GPIO[25]" has no driver
-    Warning (13040): Bidir "GPIO[26]" has no driver
-    Warning (13040): Bidir "GPIO[27]" has no driver
-    Warning (13040): Bidir "GPIO[28]" has no driver
-    Warning (13040): Bidir "GPIO[29]" has no driver
-    Warning (13040): Bidir "GPIO[30]" has no driver
-    Warning (13040): Bidir "GPIO[31]" has no driver
-    Warning (13040): Bidir "GPIO[32]" has no driver
-    Warning (13040): Bidir "GPIO[33]" has no driver
+    Warning (13040): Bidir "GPIO_1[10]" has no driver
+    Warning (13040): Bidir "GPIO_1[11]" has no driver
+    Warning (13040): Bidir "GPIO_1[12]" has no driver
+    Warning (13040): Bidir "GPIO_1[13]" has no driver
+    Warning (13040): Bidir "GPIO_1[14]" has no driver
+    Warning (13040): Bidir "GPIO_1[15]" has no driver
+    Warning (13040): Bidir "GPIO_1[16]" has no driver
+    Warning (13040): Bidir "GPIO_1[17]" has no driver
+    Warning (13040): Bidir "GPIO_1[18]" has no driver
+    Warning (13040): Bidir "GPIO_1[19]" has no driver
+    Warning (13040): Bidir "GPIO_1[22]" has no driver
     Warning (13040): Bidir "GPIO[0]" has no driver
+    Warning (13040): Bidir "GPIO[1]" has no driver
     Warning (13040): Bidir "GPIO[2]" has no driver
     Warning (13040): Bidir "GPIO[3]" has no driver
     Warning (13040): Bidir "GPIO[4]" has no driver
@@ -581,6 +582,39 @@ Warning (13039): The following bidir pins have no drivers
     Warning (13040): Bidir "GPIO[18]" has no driver
     Warning (13040): Bidir "GPIO[20]" has no driver
     Warning (13040): Bidir "GPIO[22]" has no driver
+    Warning (13040): Bidir "GPIO[24]" has no driver
+    Warning (13040): Bidir "GPIO[25]" has no driver
+    Warning (13040): Bidir "GPIO[26]" has no driver
+    Warning (13040): Bidir "GPIO[27]" has no driver
+    Warning (13040): Bidir "GPIO[28]" has no driver
+    Warning (13040): Bidir "GPIO[29]" has no driver
+    Warning (13040): Bidir "GPIO[30]" has no driver
+    Warning (13040): Bidir "GPIO[31]" has no driver
+    Warning (13040): Bidir "GPIO[32]" has no driver
+    Warning (13040): Bidir "GPIO[33]" has no driver
+    Warning (13040): Bidir "GPIO_1[0]" has no driver
+    Warning (13040): Bidir "GPIO_1[1]" has no driver
+    Warning (13040): Bidir "GPIO_1[2]" has no driver
+    Warning (13040): Bidir "GPIO_1[3]" has no driver
+    Warning (13040): Bidir "GPIO_1[4]" has no driver
+    Warning (13040): Bidir "GPIO_1[5]" has no driver
+    Warning (13040): Bidir "GPIO_1[6]" has no driver
+    Warning (13040): Bidir "GPIO_1[7]" has no driver
+    Warning (13040): Bidir "GPIO_1[8]" has no driver
+    Warning (13040): Bidir "GPIO_1[9]" has no driver
+    Warning (13040): Bidir "GPIO_1[20]" has no driver
+    Warning (13040): Bidir "GPIO_1[21]" has no driver
+    Warning (13040): Bidir "GPIO_1[23]" has no driver
+    Warning (13040): Bidir "GPIO_1[24]" has no driver
+    Warning (13040): Bidir "GPIO_1[25]" has no driver
+    Warning (13040): Bidir "GPIO_1[26]" has no driver
+    Warning (13040): Bidir "GPIO_1[27]" has no driver
+    Warning (13040): Bidir "GPIO_1[28]" has no driver
+    Warning (13040): Bidir "GPIO_1[29]" has no driver
+    Warning (13040): Bidir "GPIO_1[30]" has no driver
+    Warning (13040): Bidir "GPIO_1[31]" has no driver
+    Warning (13040): Bidir "GPIO_1[32]" has no driver
+    Warning (13040): Bidir "GPIO_1[33]" has no driver
 Warning (13009): TRI or OPNDRN buffers permanently enabled
     Warning (13010): Node "GPIO[5]~synth"
     Warning (13010): Node "GPIO[7]~synth"
@@ -595,19 +629,21 @@ Warning (13009): TRI or OPNDRN buffers permanently enabled
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 3 input pin(s) that do not drive logic
+Warning (21074): Design contains 5 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "KEY[1]"
     Warning (15610): No output dependent on input pin "GPIO_IN[0]"
     Warning (15610): No output dependent on input pin "GPIO_IN[1]"
-Info (21057): Implemented 1231 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 5 input pins
+    Warning (15610): No output dependent on input pin "GPIO_1_IN[0]"
+    Warning (15610): No output dependent on input pin "GPIO_1_IN[1]"
+Info (21057): Implemented 1267 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 7 input pins
     Info (21059): Implemented 0 output pins
-    Info (21060): Implemented 34 bidirectional pins
+    Info (21060): Implemented 68 bidirectional pins
     Info (21061): Implemented 1192 logic cells
-Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 54 warnings
+Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 90 warnings
     Info: Peak virtual memory: 349 megabytes
-    Info: Processing ended: Fri Mar 13 15:57:21 2015
-    Info: Elapsed time: 00:00:06
-    Info: Total CPU time (on all processors): 00:00:05
+    Info: Processing ended: Fri Mar 20 16:07:18 2015
+    Info: Elapsed time: 00:00:07
+    Info: Total CPU time (on all processors): 00:00:06
 
 

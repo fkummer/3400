@@ -17,7 +17,9 @@ module VGAlogic(
 
 	////// GPIO_0, GPIO_0 connect to GPIO Default //////
 	GPIO,
-	GPIO_IN 
+	GPIO_IN, 
+	GPIO_1,
+	GPIO_1_IN
 );
 
 
@@ -34,6 +36,8 @@ input 		     [1:0]		KEY;
 ///// GPIO_0, GPIO_0 connect to GPIO Default //////////
 inout 		    [33:0]		GPIO;
 input 		     [1:0]		GPIO_IN;
+inout				 [33:0]		GPIO_1;
+input				  [1:0]		GPIO_1_IN;
 
 
 //=======================================================
@@ -80,8 +84,8 @@ blockArray pixelArray(
 
 dataInput arduino(
 	.CLOCK_50(CLOCK_50),
-	.DATA_IN({GPIO[25],GPIO[24],GPIO[27],GPIO[26],GPIO[29],GPIO[28],GPIO[31],GPIO[30],GPIO[33],GPIO[32]}),
-	.ENABLE_IN(GPIO[1]),
+	.DATA_IN({GPIO_1[10],GPIO_1[11],GPIO_1[12],GPIO_1[13],GPIO_1[14],GPIO_1[15],GPIO_1[16],GPIO_1[17],GPIO_1[18],GPIO_1[19]}),
+	.ENABLE_IN(GPIO_1[22]),
 	.X_COORD(pixel_w_x),
 	.Y_COORD(pixel_w_y),
 	.VALUE(pixel_in),

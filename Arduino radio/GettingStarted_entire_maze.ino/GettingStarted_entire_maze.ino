@@ -136,6 +136,8 @@ void loop(void)
   //
   // Ping out role.  Repeatedly send the current time
   //
+  
+  // Take numbers off array and add onto integer two bits at a time
 for (int n = 0; n < 5; n++){
     for(int m = 0; m < 5; m++){
       if (maze[n][m] == 0){
@@ -165,7 +167,7 @@ for (int n = 0; n < 5; n++){
 
     // Take the time, and send it.  This will block until complete
     unsigned long time = millis();
-    printf("Now sending %lu...",time);
+    printf("Now sending %lu...",bit_maze);
     bool ok = radio.write( &bit_maze, 25 );
 
     if (ok)
@@ -195,7 +197,7 @@ for (int n = 0; n < 5; n++){
       radio.read( &got_time, sizeof(unsigned long) );
 
       // Spew it
-      printf("Got response %lu, round-trip delay: %lu\n\r",got_time,millis()-got_time);
+      printf("Got response %lu, round-trip delay: %lu\n\r",got_time);
     }
 
     // Try again 1s later
@@ -217,7 +219,7 @@ for (int n = 0; n < 5; n++){
       while (!done)
       {
         // Fetch the payload, and see if this was the last one.
-        done = radio.read( &bit_maze, sizeof(unsigned long) );
+        done = radio.read( &got_time, sizeof(unsigned long) );
       
         // Spew it
         printf("Got payload %lu...",got_time);
@@ -228,23 +230,28 @@ for (int n = 0; n < 5; n++){
 
       }
       
+      // Take bits off integer to make back into original array
       for (int n = 5; n > 0; n--){
         for(int m = 5; m > 0; m--){
           if(bit_maze & 0x3 == 0){
             maze[n][m] = 0;
             bit_maze >> 2;
+            printf("number is %i ", maze[n][m]); // Display number in position n,m in array
           }
           else if (bit_maze & 0x3 == 1){
             maze[n][m] = 1;
             bit_maze >> 2;
+            printf("number is %i ", maze[n][m]);
           }
           else if (bit_maze & 0x3 == 2){
             maze[n][m] = 2;
             bit_maze >> 2;
+            printf("number is %i ", maze[n][m]);
           }
           else if (bit_maze & 0x3 == 3){
             maze[n][m] = 3;
             bit_maze >> 2;
+            printf("number is %i ", maze[n][m]);
           }
         }
       }
@@ -257,7 +264,7 @@ for (int n = 0; n < 5; n++){
       radio.stopListening();
 
       // Send the final one back.
-      radio.write( &got_time, sizeof(unsigned long) );
+      radio.write( &bit_maze, sizeof(unsigned long) );
       printf("Sent response.\n\r");
 
       // Now, resume listening so we catch the next packets.

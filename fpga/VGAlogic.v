@@ -84,8 +84,9 @@ blockArray pixelArray(
 
 dataInput arduino(
 	.CLOCK_50(CLOCK_50),
-	.DATA_IN({GPIO_1[10],GPIO_1[11],GPIO_1[12],GPIO_1[13],GPIO_1[14],GPIO_1[15],GPIO_1[16],GPIO_1[17],GPIO_1[18],GPIO_1[19]}),
-	.ENABLE_IN(GPIO_1[22]),
+	.DATA_IN({GPIO_1[20],GPIO_1[21],GPIO_1[18],GPIO_1[19],GPIO_1[16],GPIO_1[17],GPIO_1[14],GPIO_1[15],GPIO_1[12],GPIO_1[13]}),
+	//.DATA_IN(10'b0000000010),
+	.ENABLE_IN(GPIO_1[9]),
 	.X_COORD(pixel_w_x),
 	.Y_COORD(pixel_w_y),
 	.VALUE(pixel_in),
@@ -130,13 +131,24 @@ end
 
 assign reset = ~KEY[0];
 
+blockFormat Formatter(
+	.X_COORD(PIXEL_COORD_X),
+	.Y_COORD(PIXEL_COORD_Y),
+	.value(pixel_out),
+	.color(PIXEL_COLOR)
+);
+
+
+
 //translate 2 bit pixel array values to 8 bit RGB
 // 8'bGGG_RRR_BB 
+/*
 assign PIXEL_COLOR = (PIXEL_COORD_X[9]==1) ?  8'b000_000_00 : //black if x>512
 							(pixel_out == 2'b00)? 8'b001_011_11 : //full red
 							(pixel_out == 2'b01)? 8'b000_111_00 : // 1/2 green
 							(pixel_out == 2'b10)? 8'b110_000_01 : // 1/4 blue
 								8'b101_101_00;
+								*/
 							/*(pixel_out == 2'b11 && PIXEL_COORD_X < 200)? 8'b100_100_01 : // gray
 							(pixel_out == 2'b11 && PIXEL_COORD_X < 400)? 8'b111_111_11 : // white
 																						8'b111_111_00 ; // yellow

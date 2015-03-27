@@ -1,12 +1,12 @@
-Fitter Status : Successful - Fri Mar 20 16:07:35 2015
+Fitter Status : Successful - Fri Mar 27 16:12:04 2015
 Quartus II 32-bit Version : 13.0.0 Build 156 04/24/2013 SJ Full Version
 Revision Name : VGAlogic
 Top-level Entity Name : VGAlogic
 Family : Cyclone IV E
 Device : EP4CE22F17C6
 Timing Models : Final
-Total logic elements : 934 / 22,320 ( 4 % )
-    Total combinational functions : 680 / 22,320 ( 3 % )
+Total logic elements : 936 / 22,320 ( 4 % )
+    Total combinational functions : 682 / 22,320 ( 3 % )
     Dedicated logic registers : 533 / 22,320 ( 2 % )
 Total registers : 533
 Total pins : 75 / 154 ( 49 % )

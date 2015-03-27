@@ -47,9 +47,9 @@ GPIO_1[5] <> <UNC>
 GPIO_1[6] <> <UNC>
 GPIO_1[7] <> <UNC>
 GPIO_1[8] <> <UNC>
-GPIO_1[9] <> <UNC>
-GPIO_1[10] <> dataInput:arduino.DATA_IN
-GPIO_1[11] <> dataInput:arduino.DATA_IN
+GPIO_1[9] <> dataInput:arduino.ENABLE_IN
+GPIO_1[10] <> <UNC>
+GPIO_1[11] <> <UNC>
 GPIO_1[12] <> dataInput:arduino.DATA_IN
 GPIO_1[13] <> dataInput:arduino.DATA_IN
 GPIO_1[14] <> dataInput:arduino.DATA_IN
@@ -58,9 +58,9 @@ GPIO_1[16] <> dataInput:arduino.DATA_IN
 GPIO_1[17] <> dataInput:arduino.DATA_IN
 GPIO_1[18] <> dataInput:arduino.DATA_IN
 GPIO_1[19] <> dataInput:arduino.DATA_IN
-GPIO_1[20] <> <UNC>
-GPIO_1[21] <> <UNC>
-GPIO_1[22] <> dataInput:arduino.ENABLE_IN
+GPIO_1[20] <> dataInput:arduino.DATA_IN
+GPIO_1[21] <> dataInput:arduino.DATA_IN
+GPIO_1[22] <> <UNC>
 GPIO_1[23] <> <UNC>
 GPIO_1[24] <> <UNC>
 GPIO_1[25] <> <UNC>
@@ -2239,5 +2239,59 @@ VALUE[0] <= DATA_IN[0].DB_MAX_OUTPUT_PORT_TYPE
 VALUE[1] <= DATA_IN[1].DB_MAX_OUTPUT_PORT_TYPE
 ENABLE_OUT <= ENABLE_IN.DB_MAX_OUTPUT_PORT_TYPE
 RESET => ~NO_FANOUT~
+
+
+|VGAlogic|blockFormat:Formatter
+X_COORD[0] => LessThan0.IN10
+X_COORD[0] => LessThan1.IN10
+X_COORD[1] => LessThan0.IN9
+X_COORD[1] => LessThan1.IN9
+X_COORD[2] => LessThan0.IN8
+X_COORD[2] => LessThan1.IN8
+X_COORD[3] => LessThan0.IN7
+X_COORD[3] => LessThan1.IN7
+X_COORD[4] => LessThan0.IN6
+X_COORD[4] => LessThan1.IN6
+X_COORD[5] => ~NO_FANOUT~
+X_COORD[6] => ~NO_FANOUT~
+X_COORD[7] => ~NO_FANOUT~
+X_COORD[8] => ~NO_FANOUT~
+X_COORD[9] => color.OUTPUTSELECT
+X_COORD[9] => color.OUTPUTSELECT
+X_COORD[9] => color.OUTPUTSELECT
+X_COORD[9] => color.OUTPUTSELECT
+X_COORD[9] => color.OUTPUTSELECT
+X_COORD[9] => color.OUTPUTSELECT
+X_COORD[9] => color.OUTPUTSELECT
+X_COORD[9] => color.OUTPUTSELECT
+Y_COORD[0] => LessThan2.IN10
+Y_COORD[0] => LessThan3.IN10
+Y_COORD[1] => LessThan2.IN9
+Y_COORD[1] => LessThan3.IN9
+Y_COORD[2] => LessThan2.IN8
+Y_COORD[2] => LessThan3.IN8
+Y_COORD[3] => LessThan2.IN7
+Y_COORD[3] => LessThan3.IN7
+Y_COORD[4] => LessThan2.IN6
+Y_COORD[4] => LessThan3.IN6
+Y_COORD[5] => ~NO_FANOUT~
+Y_COORD[6] => ~NO_FANOUT~
+Y_COORD[7] => ~NO_FANOUT~
+Y_COORD[8] => ~NO_FANOUT~
+Y_COORD[9] => ~NO_FANOUT~
+value[0] => Equal0.IN1
+value[0] => Equal1.IN0
+value[0] => Equal2.IN1
+value[1] => Equal0.IN0
+value[1] => Equal1.IN1
+value[1] => Equal2.IN0
+color[0] <= color.DB_MAX_OUTPUT_PORT_TYPE
+color[1] <= color.DB_MAX_OUTPUT_PORT_TYPE
+color[2] <= color.DB_MAX_OUTPUT_PORT_TYPE
+color[3] <= color.DB_MAX_OUTPUT_PORT_TYPE
+color[4] <= color.DB_MAX_OUTPUT_PORT_TYPE
+color[5] <= color.DB_MAX_OUTPUT_PORT_TYPE
+color[6] <= color.DB_MAX_OUTPUT_PORT_TYPE
+color[7] <= color.DB_MAX_OUTPUT_PORT_TYPE
 
 

@@ -1,13 +1,13 @@
-Analysis & Synthesis Status : Successful - Fri Mar 13 15:57:21 2015
+Analysis & Synthesis Status : Successful - Fri Mar 27 16:11:47 2015
 Quartus II 32-bit Version : 13.0.0 Build 156 04/24/2013 SJ Full Version
 Revision Name : VGAlogic
 Top-level Entity Name : VGAlogic
 Family : Cyclone IV E
-Total logic elements : 1,190
-    Total combinational functions : 680
+Total logic elements : 1,192
+    Total combinational functions : 682
     Dedicated logic registers : 533
 Total registers : 533
-Total pins : 39
+Total pins : 75
 Total virtual pins : 0
 Total memory bits : 0
 Embedded Multiplier 9-bit elements : 0

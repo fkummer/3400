@@ -1,5 +1,5 @@
 Assembler report for VGAlogic
-Fri Mar 13 15:57:40 2015
+Fri Mar 27 16:12:09 2015
 Quartus II 32-bit Version 13.0.0 Build 156 04/24/2013 SJ Full Version
 
 
@@ -37,7 +37,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Fri Mar 13 15:57:40 2015 ;
+; Assembler Status      ; Successful - Fri Mar 27 16:12:09 2015 ;
 ; Revision Name         ; VGAlogic                              ;
 ; Top-level Entity Name ; VGAlogic                              ;
 ; Family                ; Cyclone IV E                          ;
@@ -92,8 +92,8 @@ applicable agreement for further details.
 ; Option         ; Setting                                                   ;
 +----------------+-----------------------------------------------------------+
 ; Device         ; EP4CE22F17C6                                              ;
-; JTAG usercode  ; 0x001D20FF                                                ;
-; Checksum       ; 0x001D20FF                                                ;
+; JTAG usercode  ; 0x001D5731                                                ;
+; Checksum       ; 0x001D5731                                                ;
 +----------------+-----------------------------------------------------------+
 
 
@@ -103,13 +103,13 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 32-bit Assembler
     Info: Version 13.0.0 Build 156 04/24/2013 SJ Full Version
-    Info: Processing started: Fri Mar 13 15:57:37 2015
+    Info: Processing started: Fri Mar 27 16:12:06 2015
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off VGAlogic -c VGAlogic
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus II 32-bit Assembler was successful. 0 errors, 0 warnings
     Info: Peak virtual memory: 347 megabytes
-    Info: Processing ended: Fri Mar 13 15:57:40 2015
+    Info: Processing ended: Fri Mar 27 16:12:09 2015
     Info: Elapsed time: 00:00:03
     Info: Total CPU time (on all processors): 00:00:03
 

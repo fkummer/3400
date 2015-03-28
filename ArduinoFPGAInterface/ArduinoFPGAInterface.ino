@@ -17,13 +17,13 @@
 //Pin 12 is used for the parity bit
 //#define parity 12
 
-#define enable 12
+#define enable 2
 
 int inputBuffer[2];
 int byte1[8];
 int byte2[8];
-int possibleInputs[6] = {0x54, 0x46, 0x57, 0x27, 0x85, 0x15}; //list of possible inputs(acts as RF inputs)
-int possibleColors[6] = {0x05,0x04,0x03,0x02,0x04,0x05}; //list of possible colors(acts as RF inputs)
+int possibleInputs[6] = {0x10, 0x11, 0x12, 0x22, 0x23, 0x24}; //list of possible inputs(acts as RF inputs)
+int possibleColors[6] = {0x00,0x01,0x02,0x03,0x00,0x00}; //list of possible colors(acts as RF inputs)
 int count = 0;
 void setup(){
   pinMode(coord1, OUTPUT);
@@ -78,7 +78,7 @@ void loop(){
     inputBuffer[1] = 0x00;
     Serial.read();
     
-    int currPin = 2;
+    int currPin = 12;
   for(int i = 7; i>=0; i--){ //output bits
     Serial.println(currPin);
     if(byte1[i] == 1){
@@ -86,27 +86,28 @@ void loop(){
     }else{
       digitalWrite(currPin, LOW);
     }
-    currPin++;
+    currPin--;
   }
   
-  for(int j = 0; j<2; j++){
+  for(int j = 0; j<1; j++){
     Serial.println(currPin);
     if(byte2[j] == 1){
       digitalWrite(currPin, HIGH);
     }else{
       digitalWrite(currPin, LOW);
     }
-    currPin++;
+    currPin--;
   }
   digitalWrite(enable,HIGH); //set enable high for a single clock cycle
   digitalWrite(enable,LOW);
-  }
-  
-  if(count = 5){
+  if(count == 5){
     count = 0;
   }else{ 
   count = count++;}
+  Serial.println('Count'+count);  
+}
   
+
     
 
 }  

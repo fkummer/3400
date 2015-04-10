@@ -36,14 +36,19 @@ RF24 radio(9,10);
 // Radio pipe addresses for the 2 nodes to communicate.
 const uint64_t pipes[2] = { 0x000000001CLL, 0x000000001DLL };
 
-// Sample maze grid
-unsigned char maze[5][5] =
+// Array of maze is initially all unexplored with walls around it
+
+unsigned char maze[11][9] =
 {
-3, 3, 3, 3, 3,
-3, 1, 1, 1, 3,
-3, 2, 0, 1, 2,
-3, 1, 3, 1, 3,
-3, 0, 3, 1, 0,
+2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
+2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
+2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
+2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
+2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
+2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
+2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
+2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
 };
 // Maze array converted to bits
 unsigned long bit_maze;
@@ -71,12 +76,13 @@ void setup(void)
   // Print preamble
   //
 
+  /*
   Serial.begin(57600);
   printf_begin();
   printf("\n\rRF24/examples/GettingStarted/\n\r");
   printf("ROLE: %s\n\r",role_friendly_name[role]);
   printf("*** PRESS 'T' to begin transmitting to the other node\n\r");
-
+  */
   //
   // Setup and configure rf radio
   //
@@ -134,25 +140,25 @@ void setup(void)
 void loop(void)
 {
   //
-  // Ping out role.  Repeatedly send the current time
+  // Ping out role. Robot sending data to base statio
   //
   
   // Take numbers off array and add onto integer two bits at a time
-for (int n = 0; n < 5; n++){
-    for(int m = 0; m < 5; m++){
-      if (maze[n][m] == 0){
+for (int n = 1; n < 12; n++){
+    for(int m = 1; m < 10; m++){
+      if (maze[n][m] == 0){          // 0 = unexplored
         bit_maze = bit_maze << 2;    // add 00 onto the end of the bit_maze
         bit_maze |= 0;
       }
-      else if (maze[n][m] == 1){
+      else if (maze[n][m] == 1){     // 1 = No wall
         bit_maze = bit_maze << 2;    // add 01 onto the end of the bit_maze
         bit_maze |= 1;
       }
-      else if (maze[n][m] == 2){
+      else if (maze[n][m] == 2){     // 2 = Wall
         bit_maze = bit_maze << 2;    // add 10 onto the end of the bit_maze
         bit_maze |= 2;
       }
-      else{
+      else{                          // 3 is not a valid number
         bit_maze = bit_maze << 2;    // add 11 onto the end of the bit_maze
         bit_maze |= 3;
       }
@@ -166,7 +172,7 @@ for (int n = 0; n < 5; n++){
     radio.stopListening();
 
     // Take the time, and send it.  This will block until complete
-    unsigned long time = millis();
+    // unsigned long time = millis();
     printf("Now sending %lu...",bit_maze);
     bool ok = radio.write( &bit_maze, 25 );
 
@@ -208,8 +214,8 @@ for (int n = 0; n < 5; n++){
   // Pong back role.  Receive each packet, dump it out, and send it back
   //
 
-  if ( role == role_pong_back )
-  {
+ //if ( role == role_pong_back )
+  //{
     // if there is data ready
     if ( radio.available() )
     {
@@ -231,19 +237,19 @@ for (int n = 0; n < 5; n++){
       }
       
       // Take bits off integer to make back into original array
-      for (int n = 5; n > 0; n--){
-        for(int m = 5; m > 0; m--){
-          if(bit_maze & 0x3 == 0){
+      for (int n = 11; n > 0; n--){
+        for(int m = 9; m > 0; m--){
+          if(bit_maze & 0x3 == 0){               // 0 = unexplored
             maze[n][m] = 0;
             bit_maze >> 2;
             printf("number is %i ", maze[n][m]); // Display number in position n,m in array
           }
-          else if (bit_maze & 0x3 == 1){
+          else if (bit_maze & 0x3 == 1){         // 1 = no wall
             maze[n][m] = 1;
             bit_maze >> 2;
             printf("number is %i ", maze[n][m]);
           }
-          else if (bit_maze & 0x3 == 2){
+          else if (bit_maze & 0x3 == 2){         // 2 = wall
             maze[n][m] = 2;
             bit_maze >> 2;
             printf("number is %i ", maze[n][m]);
@@ -270,7 +276,7 @@ for (int n = 0; n < 5; n++){
       // Now, resume listening so we catch the next packets.
       radio.startListening();
     }
-  }
+  //}
 
   //
   // Change roles
@@ -300,3 +306,4 @@ for (int n = 0; n < 5; n++){
   }
 }
 // vim:cin:ai:sts=2 sw=2 ft=cpp
+

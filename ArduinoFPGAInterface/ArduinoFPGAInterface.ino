@@ -1,23 +1,3 @@
-//Pins 3-9 will be used to output the bits corresponding to the coordinates
-//7 bits because we broke the grid into 9x11, and use 0-99 as indices for a one-dimensional array
-/*#define coord1 2
-#define coord2 3
-#define coord3 4
-#define coord4 5
-#define coord5 6
-#define coord6 7
-#define coord7 8
-#define coord8 9
-
-//Pins 10 and 11 will output the bits corresponding to the color of the square
-//Possible states are wall
-#define color1 10
-#define color2 11
-
-//Pin 12 is used for the parity bit
-//#define parity 12
-
-#define enable 2*/
 
 //Most signifcant to least significant
 int xPins[4] = {7, 6, 5, 4};
@@ -36,15 +16,16 @@ int byte1[8];
 
 int byte2[8];
 
-int maze[11][9] = {1, 2 ,0 ,1 ,0 ,0 ,0, 0, 0 ,0 ,0,
-                   0, 0 ,0 ,0 ,0 ,0 ,0, 0, 0 ,0 ,0,
-                   0, 0 ,0 ,0 ,0 ,0 ,0, 2, 0 ,0 ,0,
-                   0, 0 ,0 ,0 ,0 ,0 ,0, 0, 0 ,0 ,0,
-                   0, 0 ,0 ,2 ,0 ,0 ,0, 0, 1 ,0 ,0,
-                   0, 0 ,0 ,0 ,0 ,1 ,0, 0, 0 ,0 ,0,
-                   0, 0 ,1 ,0 ,0 ,0 ,2, 1, 0 ,1 ,0,
-                   0, 0 ,0 ,0 ,0 ,0 ,0, 0, 0 ,0 ,0,
-                   0, 0 ,0 ,0 ,0 ,0 ,0, 0, 0 ,0 ,0};
+int maze[9][11] = {{1, 1 ,1 ,1 ,1 ,1 ,1, 1, 1, 1, 1},
+                   {1, 1 ,1 ,1 ,1 ,1 ,1, 1, 1, 1, 1},
+                   {1, 1 ,1 ,1 ,1 ,1 ,1, 1, 1, 1, 1},
+                   {1, 1 ,1 ,1 ,1 ,1 ,1, 1, 1, 1, 1},
+                   {1, 1 ,1 ,1 ,1 ,1 ,1, 1, 1, 1, 1},
+                   {1, 1 ,1 ,1 ,1 ,1 ,1, 1, 1, 1, 1},
+                   {1, 1 ,1 ,1 ,1 ,1 ,1, 1, 0, 1, 2},
+                   {1, 1 ,1 ,1 ,1 ,1 ,1, 1, 1, 1, 2},
+                   {1, 1 ,1 ,1 ,1 ,1 ,1, 0, 0, 0, 0}};
+                  
 
 
 int count = 0;
@@ -52,7 +33,8 @@ int count = 0;
 int getPos(int x, int y){
   int col = x;
   int row = y;
-  
+  Serial.println(col);
+  Serial.println(row);
   int content = maze[row][col];
   readIntoByte(byte1,7, col, 4);
   readIntoByte(byte1,3, row, 4);
@@ -94,7 +76,7 @@ void loop(){
        printByteArray(byte2, "Byte 2:");
        outputData(xPins, 4, byte1, 7);
        outputData(yPins, 4, byte1, 3);
-       outputData(conPins, 2, byte2, 1);
+       outputData(conPins, 2, byte2, 7);
        while(!(Serial.available())){
          
        } 
@@ -103,56 +85,6 @@ void loop(){
    }
     
   }
-  
- 
-    
-    /*getPos(0,0);
-    printByteArray(byte1, "Byte 1:");
-    printByteArray(byte2, "Byte 2:");
-    
-    getPos(1,0);
-    printByteArray(byte1, "Byte 1:");
-    printByteArray(byte2, "Byte 2:");
-    
-    getPos(2,0);
-    printByteArray(byte1, "Byte 1:");
-    printByteArray(byte2, "Byte 2:");
-    
-    getPos(3,0);
-    printByteArray(byte1, "Byte 1:");
-    printByteArray(byte2, "Byte 2:");
-    Serial.read();*/
-
-  /*if(Serial.available() > 0){ //upon availability, do analysis
-  
-    inputBuffer[0] = possibleInputs[count]; //get this case input values
-    inputBuffer[1] = possibleColors[count];
-    
-    for(int i = 0; i<8; i++){ //read bits
-      
-      byte1[i] = bitRead(inputBuffer[0], i);
-      
-      byte2[i] = bitRead(inputBuffer[1], i);
-      
-    } 
-    
-    printByteArray(byte1, "Byte 1:");
-    
-    printByteArray(byte2, "Byte 2:");
-    
-   outputData(xPins, 4, byte1, 7);
-   outputData(yPins, 4, byte1, 3);
-   outputData(conPins, 2, byte2, 1);
-    
-    digitalWrite(enable,HIGH); //set enable high for a single clock cycle
-    digitalWrite(enable,LOW);
-    if(count == 5){
-      count = 0;
-    }else{ 
-      count = count++;
-    }
-    Serial.read();
- }*/
 
 }  
 

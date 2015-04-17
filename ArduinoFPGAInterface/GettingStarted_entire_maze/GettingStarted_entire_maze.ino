@@ -38,7 +38,7 @@ const uint64_t pipes[2] = { 0x000000001CLL, 0x000000001DLL };
 
 // Array of maze is initially all unexplored with walls around it
 
-unsigned char maze[11][9] =
+int maze[9][11] =
 {
 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -70,19 +70,87 @@ const char* role_friendly_name[] = { "invalid", "Ping out", "Pong back"};
 // The role of the current running sketch
 role_e role = role_pong_back;
 
+//Most signifcant to least significant
+int xPins[4] = {7, 6, 5, 4};
+
+//Most signifcant to least significant
+int yPins[4] = {A0, A1, A2, A3};
+
+//Most(A2) to least(A3)
+int conPins[2] = {3, 2};
+
+int enable = A4;
+
+int inputBuffer[2];
+
+int byte1[8];
+
+int byte2[8];
+                 
+
+int count = 0;
+
+int getPos(int x, int y){
+  int col = x;
+  int row = y;
+  Serial.println(col);
+  Serial.println(row);
+  int content = maze[row][col];
+  readIntoByte(byte1,7, col, 4);
+  readIntoByte(byte1,3, row, 4);
+  
+  readIntoByte(byte2,7, content, 2);
+  
+  
+ 
+}
+
+//Prints an array of ints representing a byte, preceded by a message of your choice to identify the byte.
+void printByteArray(int my_byte[], char name[]){
+    Serial.print(name);
+    for(int i = 7; i>=0; i--){
+        Serial.print(my_byte[i], DEC);
+    }
+    
+    Serial.println();
+    return;
+  
+}
+
+//Outputs a portion of byte, stored in my_byte, to the pins of the Arduino specified in the pins array.
+//num indicates how many of the pins to output to, and startBit gives the bit to start from and then
+//decrement from there.
+void outputData(int pins[], int num, int my_byte[], int startBit){
+    int currBit = startBit;
+    for(int i = 0; i <= num-1; i++){
+      digitalWrite(pins[i], my_byte[currBit]);
+      currBit--;
+    }
+    digitalWrite(enable, HIGH);
+    digitalWrite(enable, LOW);
+}
+
+void readIntoByte(int *my_byte, int startBit, int data , int num){
+  int currBit = startBit;
+  int currDataBit = num-1;
+  for(int i = 0; i <= num - 1; i++){
+    my_byte[currBit] = bitRead(data, currDataBit);
+    currBit--;
+    currDataBit--;
+  }
+}
+
 void setup(void)
 {
   //
   // Print preamble
   //
 
-  /*
   Serial.begin(57600);
   printf_begin();
   printf("\n\rRF24/examples/GettingStarted/\n\r");
   printf("ROLE: %s\n\r",role_friendly_name[role]);
   printf("*** PRESS 'T' to begin transmitting to the other node\n\r");
-  */
   //
   // Setup and configure rf radio
   //
@@ -135,7 +203,29 @@ void setup(void)
   //
 
   radio.printDetails();
+  
+      //Initialize x-coord pins as outputs
+  for(int i = 0; i <= 3; i++){
+    pinMode(xPins[i], OUTPUT);
+  }
+  
+  //Initialize y-coord pins as outputs
+  for(int i = 0; i <= 3; i++){
+    pinMode(yPins[i], OUTPUT);
+  }
+  
+  //Initialize content pins as outputs
+  for(int i = 0; i <= 1; i++){
+    pinMode(conPins[i], OUTPUT);
+  }
+  
+  //Initalize enable pin as output
+  pinMode(enable, OUTPUT);
+  
+  Serial.begin(57600);
+ 
 }
+
 
 void loop(void)
 {
@@ -143,38 +233,39 @@ void loop(void)
   // Ping out role. Robot sending data to base statio
   //
   
-  // Take numbers off array and add onto integer two bits at a time
-for (int n = 1; n < 12; n++){
-    for(int m = 1; m < 10; m++){
-      if (maze[n][m] == 0){          // 0 = unexplored
-        bit_maze = bit_maze << 2;    // add 00 onto the end of the bit_maze
-        bit_maze |= 0;
-      }
-      else if (maze[n][m] == 1){     // 1 = No wall
-        bit_maze = bit_maze << 2;    // add 01 onto the end of the bit_maze
-        bit_maze |= 1;
-      }
-      else if (maze[n][m] == 2){     // 2 = Wall
-        bit_maze = bit_maze << 2;    // add 10 onto the end of the bit_maze
-        bit_maze |= 2;
-      }
-      else{                          // 3 is not a valid number
-        bit_maze = bit_maze << 2;    // add 11 onto the end of the bit_maze
-        bit_maze |= 3;
-      }
-      
-    }
-}
+  
         
   if (role == role_ping_out)
   {
+    Serial.println("role = ping out");   // Take numbers off array and add onto integer two bits at a time
+    for (int n = 1; n < 10; n++){
+        for(int m = 1; m < 12; m++){
+          if (maze[n][m] == 0){          // 0 = unexplored
+            bit_maze = bit_maze << 2;    // add 00 onto the end of the bit_maze
+            bit_maze |= 0;
+          }
+          else if (maze[n][m] == 1){     // 1 = No wall
+            bit_maze = bit_maze << 2;    // add 01 onto the end of the bit_maze
+            bit_maze |= 1;
+          }
+          else if (maze[n][m] == 2){     // 2 = Wall
+            bit_maze = bit_maze << 2;    // add 10 onto the end of the bit_maze
+            bit_maze |= 2;
+          }
+          else{                          // 3 is not a valid number
+            bit_maze = bit_maze << 2;    // add 11 onto the end of the bit_maze
+            bit_maze |= 3;
+          }
+          
+        }
+    }
     // First, stop listening so we can talk.
     radio.stopListening();
 
     // Take the time, and send it.  This will block until complete
     // unsigned long time = millis();
     printf("Now sending %lu...",bit_maze);
-    bool ok = radio.write( &bit_maze, 25 );
+    bool ok = radio.write( &bit_maze, sizeof(unsigned long) );
 
     if (ok)
       printf("ok...");
@@ -214,8 +305,9 @@ for (int n = 1; n < 12; n++){
   // Pong back role.  Receive each packet, dump it out, and send it back
   //
 
- //if ( role == role_pong_back )
-  //{
+ if ( role == role_pong_back )
+  {
+    Serial.println("role = pong back);
     // if there is data ready
     if ( radio.available() )
     {
@@ -237,46 +329,57 @@ for (int n = 1; n < 12; n++){
       }
       
       // Take bits off integer to make back into original array
-      for (int n = 11; n > 0; n--){
-        for(int m = 9; m > 0; m--){
-          if(bit_maze & 0x3 == 0){               // 0 = unexplored
+      for (int n = 9; n > 0; n--){
+        for(int m = 11; m > 0; m--){
+          if(got_time & 0x3 == 0){               // 0 = unexplored
             maze[n][m] = 0;
-            bit_maze >> 2;
-            printf("number is %i ", maze[n][m]); // Display number in position n,m in array
+            got_time >> 2;
           }
-          else if (bit_maze & 0x3 == 1){         // 1 = no wall
+          else if (got_time & 0x3 == 1){         // 1 = no wall
             maze[n][m] = 1;
-            bit_maze >> 2;
-            printf("number is %i ", maze[n][m]);
+            got_time >> 2;
           }
-          else if (bit_maze & 0x3 == 2){         // 2 = wall
+          else if (got_time & 0x3 == 2){         // 2 = wall
             maze[n][m] = 2;
-            bit_maze >> 2;
-            printf("number is %i ", maze[n][m]);
+            got_time >> 2;
           }
-          else if (bit_maze & 0x3 == 3){
+          else if (got_time & 0x3 == 3){
             maze[n][m] = 3;
-            bit_maze >> 2;
-            printf("number is %i ", maze[n][m]);
+            got_time >> 2;
           }
         }
       }
-      
-      printf("maze is \n %lu \n",maze); 
          
+         //if(Serial.available() > 0)
+      //Serial.read();
+      for(int i = 10; i >= 0; i--){
+      for(int j = 8; j >= 0; j--){
+         getPos(i,j);
+         printByteArray(byte1, "Byte 1:");
+         printByteArray(byte2, "Byte 2:");
+         outputData(xPins, 4, byte1, 7);
+         outputData(yPins, 4, byte1, 3);
+         outputData(conPins, 2, byte2, 7);
+         //while(!(Serial.available())){
+           
+         //} 
+         //Serial.read();     
+      }
+    }
          
 
       // First, stop listening so we can talk
       radio.stopListening();
 
       // Send the final one back.
-      radio.write( &bit_maze, sizeof(unsigned long) );
+      radio.write( &got_time, sizeof(unsigned long) );
       printf("Sent response.\n\r");
 
       // Now, resume listening so we catch the next packets.
       radio.startListening();
-    }
-  //}
+    
+  }
+  }
 
   //
   // Change roles
@@ -304,6 +407,8 @@ for (int n = 1; n < 12; n++){
       radio.openReadingPipe(1,pipes[0]);
     }
   }
+
 }
+
 // vim:cin:ai:sts=2 sw=2 ft=cpp
 

@@ -38,7 +38,7 @@ const uint64_t pipes[2] = { 0x000000001CLL, 0x000000001DLL };
 
 // Array of maze is initially all unexplored with walls around it
 
-unsigned char maze[11][9] =
+int maze[9][11] =
 {
 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -50,6 +50,9 @@ unsigned char maze[11][9] =
 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
 };
+
+
+
 // Maze array converted to bits
 unsigned long bit_maze;
 
@@ -61,7 +64,7 @@ void setup(void)
   //
   // Print preamble
   //
-
+    Serial.println("preamble");
  
   //
   // Setup and configure rf radio
@@ -95,7 +98,7 @@ void setup(void)
     radio.openWritingPipe(pipes[0]);
     radio.openReadingPipe(1,pipes[1]);
  
- 
+   Serial.begin(57600);
 
 
   //
@@ -107,42 +110,57 @@ void setup(void)
 
 void loop(void)
 {
+  Serial.println("void loop begins");
+  printf("void loop begins");
   //
-  // Ping out role. Robot sending data to base statio
+  // Ping out role. Robot sending data to base station
   //
-  
-      // Take numbers off array and add onto integer two bits at a time
-  for (int n = 1; n < 12; n++){
-      for(int m = 1; m < 10; m++){
-        if (maze[n][m] == 0){          // 0 = unexplored
-          bit_maze = bit_maze << 2;    // add 00 onto the end of the bit_maze
-          bit_maze |= 0;
+  while(1){
+        // Take numbers off array and add onto integer two bits at a time
+    for (int n = 1; n < 10; n++){
+        for(int m = 1; m < 12; m++){
+          if (maze[n][m] == 0){          // 0 = unexplored
+            bit_maze = bit_maze << 2;    // add 00 onto the end of the bit_maze
+            bit_maze |= 0;
+            Serial.println("Zero");
+          }
+          else if (maze[n][m] == 1){     // 1 = No wall
+            bit_maze = bit_maze << 2;    // add 01 onto the end of the bit_maze
+            bit_maze |= 1;
+            Serial.println("One");
+          }
+          else if (maze[n][m] == 2){     // 2 = Wall
+            bit_maze = bit_maze << 2;    // add 10 onto the end of the bit_maze
+            bit_maze |= 2;
+            Serial.println("Two");
+          }
+          else{                          // 3 is not a valid number
+            bit_maze = bit_maze << 2;    // add 11 onto the end of the bit_maze
+            bit_maze |= 3;
+            Serial.println("Three");
+          }
+          
         }
-        else if (maze[n][m] == 1){     // 1 = No wall
-          bit_maze = bit_maze << 2;    // add 01 onto the end of the bit_maze
-          bit_maze |= 1;
-        }
-        else if (maze[n][m] == 2){     // 2 = Wall
-          bit_maze = bit_maze << 2;    // add 10 onto the end of the bit_maze
-          bit_maze |= 2;
-        }
-        else{                          // 3 is not a valid number
-          bit_maze = bit_maze << 2;    // add 11 onto the end of the bit_maze
-          bit_maze |= 3;
-        }
-        
-      }
-  }
+    }
         
   
   
    
     
-    // keep sending message until recieved 
-   bool ok=0;
-  while (! ok){
-    ok = radio.write( &bit_maze, 25 );
-  }  
+      // keep sending message until recieved 
+      Serial.println("Transmitting");
+     bool ok=0;
+    while (!ok){
+      ok = radio.write( &bit_maze, sizeof(long) );
+      Serial.println("Transmited");
+    } 
     
+    for (int n = 1; n < 10; n++){
+        for(int m = 1; m < 12; m++){
+          maze[n][m] = 0;
+          Serial.print("One");
+        }
+    }
+   }
 
 }

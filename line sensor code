@@ -1,0 +1,230 @@
+/* 
+ * This is the function responsible for the general line following logic.
+ * It first reads the sensor values, determines the error based on our target
+ * sensor reading by using a linear mapping function that maps the difference
+ * between sensor readings to a range from -4 to 4. Additional logic at the end
+ * of the function resposible for handling intersections has been omitted
+ */
+#include <Servo.h>
+
+char onSide;
+char LEFT = 0;
+char RIGHT = 1;
+
+Servo myservo1;  // left wheel
+Servo myservo2; // right wheel
+ 
+int pos = 0;    // variable to store the servo position 
+int i;
+int n;
+
+char node_found = 0;
+  
+  // Variables for reading the line sensor values:
+char qti_left;
+char qti_right;
+
+  // The relative error between our current position over the line and our
+  // desired position (ranges from -4 to 4):
+float error;
+
+  // Variable used to keep track of the difference between the sensor readings:
+int difference;
+
+  // "I" and "D" terms for the equation:
+  // (Note: Though we kept track of the "I" term, we did not actually make use
+  // of it)
+float err_sum = 0;
+float err_diff = 0;
+float prev_err = 0; // this is used for determining the error difference
+
+  // Variables used for linear mapping or our sensor reading difference to an
+  // error value:
+  // error = m * difference + b <--- this equation (1) is used below
+float m = 0.0308; //slope
+float b = -3.31;
+
+void setup(){
+  Serial.begin(9600);
+  myservo1.attach(9);  // left wheel
+  myservo2.attach(10); // right wheel
+  pinMode(A0, INPUT);
+  pinMode(A1, INPUT);
+  qti_left = analogRead(A0); // left sensor
+  qti_right = analogRead(A1); //right sensor
+}
+
+void loop(){
+   // First we read the line sensor values:
+    //update_qtis(&qti_left, &qti_right);
+    qti_left = analogRead(A0);
+    qti_right = analogRead(A1);
+    
+    // Determine which side of the line we are favoring
+    if (qti_left < qti_right && qti_left < 900) onSide = LEFT;
+    if (qti_left > qti_right && qti_right < 900) onSide = RIGHT;
+
+    // If we are going off the left side, we top out the error at -4
+    if (qti_left < 600 && qti_right < 900 && onSide == LEFT) {
+        error = -4;
+    }
+    // If we are going off the right side, we top out the error at 4
+    else if (qti_left < 900 && qti_right < 600 && onSide == RIGHT) {
+        error = 4;
+    }
+    // If we are somewhere in the middle, we determine the error based on
+//    // the sensor readings
+    else {
+        difference = qti_left-qti_right +100;
+        error = (m*((float)difference) + b); //Equation (1) determines "P" term
+    }
+        Serial.println("difference");
+        Serial.println(analogRead(A0)-analogRead(A1));
+        Serial.println("sensor left ");
+        Serial.println(analogRead(A0));
+        Serial.println("servo right ");
+        Serial.println(analogRead(A1)); 
+
+    // Calculate our "I" and "D" terms
+    err_sum += error;
+    err_diff = error - prev_err;
+    prev_err = error;  // Save this "P" term to determine the next "D" term
+
+    // Outputs values to the motors:
+    // (The first value is difference because we want the wheels to spin in
+    // opposite directions)
+    // Here, 0.08 is the P coefficient and 2.5 is the D coefficient. These were
+    // determined by running trials and tuning the values
+    char right_direction = (char)(79 - 0.08*error - 2.5*err_diff);
+    char left_direction = (char)(101 - 0.08*error - 2.5*err_diff);
+    myservo1.write(left_direction);
+    myservo2.write(right_direction);
+    /*Serial.println("servo1 ");
+    Serial.println(myservo1.read());
+    Serial.println("servo2 ");
+    Serial.println(myservo2.read());
+    Serial.println("left input ");
+    Serial.println(left_direction);
+    Serial.println("right input ");
+    Serial.print(right_direction);*/
+/* ADDITIONAL LOGIC REMOVED */
+}
+
+
+
+
+/*char follow_line(void) {
+  // Boolean for keeping track of whether an intersection has been reached:
+  char node_found = 0;
+  
+  // Variables for reading the line sensor values:
+  char qti_left;
+  char qti_right;
+
+  // The relative error between our current position over the line and our
+  // desired position (ranges from -4 to 4):
+  float error;
+
+  // Variable used to keep track of the difference between the sensor readings:
+  int difference;
+
+  // "I" and "D" terms for the equation:
+  // (Note: Though we kept track of the "I" term, we did not actually make use
+  // of it)
+  float err_sum = 0;
+  float err_diff = 0;
+  float prev_err = 0; // this is used for determining the error difference
+
+  // Variables used for linear mapping or our sensor reading difference to an
+  // error value:
+  // error = m * difference + b <--- this equation (1) is used below
+  float m = 0.0308; //slope
+  float b = -3.31;
+
+  while (1) {
+
+    // First we read the line sensor values:
+    //update_qtis(&qti_left, &qti_right);
+    qti_left = analogRead(A0);
+    qti_right = analogRead(A1);
+    
+    // Determine which side of the line we are favoring
+    if (qti_left < qti_right && qti_left < 800) onSide = LEFT;
+    if (qti_left > qti_right && qti_right < 800) onSide = RIGHT;
+
+    // If we are going off the left side, we top out the error at -4
+    if (qti_left < 181 && qti_right < 800 && onSide == LEFT) {
+        error = -4;
+    }
+    // If we are going off the right side, we top out the error at 4
+    else if (qti_left < 800 && qti_right < 140 && onSide == RIGHT) {
+        error = 4;
+    }
+    // If we are somewhere in the middle, we determine the error based on
+//    // the sensor readings
+    else {
+        difference = qti_left-qti_right+100;
+        error = (m*((float)difference) + b); //Equation (1) determines "P" term
+    }
+
+    // Calculate our "I" and "D" terms
+    err_sum += error;
+    err_diff = error - prev_err;
+    prev_err = error;  // Save this "P" term to determine the next "D" term
+
+    // Outputs values to the motors:
+    // (The first value is difference because we want the wheels to spin in
+    // opposite directions)
+    // Here, 0.08 is the P coefficient and 2.5 is the D coefficient. These were
+    // determined by running trials and tuning the values
+    char right_direction = (char)(101 - 0.08*error - 2.5*err_diff);
+    char left_direction = (char)(79 - 0.08*error - 2.5*err_diff);
+    myservo1.write(left_direction);
+    myservo2.write(right_direction);
+/* ADDITIONAL LOGIC REMOVED */
+//}
+
+void gearbox(int x){
+  switch (x){
+    case (0): //STOP
+      myservo1.write(90);
+      myservo2.write(90);
+      break;
+    case (1): //FULL_FORWARD
+      myservo1.write(180);
+      myservo2.write(0);
+      break;
+    case (2): //FULL_BACKWARD
+      myservo1.write(0);
+      myservo2.write(180);
+      break;
+    case (3): //FAST_FORWARD
+      myservo1.write(120);
+      myservo2.write(60);
+      break;
+    case (4): //SLOW_FORWARD
+      myservo1.write(95);
+      myservo2.write(85);
+      break;
+    case (5): //FAST_BACKWARD
+      myservo1.write(60);
+      myservo2.write(120);
+      break;
+    case (6): //SLOW_BACKWARD
+      myservo1.write(85);
+      myservo2.write(95);
+      break;
+    case (7): //TURN_LEFT
+      myservo1.write(97);
+      myservo2.write(97);
+      delay(750);
+      gearbox(0);
+      break;
+    case (8): //TURN_RIGHT
+      myservo1.write(83);
+      myservo2.write(83);
+      delay(750);  
+      gearbox(0);
+      break;
+  }
+}

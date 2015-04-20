@@ -73,11 +73,7 @@ int getPos(int x, int y){
   int content = maze[row][col];
   readIntoByte(byte1,7, col, 4);
   readIntoByte(byte1,3, row, 4);
-  
   readIntoByte(byte2,7, content, 2);
-  
-  
- 
 }
 
 //Prints an array of ints representing a byte, preceded by a message of your choice to identify the byte.
@@ -117,8 +113,6 @@ void readIntoByte(int *my_byte, int startBit, int data , int num){
 
 void setup(void)
 {
- 
-
   //
   // Setup and configure rf radio
   //
@@ -179,7 +173,8 @@ void setup(void)
   pinMode(enable, OUTPUT);
   
   Serial.begin(9600);
- 
+  
+
 }
 
 
@@ -190,7 +185,9 @@ void loop(void)
   //
   // Pong back role.  Receive each packet, dump it out, and send it back
   //
-
+    //if(radio.read(&bit_maze, sizeof(unsigned long))){
+     //Serial.println("Radio Read");
+    //}
     if ( radio.available() )
     {
       // Dump the payloads until we've gotten everything
@@ -199,40 +196,65 @@ void loop(void)
       while (!done)
       {
         // Fetch the payload, and see if this was the last one.
+        Serial.println("Reading");
         done = radio.read( &bit_maze, sizeof(unsigned long) );
+        Serial.println(bit_maze);
       }
       
       // Take bits off integer to make back into original array
-      for (int n = 9; n > 0; n--){
-        for(int m = 11; m > 0; m--){
-          if(bit_maze & 0x3 == 0){               // 0 = unexplored
+      int c = 0;
+      for (int n = 8; n >= 0; n--){
+        for(int m = 10; m >= 0; m--){
+          //Serial.println(bit_maze & 0x3);
+          if((bit_maze & 0x3) == 0){               // 0 = unexplored
             maze[n][m] = 0;
             bit_maze >> 2;
             Serial.println("Zero");
             
           }
-          else if (bit_maze & 0x3 == 1){         // 1 = no wall
+          else if ((bit_maze & 0x3) == 1){         // 1 = no wall
             maze[n][m] = 1;
             bit_maze >> 2;
             Serial.println("One");
           }
-          else if (bit_maze & 0x3 == 2){         // 2 = wall
+          else if ((bit_maze & 0x3) == 2){         // 2 = wall
             maze[n][m] = 2;
             bit_maze >> 2;
             Serial.println("Two");
           }
-          else if (bit_maze & 0x3 == 3){
+          else if ((bit_maze & 0x3) == 3){
             maze[n][m] = 3;
             bit_maze >> 2;
             Serial.println("Three");
+          }else{
+            Serial.println("Bad Info");
           }
+          c++;
+          Serial.println(c);
         }
       }
-  
+      
+      
+       
+          for(int i = 10; i >= 0; i--){
+          for(int j = 8; j >= 0; j--){
+             getPos(i,j);
+             printByteArray(byte1, "Byte 1:");
+             printByteArray(byte2, "Byte 2:");
+             outputData(xPins, 4, byte1, 7);
+             outputData(yPins, 4, byte1, 3);
+             outputData(conPins, 2, byte2, 7);
+           
+          }
+      
+          
+         }
+      
 
+  
     }
     
-   
+   /*
     //if(Serial.available() > 0){
       //Serial.read();
       for(int i = 10; i >= 0; i--){
@@ -251,7 +273,7 @@ void loop(void)
     //}
       
    }
-  
+  */
 
 
 }

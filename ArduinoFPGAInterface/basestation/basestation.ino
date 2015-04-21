@@ -41,8 +41,12 @@ const uint64_t pipes[2] = { 0x000000001CLL, 0x000000001DLL };
 
 int maze[9][11];
 
+// Array thats sent to basestation/compressed maze from robot
+
+unsigned int send_maze[11];
+
 // Maze array converted to bits
-unsigned long bit_maze;
+unsigned int bit_maze;
 
 
 //Most signifcant to least significant
@@ -172,7 +176,7 @@ void setup(void)
   //Initalize enable pin as output
   pinMode(enable, OUTPUT);
   
-  Serial.begin(9600);
+  Serial.begin(57600);
   
 
 }
@@ -181,13 +185,18 @@ void setup(void)
 
 void loop(void)
 {
-
+  Serial.println("Waiting..."); 
   //
   // Pong back role.  Receive each packet, dump it out, and send it back
   //
     //if(radio.read(&bit_maze, sizeof(unsigned long))){
      //Serial.println("Radio Read");
     //}
+    
+    for(int m = 0; m <= 10; m++){
+      maze[0][m] = 2;
+    } 
+    
     if ( radio.available() )
     {
       // Dump the payloads until we've gotten everything
@@ -197,58 +206,62 @@ void loop(void)
       {
         // Fetch the payload, and see if this was the last one.
         Serial.println("Reading");
-        done = radio.read( &bit_maze, sizeof(unsigned long) );
+        done = radio.read( &send_maze, 22 );
+        for(int n = 0; n <= 10; n++)
+        Serial.println(send_maze[n]);
+      }
+      
+      for(int m = 0; m <= 10; m++){
+        bit_maze = send_maze[m];
         Serial.println(bit_maze);
-      }
-      
-      // Take bits off integer to make back into original array
-      int c = 0;
-      for (int n = 8; n >= 0; n--){
-        for(int m = 10; m >= 0; m--){
-          //Serial.println(bit_maze & 0x3);
-          if((bit_maze & 0x3) == 0){               // 0 = unexplored
-            maze[n][m] = 0;
-            bit_maze >> 2;
-            Serial.println("Zero");
-            
-          }
-          else if ((bit_maze & 0x3) == 1){         // 1 = no wall
-            maze[n][m] = 1;
-            bit_maze >> 2;
-            Serial.println("One");
-          }
-          else if ((bit_maze & 0x3) == 2){         // 2 = wall
-            maze[n][m] = 2;
-            bit_maze >> 2;
-            Serial.println("Two");
-          }
-          else if ((bit_maze & 0x3) == 3){
-            maze[n][m] = 3;
-            bit_maze >> 2;
-            Serial.println("Three");
-          }else{
-            Serial.println("Bad Info");
-          }
-          c++;
-          Serial.println(c);
+        for(int n = 0; n <= 7; n++){
+                if((bit_maze & 3) == 0){               // 0 = unexplored
+                  maze[n][m] = 0;
+                  bit_maze = bit_maze >> 2;
+                  Serial.println("Zero");
+                }
+                else if ((bit_maze & 3) == 1){         // 1 = no wall
+                  maze[n][m] = 1;
+                  bit_maze = bit_maze >> 2;
+                  Serial.println("One");
+                }
+                else if ((bit_maze & 3) == 2){         // 2 = wall
+                  maze[n][m] = 2;
+                  bit_maze = bit_maze >> 2;
+                  Serial.println("Two");
+                }
+                else if ((bit_maze & 3) == 3){
+                  maze[n][m] = 3;
+                  bit_maze = bit_maze >> 2;
+                  Serial.println("Three");
+                }else{
+                  Serial.println("Bad Info");
+                }
         }
-      }
+      }     
       
+      for(int n = 0; n <= 8; n++){
+        for(int m = 0; m <= 11; m++){
+          Serial.print(maze[n][m]);
+          Serial.print(" ");
+        }
+        Serial.println(";");
+      }
       
        
-          for(int i = 10; i >= 0; i--){
-          for(int j = 8; j >= 0; j--){
-             getPos(i,j);
-             printByteArray(byte1, "Byte 1:");
-             printByteArray(byte2, "Byte 2:");
-             outputData(xPins, 4, byte1, 7);
-             outputData(yPins, 4, byte1, 3);
-             outputData(conPins, 2, byte2, 7);
-           
-          }
-      
-          
-         }
+    for(int i = 10; i >= 0; i--){
+    for(int j = 8; j >= 0; j--){
+       getPos(i,j);
+       printByteArray(byte1, "Byte 1:");
+       printByteArray(byte2, "Byte 2:");
+       outputData(xPins, 4, byte1, 7);
+       outputData(yPins, 4, byte1, 3);
+       outputData(conPins, 2, byte2, 7);
+     
+    }
+
+    
+   }
       
 
   

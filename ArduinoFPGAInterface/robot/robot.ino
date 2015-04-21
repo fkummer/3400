@@ -37,32 +37,21 @@ RF24 radio(9,10);
 const uint64_t pipes[2] = { 0x000000001CLL, 0x000000001DLL };
 
 // Array of maze is initially all unexplored with walls around it
-
+ 
 int maze[9][11] =
 {
 {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
-{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
-{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
-{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
-{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
-{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
-{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
-{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+{2, 1, 0, 3, 0, 0, 0, 0, 0, 0, 2},
+{2, 0, 1, 0, 3, 0, 0, 0, 0, 0, 2},
+{2, 0, 0, 1, 0, 3, 0, 0, 0, 0, 2},
+{2, 0, 0, 0, 1, 0, 3, 0, 0, 0, 2},
+{2, 0, 0, 0, 0, 1, 0, 3, 0, 0, 2},
+{2, 0, 0, 0, 0, 0, 1, 0, 3, 0, 2},
+{2, 0, 0, 0, 0, 0, 0, 1, 0, 3, 2},
 {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
 };
-//{
-//{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
-//{2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
-//{2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
-//{2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
-//{2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
-//{2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
-//{2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
-//{2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
-//{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
-//};
 
-
+int send_maze[11];
 
 // Maze array converted to bits
 long bit_maze;
@@ -111,7 +100,7 @@ void setup(void)
     radio.openWritingPipe(pipes[0]);
     radio.openReadingPipe(1,pipes[1]);
  
-   Serial.begin(57600);
+
 
 
   //
@@ -124,121 +113,58 @@ void setup(void)
 
 void loop(void)
 {
+  Serial.begin(57600);
   Serial.println("void loop begins");
   printf("void loop begins");
   //
   // Ping out role. Robot sending data to base station
   //
   
-  for (int n = 0; n <= 8; n++){
-        for(int m = 0; m <= 10; m++){
-          maze[n][m] = 2;
-          
-        }
+    // Create array to be sent to base station 
+  for(int m = 0; m <= 10; m++){
+   for(int n = 0; n <= 7; n++){
+      if (maze[n][m] == 0){          // 0 = unexplored
+        bit_maze = bit_maze << 2;    // add 00 onto the end of the bit_maze
+        bit_maze = bit_maze | 0;
+        Serial.println("Zero");
+      }
+      else if (maze[n][m] == 1){     // 1 = No wall
+        bit_maze = bit_maze << 2;    // add 01 onto the end of the bit_maze
+        bit_maze = bit_maze | 1;
+        Serial.println("One");
+      }
+      else if (maze[n][m] == 2){     // 2 = Wall
+        bit_maze = bit_maze << 2;    // add 10 onto the end of the bit_maze
+        bit_maze = bit_maze | 2;
+        Serial.println("Two");
+      }
+      else{                          // 3 is not a valid number
+        bit_maze = bit_maze << 2;    // add 11 onto the end of the bit_maze
+        bit_maze = bit_maze | 3;
+        Serial.println("Three");
+      }
+   }
+   
+   send_maze[m] = bit_maze;
+   Serial.println(bit_maze);
+   bit_maze = 0;
   }
-  Serial.print("Two added");
-  
-  
-  
-  
-  
-  while(1){
-//    bit_maze = 0;
-//        // Take numbers off array and add onto integer two bits at a time
-//    for (int n = 0; n <= 8; n++){
-//        for(int m = 0; m <= 10; m++){
-//          if (maze[n][m] == 0){          // 0 = unexplored
-//            bit_maze = bit_maze << 2;
-//            Serial.println(bit_maze | 0);    // add 00 onto the end of the bit_maze
-//            bit_maze = bit_maze | 0;
-//            Serial.println("Zero");
-//          }
-//          else if (maze[n][m] == 1){     // 1 = No wall
-//            bit_maze = bit_maze << 2;
-//            Serial.println(bit_maze | 1);    // add 01 onto the end of the bit_maze
-//            bit_maze = bit_maze | 1;
-//            Serial.println("One");
-//          }
-//          else if (maze[n][m] == 2){     // 2 = Wall
-//            bit_maze = bit_maze << 2;
-//            Serial.println(bit_maze | 2);    // add 10 onto the end of the bit_maze
-//            bit_maze = bit_maze | 2;
-//            Serial.println("Two");
-//          }
-//          else{                          // 3 is not a valid number
-//            bit_maze = bit_maze << 2;    // add 11 onto the end of the bit_maze
-//            bit_maze = bit_maze | 3;
-//            Serial.println("Three");
-//          }
-//          
-//        }
-//    }
-//    
-//    for (int n = 8; n >= 0; n--){
-//        for(int m = 10; m >= 0; m--){
-//          Serial.print(n);
-//            Serial.print(",");
-//            Serial.println(m);
-//            
-//            Serial.println((bit_maze & 0x3));
-//          if(bit_maze & 0x3 == 0){               // 0 = unexplored
-//            Serial.print(n);
-//            Serial.print(",");
-//            Serial.println(m);
-//            
-//            Serial.println((bit_maze & 0x3));
-//            
-//            
-//            bit_maze >> 2;
-//            Serial.println("Zero");
-//            
-//          }
-//          else if ((bit_maze & 0x3) == 1){         // 1 = no wall
-//            bit_maze >> 2;
-//            Serial.print(n);
-//            Serial.print(",");
-//            Serial.println(m);
-//            
-//            Serial.println((bit_maze & 0x3));
-//            Serial.println("One");
-//          }
-//          else if ((bit_maze & 0x3) == 2){         // 2 = wall
-//            bit_maze >> 2;
-//            Serial.print(n);
-//            Serial.print(",");
-//            Serial.println(m);
-//            
-//            Serial.println((bit_maze & 0x3));
-//            Serial.println("Two");
-//          }
-//          else if ((bit_maze & 0x3) == 3){
-//            bit_maze >> 2;
-//            Serial.print(n);
-//            Serial.print(",");
-//            Serial.println(m);
-//            
-//            Serial.println((bit_maze & 0x3));
-//            Serial.println("Three");
-//          } else{Serial.println("bad info");}        }
-//      }
-//  
-//  
-//   
     
       // keep sending message until recieved 
       Serial.println("Transmitting");
      bool ok=0;
     while (!ok){
-      ok = radio.write(&maze, sizeof(maze) );
+      ok = radio.write(&send_maze, 22 );
      
     } 
      Serial.println("Transmited");
-//    for (int n = 0; n <= 8; n++){
-//        for(int m = 0; m <= 10; m++){
-//          maze[n][m] = 2;
-//          Serial.print("Two");
-//        }
-//     }
-   }
+     
+  bit_maze = 0;
+  for (int n = 0; n <= 7; n++){
+    for(int m = 0; m <= 10; m++){
+      maze[n][m] = 1;
+      
+    }
+  }
 
 }

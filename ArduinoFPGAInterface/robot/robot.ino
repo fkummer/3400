@@ -19,7 +19,6 @@
 #include <SPI.h>
 #include "nRF24L01.h"
 #include "RF24.h"
-#include "printf.h"
 
 //
 // Hardware configuration
@@ -53,8 +52,9 @@ int maze[9][11] =
 
 int send_maze[11];
 
+
 // Maze array converted to bits
-long bit_maze;
+int bit_maze;
 
 
 
@@ -64,7 +64,7 @@ void setup(void)
   //
   // Print preamble
   //
-    Serial.println("preamble");
+  //  Serial.println("preamble");
  
   //
   // Setup and configure rf radio
@@ -79,11 +79,9 @@ void setup(void)
   radio.setChannel(0x50);
   // set the power
   // RF24_PA_MIN=-18dBm, RF24_PA_LOW=-12dBm, RF24_PA_MED=-6dBM, and RF24_PA_HIGH=0dBm.
-  radio.setPALevel(RF24_PA_MAX);
+  radio.setPALevel(RF24_PA_MIN);
   //RF24_250KBPS for 250kbs, RF24_1MBPS for 1Mbps, or RF24_2MBPS for 2Mbps
   radio.setDataRate(RF24_250KBPS);
-  
-  radio.setPayloadSize(25);
 
  
 
@@ -106,16 +104,16 @@ void setup(void)
   //
   // Dump the configuration of the rf unit for debugging
   //
-   radio.stopListening();
+   
 
   radio.printDetails();
 }
 
 void loop(void)
 {
+  radio.stopListening();
   Serial.begin(57600);
   Serial.println("void loop begins");
-  printf("void loop begins");
   //
   // Ping out role. Robot sending data to base station
   //
@@ -150,21 +148,30 @@ void loop(void)
    bit_maze = 0;
   }
     
-      // keep sending message until recieved 
-      Serial.println("Transmitting");
-     bool ok=0;
-    while (!ok){
-      ok = radio.write(&send_maze, 22 );
+   // keep sending message until recieved 
+   //Serial.println("Transmitting");
+   
+//   while (!ok){
+      //Serial.print("Attempting to transmit ");
+      bool ok = radio.write(&send_maze, sizeof(send_maze));
+       
+      if(ok){
+        Serial.println("ok");
+      }
+      else{
+        Serial.println("failed"); 
+      }
+//    } 
      
-    } 
-     Serial.println("Transmited");
-     
-  bit_maze = 0;
-  for (int n = 0; n <= 7; n++){
-    for(int m = 0; m <= 10; m++){
-      maze[n][m] = 1;
-      
-    }
-  }
-
+//  bit_maze = 0;
+//  for (int n = 0; n <= 7; n++){
+//    for(int m = 0; m <= 10; m++){
+//      maze[n][m] = 1;
+//      
+//      
+//      
+//    }
+//  }
+delay(1000);
+radio.startListening();
 }

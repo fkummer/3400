@@ -130,7 +130,7 @@ void setup(void)
   radio.setChannel(0x50);
   // set the power
   // RF24_PA_MIN=-18dBm, RF24_PA_LOW=-12dBm, RF24_PA_MED=-6dBM, and RF24_PA_HIGH=0dBm.
-  radio.setPALevel(RF24_PA_HIGH);
+  radio.setPALevel(RF24_PA_MIN);
   //RF24_250KBPS for 250kbs, RF24_1MBPS for 1Mbps, or RF24_2MBPS for 2Mbps
   radio.setDataRate(RF24_250KBPS);
 
@@ -176,7 +176,7 @@ void setup(void)
   //Initalize enable pin as output
   pinMode(enable, OUTPUT);
   
-  Serial.begin(57600);
+  Serial.begin(9600);
   
 
 }
@@ -185,7 +185,7 @@ void setup(void)
 
 void loop(void)
 {
-  Serial.println("Waiting..."); 
+  //Serial.println("Waiting..."); 
   //
   // Pong back role.  Receive each packet, dump it out, and send it back
   //
@@ -194,9 +194,8 @@ void loop(void)
     //}
     
     for(int m = 0; m <= 10; m++){
-      maze[0][m] = 2;
+      maze[8][m] = 2;
     } 
-    
     if ( radio.available() )
     {
       // Dump the payloads until we've gotten everything
@@ -214,7 +213,7 @@ void loop(void)
       for(int m = 0; m <= 10; m++){
         bit_maze = send_maze[m];
         Serial.println(bit_maze);
-        for(int n = 0; n <= 7; n++){
+        for(int n = 7; n >= 0; n--){
                 if((bit_maze & 3) == 0){               // 0 = unexplored
                   maze[n][m] = 0;
                   bit_maze = bit_maze >> 2;
@@ -241,7 +240,7 @@ void loop(void)
       }     
       
       for(int n = 0; n <= 8; n++){
-        for(int m = 0; m <= 11; m++){
+        for(int m = 0; m <= 10; m++){
           Serial.print(maze[n][m]);
           Serial.print(" ");
         }
@@ -265,7 +264,7 @@ void loop(void)
       
 
   
-    }
+  }
     
    /*
     //if(Serial.available() > 0){

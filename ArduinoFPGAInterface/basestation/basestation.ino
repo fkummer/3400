@@ -72,8 +72,8 @@ int count = 0;
 int getPos(int x, int y){
   int col = x;
   int row = y;
-  Serial.println(col);
-  Serial.println(row);
+  //Serial.println(col);
+  //Serial.println(row);
   int content = maze[row][col];
   readIntoByte(byte1,7, col, 4);
   readIntoByte(byte1,3, row, 4);
@@ -199,60 +199,60 @@ void loop(void)
     if ( radio.available() )
     {
       // Dump the payloads until we've gotten everything
-      Serial.println("Radio Available");
+      //Serial.println("Radio Available");
       bool done = false;
       while (!done)
       {
         // Fetch the payload, and see if this was the last one.
-        Serial.println("Reading");
+        //Serial.println("Reading");
         done = radio.read( &send_maze, 22 );
-        for(int n = 0; n <= 10; n++)
-        Serial.println(send_maze[n]);
+        //for(int n = 0; n <= 10; n++)
+        //Serial.println(send_maze[n]);
       }
       
       for(int m = 0; m <= 10; m++){
         bit_maze = send_maze[m];
-        Serial.println(bit_maze);
+        //Serial.println(bit_maze);
         for(int n = 7; n >= 0; n--){
                 if((bit_maze & 3) == 0){               // 0 = unexplored
                   maze[n][m] = 0;
                   bit_maze = bit_maze >> 2;
-                  Serial.println("Zero");
+                 // Serial.println("Zero");
                 }
                 else if ((bit_maze & 3) == 1){         // 1 = no wall
                   maze[n][m] = 1;
                   bit_maze = bit_maze >> 2;
-                  Serial.println("One");
+                 // Serial.println("One");
                 }
                 else if ((bit_maze & 3) == 2){         // 2 = wall
                   maze[n][m] = 2;
                   bit_maze = bit_maze >> 2;
-                  Serial.println("Two");
+                 // Serial.println("Two");
                 }
                 else if ((bit_maze & 3) == 3){
                   maze[n][m] = 3;
                   bit_maze = bit_maze >> 2;
-                  Serial.println("Three");
+                 // Serial.println("Three");
                 }else{
-                  Serial.println("Bad Info");
+                 // Serial.println("Bad Info");
                 }
         }
       }     
       
       for(int n = 0; n <= 8; n++){
         for(int m = 0; m <= 10; m++){
-          Serial.print(maze[n][m]);
-          Serial.print(" ");
+          //Serial.print(maze[n][m]);
+          //Serial.print(" ");
         }
-        Serial.println(";");
+        //Serial.println(";");
       }
       
        
     for(int i = 10; i >= 0; i--){
     for(int j = 8; j >= 0; j--){
        getPos(i,j);
-       printByteArray(byte1, "Byte 1:");
-       printByteArray(byte2, "Byte 2:");
+       //printByteArray(byte1, "Byte 1:");
+       //printByteArray(byte2, "Byte 2:");
        outputData(xPins, 4, byte1, 7);
        outputData(yPins, 4, byte1, 3);
        outputData(conPins, 2, byte2, 7);

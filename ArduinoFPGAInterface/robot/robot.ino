@@ -113,7 +113,7 @@ void loop(void)
 {
   radio.stopListening();
   Serial.begin(57600);
-  Serial.println("void loop begins");
+//  Serial.println("void loop begins");
   //
   // Ping out role. Robot sending data to base station
   //
@@ -124,27 +124,27 @@ void loop(void)
       if (maze[n][m] == 0){          // 0 = unexplored
         bit_maze = bit_maze << 2;    // add 00 onto the end of the bit_maze
         bit_maze = bit_maze | 0;
-        Serial.println("Zero");
+        //Serial.println("Zero");
       }
       else if (maze[n][m] == 1){     // 1 = No wall
         bit_maze = bit_maze << 2;    // add 01 onto the end of the bit_maze
         bit_maze = bit_maze | 1;
-        Serial.println("One");
+        //Serial.println("One");
       }
       else if (maze[n][m] == 2){     // 2 = Wall
         bit_maze = bit_maze << 2;    // add 10 onto the end of the bit_maze
         bit_maze = bit_maze | 2;
-        Serial.println("Two");
+        //Serial.println("Two");
       }
       else{                          // 3 is not a valid number
         bit_maze = bit_maze << 2;    // add 11 onto the end of the bit_maze
         bit_maze = bit_maze | 3;
-        Serial.println("Three");
+        //Serial.println("Three");
       }
    }
    
    send_maze[m] = bit_maze;
-   Serial.println(bit_maze);
+   //Serial.println(bit_maze);
    bit_maze = 0;
   }
     
@@ -156,22 +156,22 @@ void loop(void)
       bool ok = radio.write(&send_maze, sizeof(send_maze));
        
       if(ok){
-        Serial.println("ok");
+        //Serial.println("ok");
       }
       else{
-        Serial.println("failed"); 
+        //Serial.println("failed"); 
       }
 //    } 
      
-//  bit_maze = 0;
-//  for (int n = 0; n <= 7; n++){
-//    for(int m = 0; m <= 10; m++){
-//      maze[n][m] = 1;
-//      
-//      
-//      
-//    }
-//  }
+  bit_maze = 0;
+  for (int n = 0; n <= 7; n++){
+    for(int m = 0; m <= 10; m++){
+      maze[n][m] += 1;
+      if (maze[n][m] == 4){
+         maze [n][m] = 0;    
+      } 
+    }
+  }
 delay(1000);
 radio.startListening();
 }

@@ -58,22 +58,18 @@ int yPins[4] = {A0, A1, A2, A3};
 //Most(A2) to least(A3)
 int conPins[2] = {3, 2};
 
+//Enable Pin
 int enable = A4;
 
-int inputBuffer[2];
-
+//First "byte" to copy information into
 int byte1[8];
 
+//Second "byte" to copy information into
 int byte2[8];
-                 
-
-int count = 0;
-
+              
 int getPos(int x, int y){
   int col = x;
   int row = y;
-  //Serial.println(col);
-  //Serial.println(row);
   int content = maze[row][col];
   readIntoByte(byte1,7, col, 4);
   readIntoByte(byte1,3, row, 4);
@@ -88,8 +84,7 @@ void printByteArray(int my_byte[], char name[]){
     }
     
     Serial.println();
-    return;
-  
+    return; 
 }
 
 //Outputs a portion of byte, stored in my_byte, to the pins of the Arduino specified in the pins array.
@@ -105,6 +100,7 @@ void outputData(int pins[], int num, int my_byte[], int startBit){
     digitalWrite(enable, LOW);
 }
 
+//
 void readIntoByte(int *my_byte, int startBit, int data , int num){
   int currBit = startBit;
   int currDataBit = num-1;
@@ -133,32 +129,16 @@ void setup(void)
   radio.setPALevel(RF24_PA_MIN);
   //RF24_250KBPS for 250kbs, RF24_1MBPS for 1Mbps, or RF24_2MBPS for 2Mbps
   radio.setDataRate(RF24_250KBPS);
-
-  // optionally, reduce the payload size.  seems to
-  // improve reliability
-  //radio.setPayloadSize(8);
-
-  //
-  // Open pipes to other nodes for communication
-  //
-
-  // This simple sketch opens two pipes for these two nodes to communicate
-  // back and forth.
-  // Open 'our' pipe for writing
-  // Open the 'other' pipe for reading, in position #1 (we can have up to 5 pipes open for reading)
-
  
   radio.openWritingPipe(pipes[1]);
   radio.openReadingPipe(1,pipes[0]);
  
-
   //
   // Start listening
   //
-
   radio.startListening();
   
-    //Initialize x-coord pins as outputs
+  //Initialize x-coord pins as outputs
   for(int i = 0; i <= 3; i++){
     pinMode(xPins[i], OUTPUT);
   }
@@ -177,37 +157,21 @@ void setup(void)
   pinMode(enable, OUTPUT);
   
   Serial.begin(9600);
-  
-
 }
-
-
 
 void loop(void)
 {
-  //Serial.println("Waiting..."); 
-  //
-  // Pong back role.  Receive each packet, dump it out, and send it back
-  //
-    //if(radio.read(&bit_maze, sizeof(unsigned long))){
-     //Serial.println("Radio Read");
-    //}
-    
-    for(int m = 0; m <= 10; m++){
+  for(int m = 0; m <= 10; m++){
       maze[8][m] = 2;
     } 
-    if ( radio.available() )
-    {
+    
+    if ( radio.available()) {
       // Dump the payloads until we've gotten everything
-      //Serial.println("Radio Available");
       bool done = false;
       while (!done)
       {
         // Fetch the payload, and see if this was the last one.
-        //Serial.println("Reading");
         done = radio.read( &send_maze, 22 );
-        //for(int n = 0; n <= 10; n++)
-        //Serial.println(send_maze[n]);
       }
       
       for(int m = 0; m <= 10; m++){
@@ -217,77 +181,31 @@ void loop(void)
                 if((bit_maze & 3) == 0){               // 0 = unexplored
                   maze[n][m] = 0;
                   bit_maze = bit_maze >> 2;
-                 // Serial.println("Zero");
                 }
                 else if ((bit_maze & 3) == 1){         // 1 = no wall
                   maze[n][m] = 1;
                   bit_maze = bit_maze >> 2;
-                 // Serial.println("One");
                 }
                 else if ((bit_maze & 3) == 2){         // 2 = wall
                   maze[n][m] = 2;
                   bit_maze = bit_maze >> 2;
-                 // Serial.println("Two");
                 }
                 else if ((bit_maze & 3) == 3){
                   maze[n][m] = 3;
                   bit_maze = bit_maze >> 2;
-                 // Serial.println("Three");
-                }else{
-                 // Serial.println("Bad Info");
                 }
         }
-      }     
-      
-      for(int n = 0; n <= 8; n++){
-        for(int m = 0; m <= 10; m++){
-          //Serial.print(maze[n][m]);
-          //Serial.print(" ");
-        }
-        //Serial.println(";");
-      }
-      
+      }           
        
     for(int i = 10; i >= 0; i--){
-    for(int j = 8; j >= 0; j--){
-       getPos(i,j);
-       //printByteArray(byte1, "Byte 1:");
-       //printByteArray(byte2, "Byte 2:");
-       outputData(xPins, 4, byte1, 7);
-       outputData(yPins, 4, byte1, 3);
-       outputData(conPins, 2, byte2, 7);
-     
-    }
-
-    
-   }
-      
-
-  
-  }
-    
-   /*
-    //if(Serial.available() > 0){
-      //Serial.read();
-      for(int i = 10; i >= 0; i--){
       for(int j = 8; j >= 0; j--){
          getPos(i,j);
-         printByteArray(byte1, "Byte 1:");
-         printByteArray(byte2, "Byte 2:");
          outputData(xPins, 4, byte1, 7);
          outputData(yPins, 4, byte1, 3);
          outputData(conPins, 2, byte2, 7);
-         //while(!(Serial.available())){
-           
-         //} 
-         //Serial.read();     
       }
-    //}
-      
-   }
-  */
-
-
+    }      
+  }
 }
-// vim:cin:ai:sts=2 sw=2 ft=cpp
+
 

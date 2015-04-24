@@ -1,5 +1,14 @@
 /*This code is for the IR sensor*/
 
+#define UNEXPLORED 0
+#define WALL 1
+#define NO_WALL 2
+#define UNREACHABLE 3
+
+#define THRESH_1 820
+#define THRESH_2 400
+
+
 byte maze [11] [9];
 byte currDirection;
 byte currX;
@@ -33,146 +42,159 @@ void loop(){
   //further wall 40
   }
   switch (currDirection) {
-    case 0:
-      if(left>400){
-        if(left>820){
-          maze[currX][currY]=2;
+    case 0: //robot facing up
+      if(left>THRESH_2){
+        if(left>THRESH_1){
+          maze[currX-1][currY]=WALL;
         } else{
-          maze[currX][currY]=1;
-          maze[currX][currY]=2;
+          maze[currX-1][currY]=NO_WALL;
+          maze[currX-3][currY]=WALL;
         }
       }else{
-        maze[currX][currY]=2;
+        maze[currX-1][currY]=NO_WALL;
+        maze[currX-3][currY]=NO_WALL;
       }
       
-      if(right>400){
-        if(right>820){
-          maze[currX][currY]=2;
+      if(right>THRESH_2){
+        if(right>THRESH_1){
+          maze[currX+1][currY]=WALL;
         }else{
-          maze[currX][currY]=1;
-          maze[currX][currY]=2;
+          maze[currX+1][currY]=NO_WALL;
+          maze[currX+3][currY]=WALL;
         }
       }else{
-        maze[currX][currY]=2;
+        maze[currX+1][currY]=NO_WALL;
+        maze[currX+3][currY]=NO_WALL;
       }
       
-      if(front>400){
-        if(front>820){
-          maze[currX][currY]=2;
+      if(front>THRESH_2){
+        if(front>THRESH_1){
+          maze[currX][currY-1]=WALL;
         }else{
-          maze[currX][currY]=1;
-          maze[currX][currY]=2;
+          maze[currX][currY-1]=NO_WALL;
+          maze[currX][currY-3]=WALL;
         }
       }else{
-        maze[currX][currY]=2;
+        maze[currX][currY-1]=NO_WALL;
+        maze[currX][currY-3]=NO_WALL;
       }
       break;
       
       
-    case 1:
-    if(left>400){
-        if(left>820){
-          maze[currX][currY]=2;
+    case 1: //robot facing right
+    if(left>THRESH_2){
+        if(left>THRESH_1){
+          maze[currX][currY-1]=WALL;
         } else{
-          maze[currX][currY]=1;
-          maze[currX][currY]=2;
+          maze[currX][currY-1]=NO_WALL;
+          maze[currX][currY-3]=WALL;
         }
       }else{
-        maze[currX][currY]=2;
+        maze[currX][currY-1]=NO_WALL;
+        maze[currX][currY-3]=NO_WALL;
       }
       
       if(right>400){
-        if(right>820){
-          maze[currX][currY]=2;
+        if(right>THRESH_1){
+          maze[currX][currY+1]=WALL;
         }else{
-          maze[currX][currY]=1;
-          maze[currX][currY]=2;
+          maze[currX][currY+1]=NO_WALL;
+          maze[currX][currY+3]=WALL;
         }
       }else{
-        maze[currX][currY]=2;
+        maze[currX][currY+1]=NO_WALL;
+        maze[currX][currY+3]=NO_WALL;
       }
       
-      if(front>400){
-        if(front>820){
-          maze[currX][currY]=2;
+      if(front>THRESH_2){
+        if(front>THRESH_1){
+          maze[currX+1][currY]=WALL;
         }else{
-          maze[currX][currY]=1;
-          maze[currX][currY]=2;
+          maze[currX+1][currY]=NO_WALL;
+          maze[currX+3][currY]=WALL;
         }
       }else{
-        maze[currX][currY]=2;
+        maze[currX+1][currY]=NO_WALL;
+        maze[currX+3][currY]=NO_WALL;
       }
       break;
       
       
-    case 2:
-    if(left>400){
-        if(left>820){
-          maze[currX][currY]=2;
+    case 2: //robot facing down
+    if(left>THRESH_2){
+        if(left>THRESH_1){
+          maze[currX+1][currY]=WALL;
         }else{
-          maze[currX][currY]=1;
-          maze[currX][currY]=2;
+          maze[currX+1][currY]=NO_WALL;
+          maze[currX+3][currY]=WALL;
         }
       }else{
-        maze[currX][currY]=2;
+        maze[currX+1][currY]=NO_WALL;
+        maze[currX+3][currY]=NO_WALL;
       }
       
-      if(right>400){
-        if(right>820){
-          maze[currX][currY]=2;
+      if(right>THRESH_2){
+        if(right>THRESH_1){
+          maze[currX-1][currY]=WALL;
         }else{
-          maze[currX][currY]=1;
-          maze[currX][currY]=2;
+          maze[currX-1][currY]=NO_WALL;
+          maze[currX-3][currY]=WALL;
         }
       }else{
-        maze[currX][currY]=2;
+        maze[currX-1][currY]=NO_WALL;
+        maze[currX-3][currY]=NO_WALL;
       }
       
-      if(front>400){
-        if(front>820){
-          maze[currX][currY]=2;
+      if(front>THRESH_2){
+        if(front>THRESH_1){
+          maze[currX][currY+1]=WALL;
         }else{
-          maze[currX][currY]=1;
-          maze[currX][currY]=2;
+          maze[currX][currY+1]=NO_WALL;
+          maze[currX][currY+3]=WALL;
         }
       }else{
-        maze[currX][currY]=2;
+        maze[currX][currY+1]=NO_WALL;
+        maze[currX][currY+3]=NO_WALL;
       }
       break;
-    case 3:
+    
+    case 3: //robot facing left
     
     
-    if(left>400){
-        if(left>820){
-          maze[currX][currY]=2;
+    if(left>THRESH_2){
+        if(left>THRESH_1){
+          maze[currX][currY+1]=WALL;
         }else{
-          maze[currX][currY]=1;
-          maze[currX][currY]=2;
+          maze[currX][currY+1]=NO_WALL;
+          maze[currX][currY+3]=WALL;
         }
       }else{
-        maze[currX][currY]=2;
+        maze[currX][currY+1]=NO_WALL;
+        maze[currX][currY+3]=NO_WALL;
       }
       
-      if(right>400){
-        if(right>820){
-          maze[currX][currY]=2;
+      if(right>THRESH_2){
+        if(right>THRESH_1){
+          maze[currX][currY-1]=WALL;
         }else{
-          maze[currX][currY]=1;
-          maze[currX][currY]=2;
+          maze[currX][currY-1]=NO_WALL;
+          maze[currX][currY-3]=WALL;
         }
       }else{
-        maze[currX][currY]=2;
+        maze[currX][currY-1]=NO_WALL;
+        maze[currX][currY-3]=NO_WALL;
       }
       
-      if(front>400){
-        if(front>820){
-          maze[currX][currY]=2;
+      if(front>THRESH_2){
+        if(front>THRESH_1){
+          maze[currX-1][currY]=WALL;
         }else{
-          maze[currX][currY]=1;
-          maze[currX][currY]=2;
+          maze[currX-1][currY]=NO_WALL;
+          maze[currX-3][currY]=WALL;
         }
       }else{
-        maze[currX][currY]=2;
+        maze[currX-1][currY]=NO_WALL;
+        maze[currX-3][currY]=NO_WALL;
       }
       break;
     default:
@@ -187,3 +209,37 @@ void loop(){
   Serial.println(front_wall);
   delay(500);
 }
+
+
+
+
+
+void updateMaze(){
+  for(int y=2; y<7; y+=2){
+    for(int x=2; x<9;  x+=2){
+     if(maze[x+2][y+2]==WALL || maze[x+2][y+2]==WALL ||
+ maze[x+2][y+2]==WALL || maze[x+2][y+2]==WALL){
+       maze[x][y]=WALL;
+     }
+     else if(maze[x+2][y+2]==NO_WALL && maze[x+2][y+2]==NO_WALL &&
+ maze[x+2][y+2]==NO_WALL && maze[x+2][y+2]==NO_WALL){
+        maze[x][y]=NO_WALL;
+     }
+    }
+  } 
+}
+
+
+void outPutMaze(){
+  for(int x=0; x<11; x++){
+    Serial.print("[");
+    for(int y=0; y<9; y++){
+      Serial.print(maze[x][y]);
+      Serial.print(", "); 
+    }
+    Serial.println("]");
+  } 
+}
+
+
+

@@ -172,6 +172,7 @@ void setup(void)
 
 void loop(void)
 {
+  //Set last row of the maze to be all walls.
   for(int m = 0; m <= 10; m++){
       maze[8][m] = 2;
     } 
@@ -187,7 +188,6 @@ void loop(void)
       
       for(int m = 0; m <= 10; m++){
         bit_maze = send_maze[m];
-        //Serial.println(bit_maze);
         for(int n = 7; n >= 0; n--){
                 if((bit_maze & 3) == 0){               // 0 = unexplored
                   maze[n][m] = 0;

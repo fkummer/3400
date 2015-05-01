@@ -6,16 +6,6 @@
  version 2 as published by the Free Software Foundation.
  */
 
-/**
- * Example for Getting Started with nRF24L01+ radios.
- *
- * This is an example of how to use the RF24 class.  Write this sketch to two
- * different nodes.  Put one of the nodes into 'transmit' mode by connecting
- * with the serial monitor and sending a 'T'.  The ping node sends the current
- * time to the pong node, which responds by sending the value back.  The ping
- * node can then see how long the whole cycle took.
- */
-
 #include <SPI.h>
 #include "nRF24L01.h"
 #include "RF24.h"
@@ -39,15 +29,15 @@ const uint64_t pipes[2] = { 0x000000001CLL, 0x000000001DLL };
  
 int maze[9][11] =
 {
-{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
-{2, 1, 0, 3, 0, 0, 0, 0, 0, 0, 2},
-{2, 0, 1, 0, 3, 0, 0, 0, 0, 0, 2},
-{2, 0, 0, 1, 0, 3, 0, 0, 0, 0, 2},
-{2, 0, 0, 0, 1, 0, 3, 0, 0, 0, 2},
-{2, 0, 0, 0, 0, 1, 0, 3, 0, 0, 2},
-{2, 0, 0, 0, 0, 0, 1, 0, 3, 0, 2},
-{2, 0, 0, 0, 0, 0, 0, 1, 0, 3, 2},
-{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+  {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+  {2, 1, 0, 3, 0, 0, 0, 0, 0, 0, 2},
+  {2, 0, 1, 0, 3, 0, 0, 0, 0, 0, 2},
+  {2, 0, 0, 1, 0, 3, 0, 0, 0, 0, 2},
+  {2, 0, 0, 0, 1, 0, 3, 0, 0, 0, 2},
+  {2, 0, 0, 0, 0, 1, 0, 3, 0, 0, 2},
+  {2, 2, 2, 0, 0, 0, 1, 0, 3, 0, 2},
+  {2, 3, 2, 0, 0, 0, 0, 1, 0, 3, 2},
+  {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
 };
 
 int send_maze[11];
@@ -61,15 +51,6 @@ int bit_maze;
 
 void setup(void)
 {
-  //
-  // Print preamble
-  //
-  //  Serial.println("preamble");
- 
-  //
-  // Setup and configure rf radio
-  //
-
   radio.begin();
 
   // optionally, increase the delay between retries & # of retries
@@ -83,8 +64,6 @@ void setup(void)
   //RF24_250KBPS for 250kbs, RF24_1MBPS for 1Mbps, or RF24_2MBPS for 2Mbps
   radio.setDataRate(RF24_250KBPS);
 
- 
-
   //
   // Open pipes to other nodes for communication
   //
@@ -97,9 +76,6 @@ void setup(void)
 
     radio.openWritingPipe(pipes[0]);
     radio.openReadingPipe(1,pipes[1]);
- 
-
-
 
   //
   // Dump the configuration of the rf unit for debugging
@@ -109,69 +85,62 @@ void setup(void)
   radio.printDetails();
 }
 
+//Transmits an array of 11 integers, with the bits of each representing the state of each position of the 11 columns of the maze.
+//Since an integer is only 16 bits, only 8 rows can be sent. The last row will always be a wall though, so that information does not need to be sent.
+void transmitMaze(void){
+  radio.stopListening();
+    //
+    // Ping out role. Robot sending data to base station
+    //
+    
+    // Create array to be sent to base station 
+    for(int m = 0; m <= 10; m++){
+     for(int n = 0; n <= 7; n++){
+        if (maze[n][m] == 0){          // 0 = unexplored
+          bit_maze = bit_maze << 2;    // add 00 onto the end of the bit_maze
+          bit_maze = bit_maze | 0;
+        }
+        else if (maze[n][m] == 1){     // 1 = No wall
+          bit_maze = bit_maze << 2;    // add 01 onto the end of the bit_maze
+          bit_maze = bit_maze | 1;
+        }
+        else if (maze[n][m] == 2){     // 2 = Wall
+          bit_maze = bit_maze << 2;    // add 10 onto the end of the bit_maze
+          bit_maze = bit_maze | 2;
+        }
+        else{                          // 3 is not a valid number
+          bit_maze = bit_maze << 2;    // add 11 onto the end of the bit_maze
+          bit_maze = bit_maze | 3;
+        }
+     }
+     
+     send_maze[m] = bit_maze;
+     bit_maze = 0;
+    }
+    
+    //Transmit the array
+    bool ok = radio.write(&send_maze, sizeof(send_maze));
+  
+    bit_maze = 0;
+    /*for (int n = 0; n <= 7; n++){
+      for(int m = 0; m <= 10; m++){
+        maze[n][m] += 1;
+        if (maze[n][m] == 4){
+           maze [n][m] = 0;    
+        } 
+      }
+    }*/
+  delay(1000);
+  radio.startListening(); 
+  
+}
+
 void loop(void)
 {
-  radio.stopListening();
   Serial.begin(57600);
-//  Serial.println("void loop begins");
-  //
-  // Ping out role. Robot sending data to base station
-  //
-  
-    // Create array to be sent to base station 
-  for(int m = 0; m <= 10; m++){
-   for(int n = 0; n <= 7; n++){
-      if (maze[n][m] == 0){          // 0 = unexplored
-        bit_maze = bit_maze << 2;    // add 00 onto the end of the bit_maze
-        bit_maze = bit_maze | 0;
-        //Serial.println("Zero");
-      }
-      else if (maze[n][m] == 1){     // 1 = No wall
-        bit_maze = bit_maze << 2;    // add 01 onto the end of the bit_maze
-        bit_maze = bit_maze | 1;
-        //Serial.println("One");
-      }
-      else if (maze[n][m] == 2){     // 2 = Wall
-        bit_maze = bit_maze << 2;    // add 10 onto the end of the bit_maze
-        bit_maze = bit_maze | 2;
-        //Serial.println("Two");
-      }
-      else{                          // 3 is not a valid number
-        bit_maze = bit_maze << 2;    // add 11 onto the end of the bit_maze
-        bit_maze = bit_maze | 3;
-        //Serial.println("Three");
-      }
-   }
-   
-   send_maze[m] = bit_maze;
-   //Serial.println(bit_maze);
-   bit_maze = 0;
+  if(Serial.available()>=1){
+    Serial.println("Transmit");
+    transmitMaze();
+    Serial.read();
   }
-    
-   // keep sending message until recieved 
-   //Serial.println("Transmitting");
-   
-//   while (!ok){
-      //Serial.print("Attempting to transmit ");
-      bool ok = radio.write(&send_maze, sizeof(send_maze));
-       
-      if(ok){
-        //Serial.println("ok");
-      }
-      else{
-        //Serial.println("failed"); 
-      }
-//    } 
-     
-  bit_maze = 0;
-  for (int n = 0; n <= 7; n++){
-    for(int m = 0; m <= 10; m++){
-      maze[n][m] += 1;
-      if (maze[n][m] == 4){
-         maze [n][m] = 0;    
-      } 
-    }
-  }
-delay(1000);
-radio.startListening();
 }

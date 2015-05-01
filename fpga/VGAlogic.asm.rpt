@@ -1,5 +1,5 @@
 Assembler report for VGAlogic
-Fri Mar 27 16:12:09 2015
+Fri May 01 14:39:15 2015
 Quartus II 32-bit Version 13.0.0 Build 156 04/24/2013 SJ Full Version
 
 
@@ -10,7 +10,7 @@ Quartus II 32-bit Version 13.0.0 Build 156 04/24/2013 SJ Full Version
   2. Assembler Summary
   3. Assembler Settings
   4. Assembler Generated Files
-  5. Assembler Device Options: C:/Users/Lab_User/Desktop/3400/fpga/VGAlogic.sof
+  5. Assembler Device Options: C:/Users/Lab_User/Documents/GitHub/3400/fpga/VGAlogic.sof
   6. Assembler Messages
 
 
@@ -37,7 +37,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Fri Mar 27 16:12:09 2015 ;
+; Assembler Status      ; Successful - Fri May 01 14:39:15 2015 ;
 ; Revision Name         ; VGAlogic                              ;
 ; Top-level Entity Name ; VGAlogic                              ;
 ; Family                ; Cyclone IV E                          ;
@@ -77,24 +77,24 @@ applicable agreement for further details.
 +-----------------------------------------------------------------------------+----------+---------------+
 
 
-+--------------------------------------------------+
-; Assembler Generated Files                        ;
-+--------------------------------------------------+
-; File Name                                        ;
-+--------------------------------------------------+
-; C:/Users/Lab_User/Desktop/3400/fpga/VGAlogic.sof ;
-+--------------------------------------------------+
++-----------------------------------------------------------+
+; Assembler Generated Files                                 ;
++-----------------------------------------------------------+
+; File Name                                                 ;
++-----------------------------------------------------------+
+; C:/Users/Lab_User/Documents/GitHub/3400/fpga/VGAlogic.sof ;
++-----------------------------------------------------------+
 
 
-+----------------------------------------------------------------------------+
-; Assembler Device Options: C:/Users/Lab_User/Desktop/3400/fpga/VGAlogic.sof ;
-+----------------+-----------------------------------------------------------+
-; Option         ; Setting                                                   ;
-+----------------+-----------------------------------------------------------+
-; Device         ; EP4CE22F17C6                                              ;
-; JTAG usercode  ; 0x001D5731                                                ;
-; Checksum       ; 0x001D5731                                                ;
-+----------------+-----------------------------------------------------------+
++-------------------------------------------------------------------------------------+
+; Assembler Device Options: C:/Users/Lab_User/Documents/GitHub/3400/fpga/VGAlogic.sof ;
++----------------+--------------------------------------------------------------------+
+; Option         ; Setting                                                            ;
++----------------+--------------------------------------------------------------------+
+; Device         ; EP4CE22F17C6                                                       ;
+; JTAG usercode  ; 0x001D3381                                                         ;
+; Checksum       ; 0x001D3381                                                         ;
++----------------+--------------------------------------------------------------------+
 
 
 +--------------------+
@@ -103,13 +103,13 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 32-bit Assembler
     Info: Version 13.0.0 Build 156 04/24/2013 SJ Full Version
-    Info: Processing started: Fri Mar 27 16:12:06 2015
+    Info: Processing started: Fri May 01 14:39:12 2015
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off VGAlogic -c VGAlogic
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus II 32-bit Assembler was successful. 0 errors, 0 warnings
     Info: Peak virtual memory: 347 megabytes
-    Info: Processing ended: Fri Mar 27 16:12:09 2015
+    Info: Processing ended: Fri May 01 14:39:15 2015
     Info: Elapsed time: 00:00:03
     Info: Total CPU time (on all processors): 00:00:03
 

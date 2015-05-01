@@ -1,5 +1,5 @@
 Analysis & Synthesis report for VGAlogic
-Fri Mar 27 16:11:48 2015
+Fri May 01 14:38:54 2015
 Quartus II 32-bit Version 13.0.0 Build 156 04/24/2013 SJ Full Version
 
 
@@ -42,13 +42,13 @@ applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Fri Mar 27 16:11:47 2015       ;
+; Analysis & Synthesis Status        ; Successful - Fri May 01 14:38:53 2015       ;
 ; Quartus II 32-bit Version          ; 13.0.0 Build 156 04/24/2013 SJ Full Version ;
 ; Revision Name                      ; VGAlogic                                    ;
 ; Top-level Entity Name              ; VGAlogic                                    ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 1,192                                       ;
-;     Total combinational functions  ; 682                                         ;
+; Total logic elements               ; 1,197                                       ;
+;     Total combinational functions  ; 687                                         ;
 ;     Dedicated logic registers      ; 533                                         ;
 ; Total registers                    ; 533                                         ;
 ; Total pins                         ; 75                                          ;
@@ -163,17 +163,17 @@ applicable agreement for further details.
 +----------------------------+-------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                          ;
-+----------------------------------+-----------------+------------------------------+---------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                      ; Library ;
-+----------------------------------+-----------------+------------------------------+---------------------------------------------------+---------+
-; VGAlogic.v                       ; yes             ; User Verilog HDL File        ; C:/Users/Lab_User/Desktop/3400/fpga/VGAlogic.v    ;         ;
-; VGADriver.v                      ; yes             ; User Verilog HDL File        ; C:/Users/Lab_User/Desktop/3400/fpga/VGADriver.v   ;         ;
-; blockArray.v                     ; yes             ; User Verilog HDL File        ; C:/Users/Lab_User/Desktop/3400/fpga/blockArray.v  ;         ;
-; blockFormat.v                    ; yes             ; User Verilog HDL File        ; C:/Users/Lab_User/Desktop/3400/fpga/blockFormat.v ;         ;
-; datainput.v                      ; yes             ; Auto-Found Verilog HDL File  ; C:/Users/Lab_User/Desktop/3400/fpga/datainput.v   ;         ;
-+----------------------------------+-----------------+------------------------------+---------------------------------------------------+---------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                   ;
++----------------------------------+-----------------+------------------------------+------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                               ; Library ;
++----------------------------------+-----------------+------------------------------+------------------------------------------------------------+---------+
+; VGAlogic.v                       ; yes             ; User Verilog HDL File        ; C:/Users/Lab_User/Documents/GitHub/3400/fpga/VGAlogic.v    ;         ;
+; VGADriver.v                      ; yes             ; User Verilog HDL File        ; C:/Users/Lab_User/Documents/GitHub/3400/fpga/VGADriver.v   ;         ;
+; blockArray.v                     ; yes             ; User Verilog HDL File        ; C:/Users/Lab_User/Documents/GitHub/3400/fpga/blockArray.v  ;         ;
+; blockFormat.v                    ; yes             ; User Verilog HDL File        ; C:/Users/Lab_User/Documents/GitHub/3400/fpga/blockFormat.v ;         ;
+; datainput.v                      ; yes             ; Auto-Found Verilog HDL File  ; C:/Users/Lab_User/Documents/GitHub/3400/fpga/datainput.v   ;         ;
++----------------------------------+-----------------+------------------------------+------------------------------------------------------------+---------+
 
 
 +--------------------------------------------------------------+
@@ -181,16 +181,16 @@ applicable agreement for further details.
 +---------------------------------------------+----------------+
 ; Resource                                    ; Usage          ;
 +---------------------------------------------+----------------+
-; Estimated Total logic elements              ; 1,192          ;
+; Estimated Total logic elements              ; 1,197          ;
 ;                                             ;                ;
-; Total combinational functions               ; 682            ;
+; Total combinational functions               ; 687            ;
 ; Logic element usage by number of LUT inputs ;                ;
-;     -- 4 input functions                    ; 641            ;
-;     -- 3 input functions                    ; 6              ;
-;     -- <=2 input functions                  ; 35             ;
+;     -- 4 input functions                    ; 646            ;
+;     -- 3 input functions                    ; 8              ;
+;     -- <=2 input functions                  ; 33             ;
 ;                                             ;                ;
 ; Logic elements by mode                      ;                ;
-;     -- normal mode                          ; 664            ;
+;     -- normal mode                          ; 669            ;
 ;     -- arithmetic mode                      ; 18             ;
 ;                                             ;                ;
 ; Total registers                             ; 533            ;
@@ -201,8 +201,8 @@ applicable agreement for further details.
 ; Embedded Multiplier 9-bit elements          ; 0              ;
 ; Maximum fan-out node                        ; CLOCK_50~input ;
 ; Maximum fan-out                             ; 513            ;
-; Total fan-out                               ; 4390           ;
-; Average fan-out                             ; 3.06           ;
+; Total fan-out                               ; 4412           ;
+; Average fan-out                             ; 3.07           ;
 +---------------------------------------------+----------------+
 
 
@@ -211,9 +211,10 @@ applicable agreement for further details.
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------+--------------+
 ; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name             ; Library Name ;
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------+--------------+
-; |VGAlogic                  ; 682 (1)           ; 533 (1)      ; 0           ; 0            ; 0       ; 0         ; 75   ; 0            ; |VGAlogic                       ;              ;
-;    |VGADriver:driver|      ; 51 (51)           ; 20 (20)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGAlogic|VGADriver:driver      ;              ;
+; |VGAlogic                  ; 687 (1)           ; 533 (1)      ; 0           ; 0            ; 0       ; 0         ; 75   ; 0            ; |VGAlogic                       ;              ;
+;    |VGADriver:driver|      ; 53 (53)           ; 20 (20)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGAlogic|VGADriver:driver      ;              ;
 ;    |blockArray:pixelArray| ; 630 (630)         ; 512 (512)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGAlogic|blockArray:pixelArray ;              ;
+;    |blockFormat:Formatter| ; 3 (3)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGAlogic|blockFormat:Formatter ;              ;
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -238,8 +239,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                    ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------+
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[254][1] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[253][0] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[254][0] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[253][1] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[252][0] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[251][0] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[250][0] ;
@@ -248,7 +249,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[247][0] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[246][0] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[245][1] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[244][1] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[244][0] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[243][1] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[242][0] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[241][1] ;
@@ -258,51 +259,51 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[237][1] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[236][0] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[235][1] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[234][0] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[234][1] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[233][0] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[232][1] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[231][1] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[232][0] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[231][0] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[230][0] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[229][1] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[228][1] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[227][1] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[226][1] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[229][0] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[228][0] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[227][0] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[226][0] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[225][0] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[224][0] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[223][1] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[222][1] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[221][1] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[223][0] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[222][0] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[221][0] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[220][0] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[219][1] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[219][0] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[218][1] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[217][0] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[216][0] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[215][0] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[214][0] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[217][1] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[216][1] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[215][1] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[214][1] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[213][1] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[212][1] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[211][1] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[210][0] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[209][0] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[208][0] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[207][0] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[206][0] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[205][1] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[204][1] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[210][1] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[209][1] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[208][1] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[207][1] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[206][1] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[205][0] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[204][0] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[203][0] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[202][1] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[201][1] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[200][1] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[202][0] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[201][0] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[200][0] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[199][0] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[198][1] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[197][0] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[196][0] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[195][0] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[194][0] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[198][0] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[197][1] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[196][1] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[195][1] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[194][1] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[193][1] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[192][1] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[191][0] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[190][0] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[192][0] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[191][1] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[190][1] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[189][0] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[188][0] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[187][0] ;
@@ -319,21 +320,21 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[176][1] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[175][1] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[174][1] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[173][0] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[172][0] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[173][1] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[172][1] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[171][1] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[170][1] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[169][1] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[168][1] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[168][0] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[167][1] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[166][1] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[165][1] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[164][0] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[163][1] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[162][1] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[161][1] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[160][0] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[159][0] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[164][1] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[163][0] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[162][0] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[161][0] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[160][1] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[159][1] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[158][1] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[157][1] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[156][1] ;
@@ -349,12 +350,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[146][1] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[145][1] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[144][1] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[143][0] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[143][1] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[142][1] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[141][1] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[140][1] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[139][1] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[138][0] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[138][1] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[137][1] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[136][1] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[135][0] ;
@@ -366,8 +367,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[129][0] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[128][0] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[127][0] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[126][1] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[125][0] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[126][0] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[125][1] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[124][0] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[123][0] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[122][0] ;
@@ -375,8 +376,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[120][1] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[119][0] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[118][0] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[117][1] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[116][1] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[117][0] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[116][0] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[115][1] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[114][1] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[113][1] ;
@@ -389,18 +390,18 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[106][1] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[105][1] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[104][1] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[103][0] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[103][1] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[102][1] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[101][1] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[100][1] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[99][1]  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[98][1]  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[97][1]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[100][0] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[99][0]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[98][0]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[97][0]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[96][0]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[95][0]  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[94][0]  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[93][0]  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[92][0]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[94][1]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[93][1]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[92][1]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[91][1]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[90][1]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[89][1]  ;
@@ -414,79 +415,79 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[81][1]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[80][1]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[79][1]  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[78][0]  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[77][0]  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[76][0]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[78][1]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[77][1]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[76][1]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[75][0]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[74][0]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[73][0]  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[72][1]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[72][0]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[71][0]  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[70][0]  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[69][0]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[70][1]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[69][1]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[68][0]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[67][0]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[66][0]  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[65][0]  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[64][0]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[65][1]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[64][1]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[63][0]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[62][0]  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[61][0]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[61][1]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[60][0]  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[59][1]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[59][0]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[58][1]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[57][0]  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[56][1]  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[55][1]  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[54][1]  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[53][1]  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[52][1]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[56][0]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[55][0]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[54][0]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[53][0]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[52][0]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[51][0]  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[50][1]  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[49][1]  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[48][1]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[50][0]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[49][0]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[48][0]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[47][1]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[46][1]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[45][1]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[44][1]  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[43][1]  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[42][1]  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[41][1]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[43][0]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[42][0]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[41][0]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[40][1]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[39][1]  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[38][0]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[38][1]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[37][1]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[36][1]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[35][1]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[34][1]  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[33][1]  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[32][0]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[33][0]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[32][1]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[31][1]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[30][1]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[29][1]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[28][1]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[27][1]  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[26][0]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[26][1]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[25][1]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[24][1]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[23][1]  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[22][0]  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[21][0]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[22][1]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[21][1]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[20][1]  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[19][0]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[19][1]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[18][1]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[17][1]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[16][1]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[15][1]  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[14][1]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[14][0]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[13][1]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[12][1]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[11][1]  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[10][1]  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[9][1]   ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[9][0]   ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[8][1]   ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[7][1]   ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[6][1]   ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[6][0]   ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[5][1]   ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[4][1]   ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[3][1]   ;
@@ -494,7 +495,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[1][1]   ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |VGAlogic|blockArray:pixelArray|array[0][1]   ;
 ; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; No         ; |VGAlogic|VGADriver:driver|PIXEL_COLOR_OUT[6] ;
-; 5:1                ; 3 bits    ; 9 LEs         ; 9 LEs                ; 0 LEs                  ; No         ; |VGAlogic|VGADriver:driver|PIXEL_COLOR_OUT[7] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |VGAlogic|VGADriver:driver|PIXEL_COLOR_OUT[0] ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |VGAlogic|VGADriver:driver|PIXEL_COLOR_OUT[7] ;
 ; 256:1              ; 2 bits    ; 340 LEs       ; 340 LEs              ; 0 LEs                  ; No         ; |VGAlogic|blockArray:pixelArray|Mux0          ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------+
 
@@ -514,7 +516,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus II 32-bit Analysis & Synthesis
     Info: Version 13.0.0 Build 156 04/24/2013 SJ Full Version
-    Info: Processing started: Fri Mar 27 16:11:42 2015
+    Info: Processing started: Fri May 01 14:38:48 2015
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off VGAlogic -c VGAlogic
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
 Info (12021): Found 1 design units, including 1 entities, in source file vgalogic.v
@@ -626,15 +628,15 @@ Warning (21074): Design contains 5 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "GPIO_IN[1]"
     Warning (15610): No output dependent on input pin "GPIO_1_IN[0]"
     Warning (15610): No output dependent on input pin "GPIO_1_IN[1]"
-Info (21057): Implemented 1269 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 1274 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 7 input pins
     Info (21059): Implemented 0 output pins
     Info (21060): Implemented 68 bidirectional pins
-    Info (21061): Implemented 1194 logic cells
+    Info (21061): Implemented 1199 logic cells
 Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 90 warnings
-    Info: Peak virtual memory: 349 megabytes
-    Info: Processing ended: Fri Mar 27 16:11:48 2015
+    Info: Peak virtual memory: 345 megabytes
+    Info: Processing ended: Fri May 01 14:38:54 2015
     Info: Elapsed time: 00:00:06
-    Info: Total CPU time (on all processors): 00:00:05
+    Info: Total CPU time (on all processors): 00:00:06
 
 

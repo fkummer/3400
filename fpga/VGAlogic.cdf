@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(EP4CE22F17) Path("C:/Users/Lab_User/Desktop/3400/fpga/") File("VGAlogic.sof") MfrSpec(OpMask(1));
+		Device PartName(EP4CE22) Path("C:/Users/Lab_User/Documents/GitHub/3400/fpga/") File("output_file.jic") MfrSpec(OpMask(1) SEC_Device(EPCS64) Child_OpMask(1 1));
 
 ChainEnd;
 

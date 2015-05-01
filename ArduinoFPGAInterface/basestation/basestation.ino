@@ -39,7 +39,18 @@ const uint64_t pipes[2] = { 0x000000001CLL, 0x000000001DLL };
 
 // Array of maze is initially all unexplored with walls around it
 
-int maze[9][11];
+int maze[9][11] = 
+{
+  {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+  {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
+  {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
+  {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
+  {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
+  {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
+  {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
+  {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
+  {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+};
 
 // Array thats sent to basestation/compressed maze from robot
 
@@ -100,7 +111,7 @@ void outputData(int pins[], int num, int my_byte[], int startBit){
     digitalWrite(enable, LOW);
 }
 
-//
+//Reads the specified bits of an integer into an array of 8 ints, referred to as a "byte"
 void readIntoByte(int *my_byte, int startBit, int data , int num){
   int currBit = startBit;
   int currDataBit = num-1;
@@ -194,18 +205,19 @@ void loop(void)
                   maze[n][m] = 3;
                   bit_maze = bit_maze >> 2;
                 }
-        }
-      }           
-       
-    for(int i = 10; i >= 0; i--){
+       }
+     }
+    
+     for(int i = 10; i >= 0; i--){
       for(int j = 8; j >= 0; j--){
          getPos(i,j);
          outputData(xPins, 4, byte1, 7);
          outputData(yPins, 4, byte1, 3);
          outputData(conPins, 2, byte2, 7);
       }
-    }      
+    }       
   }
+
 }
 
 

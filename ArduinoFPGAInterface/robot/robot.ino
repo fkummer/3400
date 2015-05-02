@@ -27,8 +27,8 @@ const uint64_t pipes[2] = { 0x000000001CLL, 0x000000001DLL };
 
 // Array of maze is initially all unexplored with walls around it
  
-int maze[9][11] =
-{
+int maze[9][11];
+/*{
   {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
   {2, 1, 0, 3, 0, 0, 0, 0, 0, 0, 2},
   {2, 0, 1, 0, 3, 0, 0, 0, 0, 0, 2},
@@ -38,7 +38,7 @@ int maze[9][11] =
   {2, 2, 2, 0, 0, 0, 1, 0, 3, 0, 2},
   {2, 3, 2, 0, 0, 0, 0, 1, 0, 3, 2},
   {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
-};
+};*/
 
 int send_maze[11];
 
@@ -137,10 +137,7 @@ void transmitMaze(void){
 
 void loop(void)
 {
-  Serial.begin(57600);
-  if(Serial.available()>=1){
     Serial.println("Transmit");
     transmitMaze();
-    Serial.read();
-  }
+
 }

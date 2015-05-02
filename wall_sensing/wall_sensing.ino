@@ -5,17 +5,17 @@
 #define NO_WALL 2
 #define UNREACHABLE 3
 
-#define THRESH_1 820
-#define THRESH_2 400
+#define THRESH_1 1500
+#define THRESH_2 1500
 
 
 byte maze [11] [9];
 byte currDirection;
-byte currX;
-byte currY;
-#define front_sensor A4
-#define left_sensor A3
-#define right_sensor A5
+byte currX=0;
+byte currY=0;
+#define front_sensor A0
+#define left_sensor A2
+#define right_sensor A1
 #define led  13
 byte left_wall;
 byte right_wall;
@@ -28,6 +28,8 @@ void setup(){
   pinMode(left_sensor,INPUT);
   pinMode(right_sensor,INPUT);
   pinMode(led, OUTPUT);
+  delay(500);
+  Serial.println("hello");
 }
 
 void loop(){
@@ -41,6 +43,10 @@ void loop(){
   //closest wall 82
   //further wall 40
   }
+  
+  Serial.println("why?");
+  //return;
+  /*
   switch (currDirection) {
     case 0: //robot facing up
       if(left>THRESH_2){
@@ -199,15 +205,25 @@ void loop(){
       break;
     default:
       break;
-  } 
-    
-  left_wall = (left>400) ? ((left>820) ? 1 : 2) : 0;
-  right_wall = (right>400) ? ((right>820) ? 1 : 2) : 0;
-  front_wall = (front>400) ? ((front>820) ? 1 : 2) : 0;
+  }
+ */ 
   
+  Serial.println("ok then");
+  int left_wall = (left>THRESH_2) ? ((left>THRESH_1) ? 1 : 2) : 0;
+  int right_wall = (right>THRESH_2) ? ((right>THRESH_1) ? 1 : 2) : 0;
+  int front_wall = (front>THRESH_2) ? ((front>THRESH_1) ? 1 : 2) : 0;
+  Serial.println("how about it");
+
   Serial.println("front:");
+  Serial.println(front);
   Serial.println(front_wall);
-  delay(500);
+  Serial.println("left:");
+  Serial.println(left);
+  Serial.println(left_wall);
+  Serial.println("right:");
+  Serial.println(right);
+  Serial.println(right_wall);
+  delay(3000);
 }
 
 

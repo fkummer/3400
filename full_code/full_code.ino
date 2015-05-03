@@ -36,7 +36,7 @@ int adjacent_vis[3];
 int visited[99];
 
 
-
+int firstInt = LOW;
   // The relative error between our current position over the line and our
   // desired position (ranges from -4 to 4):
 int error;
@@ -62,7 +62,7 @@ char counter; //counter for identifying which signal is read from the mux
 
 
 int maze [9][11];
-byte currDirection;
+byte currDirection = 1;
 byte currX = 1;
 byte currY = 1;
 #define front_sensor A1
@@ -276,18 +276,21 @@ void loop(){
       right_side = analogRead(A2);
     
       error = qti_left - qti_right; 
-  
-       if (left_side > 750 && right_side > 750){
-          delay(21 0);
+      //myservo1.write(101);
+      //myservo2.write(81);
+      
+      if (left_side > 750 && right_side > 750){
+          delay(210);
           myservo1.write(90);
           myservo2.write(90);
-          if(startup){
-            updatePosition();
+          if(!firstInt){
+            firstInt = HIGH;
           }else{
-            startup = HIGH;
+            updatePosition();
           }
           wallSense();
           transmitMaze();
+          //navigate();
           if(front_wall == 1){
             if (right_wall == 0){  
                 turnRight();
@@ -314,20 +317,24 @@ void loop(){
         
         if (error < 100 && error > -100) { 
           error = 0; 
-          right_direction = (80 + 0.08*error);
+          right_direction = (81 + 0.08*error);
           left_direction = (100 + 0.08*error);
         }
-        else{
+        else if (error > 100) { //veering to the right
           //right_direction = 80 + 0.1*error;
           //left_direction = 100 + 0.1*error;
-          right_direction = (80 + 0.05*error + 0.005*err_diff);
-          left_direction = (100 + 0.05*error + 0.005*err_diff);
+          right_direction = (81 + 0.05*error + 0.005*err_diff);
+          left_direction = (101 + 0.05*error + 0.005*err_diff);
+        }
+        else { //veering to the right
+          right_direction = (81 + 0.055*error + 0.0055*err_diff);
+          left_direction = (101 + 0.055*error + 0.0055*err_diff);
         }
       }
       //right_direction = 90;  //for tuning the servos
       //left_direction = 90;
       
-      //Serial.println(error);
+      //Serial.222222println(error);
       myservo1.write(left_direction); //uncomment after adjusting servos
       myservo2.write(right_direction); 
       
@@ -644,8 +651,8 @@ int navigate() {
 	//default is right-wall following.
 	//to change the maze, enter simulate.cpp and change the 1s and 0s.
 	//Do not use numbers other than 1 and 0.
-	int i = 30;
-	while (i > 0) {
+	//int i = 30;
+	//while (i > 0) {
 		int location1D = currX*9 + currY;
 		visited[location1D]++;
    if(((getVisitedFront()>0 || getSensorFront()==1) && (getVisitedRight()>0 || getSensorRight()==1) && (getVisitedLeft()>0 || getSensorLeft() == 1) && currY == 7 && currX == 9))
@@ -708,8 +715,17 @@ int navigate() {
 		}
 		//printLocation();
 		//printDirection();
-		i--;
-	}
+		//
+
+
+
+
+
+
+
+
+//i--;
+	//}
 	return 0;	
 }
 

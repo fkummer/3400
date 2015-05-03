@@ -22,8 +22,8 @@
 Servo myservo1;  // left wheel
 Servo myservo2; // right wheel
 
-char right_direction;
-char left_direction;
+int right_direction;
+int left_direction;
 
   // Variables for reading the line sensor values:
 char qti_left;
@@ -278,7 +278,7 @@ void loop(){
       error = qti_left - qti_right; 
   
        if (left_side > 750 && right_side > 750){
-          delay(160);
+          delay(21 0);
           myservo1.write(90);
           myservo2.write(90);
           if(startup){
@@ -291,12 +291,19 @@ void loop(){
           if(front_wall == 1){
             if (right_wall == 0){  
                 turnRight();
+                //delay(75);
+                prev_err = 0;
             }else{
               if(left_wall == 0){
                 turnLeft();
+                //delay(30);
+                prev_err = 0;
               }else{
                 turnRight();
+                //delay(50);
                 turnRight();
+                //delay(50);
+                prev_err = 0;
               }
             }
           }
@@ -305,16 +312,16 @@ void loop(){
       else{
         //Serial.println(error);
         
-        if (error < 50 && error > -50) { 
+        if (error < 100 && error > -100) { 
           error = 0; 
-          right_direction = (char)(80 + 0.08*error);
-          left_direction = (char)(100 + 0.08*error);
+          right_direction = (80 + 0.08*error);
+          left_direction = (100 + 0.08*error);
         }
         else{
           //right_direction = 80 + 0.1*error;
           //left_direction = 100 + 0.1*error;
-          right_direction = (char) (80 + 0.05*error + 0.005*err_diff);
-          left_direction = (char) (100 + 0.05*error + 0.005*err_diff);
+          right_direction = (80 + 0.05*error + 0.005*err_diff);
+          left_direction = (100 + 0.05*error + 0.005*err_diff);
         }
       }
       //right_direction = 90;  //for tuning the servos
@@ -341,19 +348,20 @@ void loop(){
 
 
 void turnLeft(){
-        delay(200);
+        //delay(400);
         myservo1.write(83);
         myservo2.write(83);
         delay(590);
         //myservo1.write(90);
         //myservo2.write(90);
-        while (analogRead(A5) < 600);
+        while (analogRead(A5) < 750); 
+        while (analogRead(A4) > 750);
         /*  qti_right = analogRead(A5);
           Serial.println((int)qti_right);
         } */
         //delay(50);
-        left_direction = 90;
-        right_direction = 90;
+        //left_direction = 90;
+        //right_direction = 90;
         //delay(500);
         currDirection = (currDirection+3)%4;
         //Serial.println("direction");
@@ -361,19 +369,20 @@ void turnLeft(){
 }
 
 void turnRight() { 
-        delay(200);
+        //delay(400);
         myservo1.write(97);
         myservo2.write(97);
         delay(590);
         //myservo1.write(90);
         //myservo2.write(90);
-        while (analogRead(A4) < 600);
+        while (analogRead(A4) < 750);
+        while (analogRead(A5) > 750);
         /*  qti_left = analogRead(A4);
           Serial.println((int)qti_left);
         } */
-       //delay(50);
-        left_direction = 90;
-        right_direction = 90;
+        //delay(100);
+        //left_direction = 90;
+        //right_direction = 90;
         //delay(500);
         currDirection = (currDirection+1)%4;
         //Serial.println("direction");

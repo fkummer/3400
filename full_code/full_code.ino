@@ -90,9 +90,9 @@ int send_maze[11];
 // Maze array converted to bits
 int bit_maze;
 
-
-
-
+#define button 7
+int started = LOW;
+int startup = 0;
 
 void updateMaze(){
   for(int y=2; y<7; y+=2){
@@ -191,6 +191,7 @@ void setup(){
   pinMode(A4, INPUT);// A4 and A5 are for the front line sensors
   pinMode(A5, INPUT);
   
+  pinMode(button, INPUT);
   pinMode(4,OUTPUT); //the following 3 pins work for the mux
   pinMode(3,OUTPUT);
   pinMode(2,OUTPUT);
@@ -199,8 +200,8 @@ void setup(){
   //qti_right = analogRead(A5); //right fron sensor
   //left_side = analogRead(A3); //left sensor
   //right_side = analogRead(A2); //right sensor
-  myservo1.write(100);   //left sensor start speed
-  myservo2.write(80);    //right sensor start speed 
+  myservo1.write(90);   //left sensor start speed
+  myservo2.write(90);    //right sensor start speed 
    radio.begin();
 
   // optionally, increase the delay between retries & # of retries
@@ -233,73 +234,87 @@ void setup(){
    
 
   radio.printDetails();
+  started = digitalRead(button);
 }
 
 void loop(){
-    //mux();
-   // First we read the line sensor values:
-    //update_qtis(&qti_left, &qti_right);
-    qti_left = analogRead(A4);
-    qti_right = analogRead(A5);
+    Serial.println("hello world");
+    Serial.println(started);
+    if(started){
+      if(startup == LOW){
+        myservo1.write(80);
+        myservo2.write(100);
+        startup = HIGH;
+      }
+      Serial.println("started");
+      //mux();
+     // First we read the line sensor values:
+      //update_qtis(&qti_left, &qti_right);
+      qti_left = analogRead(A4);
+      qti_right = analogRead(A5);
+      
+      digitalWrite(4, HIGH); // assigns input digits to the mux
+      digitalWrite(3, LOW);
+      digitalWrite(2, HIGH);
+      //delay(1000);
+      left_side = analogRead(A3);
+      right_side = analogRead(A2);
     
-    digitalWrite(4, HIGH); // assigns input digits to the mux
-    digitalWrite(3, LOW);
-    digitalWrite(2, HIGH);
-    //delay(1000);
-    left_side = analogRead(A3);
-    right_side = analogRead(A2);
+      error = qti_left - qti_right; 
   
-    error = qti_left - qti_right; 
-
-   if (left_side > 750 && right_side > 750){
-     
-        delay(160);
-        myservo1.write(90);
-        myservo2.write(90);
-
-    updatePosition();
-    wallSense();
-    transmitMaze();
-    if(front_wall == 1){
-      if (right_wall == 0){  
-          turnRight();
-      }else{
-        if(left_wall == 0){
-          turnLeft();
+     if (left_side > 750 && right_side > 750){
+       
+          delay(160);
+          myservo1.write(90);
+          myservo2.write(90);
+  
+      updatePosition();
+      wallSense();
+      transmitMaze();
+      if(front_wall == 1){
+        if (right_wall == 0){  
+            turnRight();
         }else{
-          turnRight();
-          turnRight();
+          if(left_wall == 0){
+            turnLeft();
+          }else{
+            turnRight();
+            turnRight();
+          }
         }
       }
-    }
-
-    
-    }  
-    else{
-      //Serial.println(error);
-      if (error < 100 && error > -100) { 
-        error = 0; 
-        right_direction = (char)(80 + 0.08*error);
-        left_direction = (char)(100 + 0.08*error);
-      }
+  
+      
+      }  
       else{
-        right_direction = (char)(83 + 0.08*error + 0.01*err_diff);
-        left_direction = (char)(97 + 0.08*error + 0.01*err_diff);
+        //Serial.println(error);
+        if (error < 100 && error > -100) { 
+          error = 0; 
+          right_direction = (char)(80 + 0.08*error);
+          left_direction = (char)(100 + 0.08*error);
+        }
+        else{
+          right_direction = (char)(83 + 0.08*error + 0.01*err_diff);
+          left_direction = (char)(97 + 0.08*error + 0.01*err_diff);
+        }
       }
-    }
-    //right_direction = 90;  //for tuning the servos
-    //left_direction = 90;
-    
-    //Serial.println(error);
-    myservo1.write(left_direction);
-    myservo2.write(right_direction); 
-    
-    err_diff = error - prev_err;
-    prev_err = error;  // Save this "P" term to determine the next "D" term
-    
-    
- 
-  //delay(500);*/
+      //right_direction = 90;  //for tuning the servos
+      //left_direction = 90;
+      
+      //Serial.println(error);
+      myservo1.write(left_direction);
+      myservo2.write(right_direction); 
+      
+      err_diff = error - prev_err;
+      prev_err = error;  // Save this "P" term to determine the next "D" term
+      
+      
+   
+    //delay(500);*/
+   }else{
+    started = digitalRead(button); 
+    Serial.println("waiting"); 
+   }
 }
 
 

@@ -58,7 +58,7 @@ char counter; //counter for identifying which signal is read from the mux
 int maze [9][11];
 byte currDirection;
 byte currX = 1;
-byte currY = 7;
+byte currY = 1;
 #define front_sensor A1
 #define left_sensor A2
 #define right_sensor A0
@@ -202,6 +202,7 @@ void setup(){
   //right_side = analogRead(A2); //right sensor
   myservo1.write(90);   //left sensor start speed
   myservo2.write(90);    //right sensor start speed 
+  //delay(100000); //for testing
    radio.begin();
 
   // optionally, increase the delay between retries & # of retries
@@ -238,15 +239,15 @@ void setup(){
 }
 
 void loop(){
-    Serial.println("hello world");
-    Serial.println(started);
+    //Serial.println("hello world");
+    //Serial.println(started);
     if(started){
       if(startup == LOW){
-        myservo1.write(80);
-        myservo2.write(100);
+        myservo1.write(100);
+        myservo2.write(80);
         startup = HIGH;
       }
-      Serial.println("started");
+      //Serial.println("started");
       //mux();
      // First we read the line sensor values:
       //update_qtis(&qti_left, &qti_right);
@@ -262,49 +263,55 @@ void loop(){
     
       error = qti_left - qti_right; 
   
-     if (left_side > 750 && right_side > 750){
-       
+       if (left_side > 750 && right_side > 750){
           delay(160);
           myservo1.write(90);
           myservo2.write(90);
-  
-      updatePosition();
-      wallSense();
-      transmitMaze();
-      if(front_wall == 1){
-        if (right_wall == 0){  
-            turnRight();
-        }else{
-          if(left_wall == 0){
-            turnLeft();
+          if(startup){
+            updatePosition();
           }else{
-            turnRight();
-            turnRight();
+            startup = HIGH;
           }
-        }
-      }
-  
+          wallSense();
+          transmitMaze();
+          if(front_wall == 1){
+            if (right_wall == 0){  
+                turnRight();
+            }else{
+              if(left_wall == 0){
+                turnLeft();
+              }else{
+                turnRight();
+                turnRight();
+              }
+            }
+          }
+        }  
       
-      }  
       else{
         //Serial.println(error);
-        if (error < 100 && error > -100) { 
+        
+        if (error < 50 && error > -50) { 
           error = 0; 
           right_direction = (char)(80 + 0.08*error);
           left_direction = (char)(100 + 0.08*error);
         }
         else{
-          right_direction = (char)(83 + 0.08*error + 0.01*err_diff);
-          left_direction = (char)(97 + 0.08*error + 0.01*err_diff);
+          //right_direction = 80 + 0.1*error;
+          //left_direction = 100 + 0.1*error;
+          right_direction = (char) (80 + 0.05*error + 0.005*err_diff);
+          left_direction = (char) (100 + 0.05*error + 0.005*err_diff);
         }
       }
       //right_direction = 90;  //for tuning the servos
       //left_direction = 90;
       
       //Serial.println(error);
-      myservo1.write(left_direction);
+      myservo1.write(left_direction); //uncomment after adjusting servos
       myservo2.write(right_direction); 
       
+      //myservo1.write(90); //for adjusting servos
+      //myservo2.write(90);
       err_diff = error - prev_err;
       prev_err = error;  // Save this "P" term to determine the next "D" term
       
@@ -324,37 +331,39 @@ void turnLeft(){
         myservo1.write(83);
         myservo2.write(83);
         delay(590);
-        myservo1.write(90);
-        myservo2.write(90);
-        if (qti_right < 400){
-          myservo1.write(83);
-          myservo2.write(83);
-        }
+        //myservo1.write(90);
+        //myservo2.write(90);
+        while (analogRead(A5) < 600);
+        /*  qti_right = analogRead(A5);
+          Serial.println((int)qti_right);
+        } */
+        //delay(50);
         left_direction = 90;
         right_direction = 90;
         //delay(500);
         currDirection = (currDirection+3)%4;
-        Serial.println("direction");
-        Serial.println(currDirection); 
+        //Serial.println("direction");
+        //Serial.println(currDirection); 
 }
 
 void turnRight() { 
         delay(200);
         myservo1.write(97);
         myservo2.write(97);
-        delay(640);
-        myservo1.write(90);
-        myservo2.write(90);
-        if (qti_left < 400){
-          myservo1.write(97);
-          myservo2.write(97);
-        }
+        delay(590);
+        //myservo1.write(90);
+        //myservo2.write(90);
+        while (analogRead(A4) < 600);
+        /*  qti_left = analogRead(A4);
+          Serial.println((int)qti_left);
+        } */
+       //delay(50);
         left_direction = 90;
         right_direction = 90;
         //delay(500);
         currDirection = (currDirection+1)%4;
-        Serial.println("direction");
-        Serial.println(currDirection); 
+        //Serial.println("direction");
+        //Serial.println(currDirection); 
 }
 
 void updatePosition(){
@@ -399,7 +408,7 @@ void wallSense(){
             maze[currY][currX-1]=WALL;
           } else{
             maze[currY][currX-1]=NO_WALL;
-            maze[currY][currX-3]=WALL;
+            //maze[currY][currX-3]=WALL;
           }
         }else{
           maze[currY][currX-1]=NO_WALL;
@@ -410,7 +419,7 @@ void wallSense(){
             maze[currY][currX+1]=WALL;
           }else{
             maze[currY][currX+1]=NO_WALL;
-            maze[currY][currX+3]=WALL;
+            //maze[currY][currX+3]=WALL;
           }
         }else{
           maze[currY][currX+1]=NO_WALL;
@@ -421,7 +430,7 @@ void wallSense(){
             maze[currY-1][currX]=WALL;
           }else{
             maze[currY-1][currX]=NO_WALL;
-            maze[currY-3][currX]=WALL;
+            //maze[currY-3][currX]=WALL;
           }
         }else{
           maze[currY-1][currX]=NO_WALL;
@@ -435,7 +444,7 @@ void wallSense(){
             maze[currY-1][currX]=WALL;
           } else{
             maze[currY-1][currX]=NO_WALL;
-            maze[currY-3][currX]=WALL;
+            //maze[currY-3][currX]=WALL;
           }
         }else{
           maze[currY-1][currX]=NO_WALL;
@@ -446,7 +455,7 @@ void wallSense(){
             maze[currY+1][currX]=WALL;
           }else{
             maze[currY+1][currX]=NO_WALL;
-            maze[currY+3][currX]=WALL;
+            //maze[currY+3][currX]=WALL;
           }
         }else{
           maze[currY+1][currX]=NO_WALL;
@@ -457,7 +466,7 @@ void wallSense(){
             maze[currY][currX+1]=WALL;
           }else{
             maze[currY][currX+1]=NO_WALL;
-            maze[currY][currX+3]=WALL;
+            //maze[currY][currX+3]=WALL;
           }
         }else{
           maze[currY][currX+1]=NO_WALL;
@@ -471,7 +480,7 @@ void wallSense(){
             maze[currY][currX+1]=WALL;
           }else{
             maze[currY][currX+1]=NO_WALL;
-            maze[currY][currX+3]=WALL;
+            //maze[currY][currX+3]=WALL;
           }
         }else{
           maze[currY][currX+1]=NO_WALL;
@@ -482,7 +491,7 @@ void wallSense(){
             maze[currY][currX-1]=WALL;
           }else{
             maze[currY][currX-1]=NO_WALL;
-            maze[currY][currX-3]=WALL;
+            //maze[currY][currX-3]=WALL;
           }
         }else{
           maze[currY][currX-1]=NO_WALL;
@@ -493,7 +502,7 @@ void wallSense(){
             maze[currY+1][currX]=WALL;
           }else{
             maze[currY+1][currX]=NO_WALL;
-            maze[currY+3][currX]=WALL;
+            //maze[currY+3][currX]=WALL;
           }
         }else{
           maze[currY+1][currX]=NO_WALL;
@@ -508,7 +517,7 @@ void wallSense(){
             maze[currY+1][currX]=WALL;
           }else{
             maze[currY+1][currX]=NO_WALL;
-            maze[currY+3][currX]=WALL;
+            //maze[currY+3][currX]=WALL;
           }
         }else{
           maze[currY+1][currX]=NO_WALL;
@@ -519,7 +528,7 @@ void wallSense(){
             maze[currY-1][currX]=WALL;
           }else{
             maze[currY-1][currX]=NO_WALL;
-            maze[currY-3][currX]=WALL;
+            //maze[currY-3][currX]=WALL;
           }
         }else{
           maze[currY-1][currX]=NO_WALL;
@@ -530,7 +539,7 @@ void wallSense(){
             maze[currY][currX-1]=WALL;
           }else{
             maze[currY][currX-1]=NO_WALL;
-            maze[currY][currX-3]=WALL;
+            //maze[currY][currX-3]=WALL;
           }
         }else{
           maze[currY][currX-1]=NO_WALL;
@@ -544,13 +553,13 @@ void wallSense(){
     right_wall = (right>THRESH_2) ? ((right>THRESH_1) ? 1 : 2) : 0;
     front_wall = (front>THRESH_2) ? ((front>THRESH_1) ? 1 : 2) : 0;
     
-    Serial.println("front:");
-    Serial.println(front_wall);
-    Serial.println("left:");
-    Serial.println(left_wall);
-    Serial.println("right:");
-    Serial.println(right_wall);
-    outPutMaze();
+    //Serial.println("front:");
+   // Serial.println(front_wall);
+    //Serial.println("left:");
+    //Serial.println(left_wall);
+   // Serial.println("right:");
+    //Serial.println(right_wall);
+   // outPutMaze();
     
 }
 

@@ -34,9 +34,7 @@ int right_side;
 //nav algorithm vars
 int adjacent_vis[3];
 int visited[99];
-int left;
-int right;
-int front;
+
 
 
   // The relative error between our current position over the line and our
@@ -403,9 +401,9 @@ void wallSense(){
     digitalWrite(3, HIGH);
     digitalWrite(2, HIGH);
     //delay(1000);
-    left = 0;
-    right = 0;
-    front = 0;
+    int left = 0;
+    int right = 0;
+    int front = 0;
     for (int avsd=0;avsd<10;avsd++) {
     left += analogRead(left_sensor);
     right += analogRead(right_sensor);
@@ -707,13 +705,13 @@ int navigate() {
 }
 
 int getSensorFront(){
-    if (front) return 1; else return 0;  
+    if (front_wall) return 1; else return 0;  
 }
 
 int getSensorLeft(){
-    if (left) return 1; else return 0;  
+    if (left_wall) return 1; else return 0;  
 }
 
 int getSensorRight(){
-    if (right) return 1; else return 0;  
+    if (right_wall) return 1; else return 0;  
 }

@@ -14,6 +14,7 @@
  version 2 as published by the Free Software Foundation.
  */
 
+
 #include <SPI.h>
 #include "nRF24L01.h"
 #include "RF24.h"
@@ -129,6 +130,7 @@ void outPutMaze(){
 
 //Transmits an array of 11 integers, with the bits of each representing the state of each position of the 11 columns of the maze.
 //Since an integer is only 16 bits, only 8 rows can be sent. The last row will always be a wall though, so that information does not need to be sent.
+
 void transmitMaze(void){
   radio.stopListening();
     //
@@ -290,7 +292,8 @@ void loop(){
           }
           wallSense();
           transmitMaze();
-          //navigate();
+          navigate();
+          /*
           if(front_wall == 1){
             if (right_wall == 0){  
                 turnRight();
@@ -310,6 +313,7 @@ void loop(){
               }
             }
           }
+          */
         }  
       
       else{
@@ -372,7 +376,8 @@ void turnLeft(){
         //delay(500);
         currDirection = (currDirection+3)%4;
         //Serial.println("direction");
-        //Serial.println(currDirection); 
+        //Serial.println(currDirection);
+        prev_err=0;
 }
 
 void turnRight() { 
@@ -393,7 +398,8 @@ void turnRight() {
         //delay(500);
         currDirection = (currDirection+1)%4;
         //Serial.println("direction");
-        //Serial.println(currDirection); 
+        //Serial.println(currDirection);
+        prev_err=0;
 }
 
 void updatePosition(){
@@ -726,6 +732,13 @@ int navigate() {
 
 //i--;
 	//}
+        /*
+        Serial.println("whoops");
+        Serial.println(getSensorFront());
+        Serial.println(getSensorRight());
+        Serial.println(getSensorLeft());
+        delay(1500);
+        */
 	return 0;	
 }
 

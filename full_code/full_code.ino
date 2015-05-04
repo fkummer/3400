@@ -63,7 +63,7 @@ char counter; //counter for identifying which signal is read from the mux
 
 
 int maze [9][11];
-byte currDirection = 1;
+byte currDirection = 0;
 byte currX = 1;
 byte currY = 1;
 #define front_sensor A1
@@ -117,10 +117,10 @@ void updateMaze(){
 }
 
 
-void outPutMaze(){
-  for(int x=0; x<11; x++){
+void outputMaze(){
+  for(int y=0; y<9; y++){
     Serial.print("[");
-    for(int y=0; y<9; y++){
+    for(int x=0; x<11; x++){
       Serial.print(maze[y][x]);
       Serial.print(", "); 
     }
@@ -352,7 +352,7 @@ void loop(){
     //delay(500);*/
    }else{
     started = digitalRead(button); 
-    Serial.println("waiting"); 
+    //Serial.println("waiting"); 
    }
 }
 
@@ -589,12 +589,12 @@ void wallSense(){
     right_wall = (right>THRESH_2) ? ((right>THRESH_1) ? 1 : 2) : 0;
     front_wall = (front>THRESH_2) ? ((front>THRESH_1) ? 1 : 2) : 0;
     
-    //Serial.println("front:");
-   // Serial.println(front_wall);
-    //Serial.println("left:");
-    //Serial.println(left_wall);
-   // Serial.println("right:");
-    //Serial.println(right_wall);
+    Serial.println("front:");
+    Serial.println(front_wall);
+    Serial.println("left:");
+    Serial.println(left_wall);
+    Serial.println("right:");
+    Serial.println(right_wall);
    // outPutMaze();
     
 }
@@ -602,144 +602,156 @@ void wallSense(){
 
 
 int getVisitedFront() {
-	int location1D = currX*9 + currY;
 	if (currDirection == 0)
-		return visited[location1D-9];
+		return maze[currY-2][currX];
 	else if (currDirection == 1)
-		return visited[location1D+9];
+		return maze[currY][currX+2];
 	else if (currDirection == 2)
-		return visited[location1D+1];
+		return maze[currY+2][currX];
 	else
-		return visited[location1D-1];
+		return maze[currY][currX-2];
 }
 
 int getVisitedRight() {
-	int location1D = currX*9 + currY;
 	if (currDirection == 0)
-		return visited[location1D+1];
+		return maze[currY][currX+2];
 	else if (currDirection == 1)
-		return visited[location1D-1];
+		return maze[currY+2][currX];
 	else if (currDirection == 2)
-		return visited[location1D+9];
+		return maze[currY][currX-2];
 	else
-		return visited[location1D-9];
+		return maze[currY-2][currX];
 }
 
 int getVisitedLeft() {
-	int location1D = currX*9 + currY;
 	if (currDirection == 0)
-		return visited[location1D-1];
+		return maze[currY][currX-2];
 	else if (currDirection == 1)
-		return visited[location1D+1];
+		return maze[currY-2][currX];
 	else if (currDirection == 2)
-		return visited[location1D-9];
+		return maze[currY][currX+2];
 	else
-		return visited[location1D+9];}
+		return maze[currY+2][currX];
+}
 
 int getVisitedBehind() {
-	int location1D = currX*9 + currY;
 	if (currDirection == 0)
-		return visited[location1D+9];
+		return maze[currY+2][currX];
 	else if (currDirection == 1)
-		return visited[location1D-9];
+		return maze[currY][currX-2];
 	else if (currDirection == 2)
-		return visited[location1D-1];
+		return maze[currY-2][currX];
 	else
-		return visited[location1D+1];
+		return maze[currY][currX+2];
 }
 
 
 
-int navigate() {
-	//using namespace std;
-	
-	//edit the code below with your own navigation algorithm.
-	//default is right-wall following.
-	//to change the maze, enter simulate.cpp and change the 1s and 0s.
-	//Do not use numbers other than 1 and 0.
-	//int i = 30;
-	//while (i > 0) {
-		int location1D = currX*9 + currY;
-		visited[location1D]++;
-   if(((getVisitedFront()>0 || getSensorFront()==1) && (getVisitedRight()>0 || getSensorRight()==1) && (getVisitedLeft()>0 || getSensorLeft() == 1) && currY == 7 && currX == 9))
-       return 0;
-		
-		adjacent_vis[0]= 0;
-                adjacent_vis[1] = 0;
-                adjacent_vis[2] = 0;
+void goTowards(byte dir){
+   byte diff = (4+dir-(byte)currDirection)%4;
+   if (diff==1){
+     turnRight(); 
+   }
+   else if(diff==2){
+     turnRight();
+     turnRight();
+   }
+   else if(diff==3){
+     turnLeft();
+   }
+}
 
-                
-		if(getSensorFront() == 1){
-			adjacent_vis[0] = 200;
-		}
-		else{
-			adjacent_vis[0] = getVisitedFront();
-		}
-		if(getSensorRight() == 1){
-			adjacent_vis[1] = 200;
-		}
-		else{
-			adjacent_vis[1] = getVisitedRight();
-		}
-		if(getSensorLeft() == 1){
-			adjacent_vis[1] = 200;
-		}
-		else{
-			adjacent_vis[1] = getVisitedLeft();
-		}
-		
-		if(adjacent_vis[0] == 200 && adjacent_vis[1] == 200 && adjacent_vis[2] == 200){
-			turnLeft();
-			turnLeft();
-                        //robot now moves forward
-                        /*
-			if (!forward()) {
-				//cout << "broke through wall" << endl;
-				return 0;
-			}*/
-		}
-		else{
-			int minIdx = 4;
-			int minValue = 200;
-			for(int i = 0; i<3; i++){
-				if(adjacent_vis[i] < minValue){
-					minValue = adjacent_vis[i];
-					minIdx = i;
-				}
-			}
-			if(minIdx == 1){
-				turnRight();
-			}
-			else if(minIdx == 2){
-				turnLeft();
-			}
-			//robot now moves forward
-                        /*if (!forward()) {
-				//cout << "broke through wall" << endl;
-				return 0;
-			}*/			
-		}
-		//printLocation();
-		//printDirection();
-		//
+byte queue[30];
+byte pointer = 0;
+
+void push(byte value){
+  queue[pointer]=value;
+  pointer++;
+}
+
+byte pop(){
+  pointer--;
+  return queue[pointer];
+}
+
+void pushLeft(){
+  push(((byte)currDirection+3)%4);
+}
+
+void pushFront(){
+  push((byte)currDirection);
+}
 
 
+void pushRight(){
+  byte x=((byte) currDirection+1)%4;
+  push(x);
+}
 
+void pushBack(){
+   push(((byte)currDirection+2)%4); 
+}
 
+char hasVisited(byte k){
+  if (k==0){
+    return maze[currY-2][currX];
+  }
+  else if(k==1){
+    return maze[currY][currX+2];
+  }
+  else if(k==2){
+    return maze[currY+2][currX];
+  }
+  else{
+    return maze[currY][currX-2]; 
+  }
+}
 
-
-
-
-//i--;
-	//}
-        /*
-        Serial.println("whoops");
-        Serial.println(getSensorFront());
-        Serial.println(getSensorRight());
-        Serial.println(getSensorLeft());
-        delay(1500);
-        */
-	return 0;	
+void navigate(){
+  if(getSensorLeft()==0){
+    if(getVisitedLeft()==0){
+      pushRight();
+      pushLeft();
+    }
+  }
+  if((getSensorRight()==0)){
+    if(getVisitedRight()==0){
+       pushLeft();
+       pushRight();
+    }
+  }
+  if(getSensorFront()==0){
+    if(getVisitedFront()==0){
+       pushBack();
+       pushFront();
+    }
+  }
+  if(pointer>0){
+    byte next = pop();
+    /*
+    while (!hasVisited(next)==0){
+      if(pointer>0){
+        next = pop();
+      }
+      else{
+        Serial.println("done????");
+        while(1){
+         outputMaze();
+        }
+        delay(5000); 
+      }
+    }
+    */
+    goTowards(next);
+  }
+ 
+  else{
+    Serial.println("done!!!");
+    while(1){
+     outputMaze();
+    }
+    delay(5000);
+  }
 }
 
 int getSensorFront(){

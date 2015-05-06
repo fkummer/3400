@@ -77,8 +77,8 @@ int maze[9][11];
 
 //correct start is x=9; y=1; dir=3
 
-byte currDirection = 0;
-byte currX = 1;
+byte currDirection = 3;
+byte currX = 9;
 byte currY = 1;
 #define front_sensor A1
 #define left_sensor A2
@@ -130,6 +130,17 @@ void updateMaze(){
   } 
 }
 
+void updateEdges(){
+  //maze[1][10]=WALL;
+  for(byte r=0; r<9;r++){
+     maze[r][0]=WALL;
+     maze[r][10]=WALL;
+  }
+  for(byte c=0; c<11; c++){
+     maze[0][c]=WALL;
+     maze[8][c]=WALL;
+  }
+}
 
 void outputMaze(){
   for(int y=0; y<9; y++){
@@ -266,6 +277,7 @@ void setup(){
 
   radio.printDetails();
   started = digitalRead(button);
+  updateEdges();
 }
 
 void loop(){
@@ -607,13 +619,14 @@ void wallSense(){
     left_wall = (left>THRESH_2) ? ((left>THRESH_1) ? 1 : 2) : 0;
     right_wall = (right>THRESH_2) ? ((right>THRESH_1) ? 1 : 2) : 0;
     front_wall = (front>THRESH_2) ? ((front>THRESH_1) ? 1 : 2) : 0;
-    
+    /*
     Serial.println("front:");
     Serial.println(front_wall);
     Serial.println("left:");
     Serial.println(left_wall);
     Serial.println("right:");
     Serial.println(right_wall);
+    */
    // outPutMaze();
     
 }
@@ -707,10 +720,15 @@ void Dijkstra(){
 
 
 void labelUnreachable(){
-  
-  
-  
-  
+  byte x;
+  byte y;
+  for(byte k=0;k<20;k++){
+    if(DDist[k]==123){
+      x=(k%5)*2+1;
+      y=(k/5)*2+1;
+      maze[y][x]=UNREACHABLE;
+    }
+  }
 }
 
 byte minUnvisited(){
@@ -732,11 +750,22 @@ byte minUnvisited(){
 
 void pathToTake(){
   byte target = minUnvisited();
-  if (targ
-  et == 123) while (1);
+  if (target == 123) {
+    fillUnreachable();
+    while(1){
+      transmitMaze();
+      delay(500);
+    }
+  }
   byte dir = DPath[target];
   byte nextDir = dir;
-  if (dir == 123) while (1);
+  if (dir == 123){
+    fillUnreachable();
+     while (1){
+      transmitMaze();
+      delay(500);
+     }
+  }
   while (nextDir != 123){
     dir=nextDir;
     if(dir==0) {
@@ -761,9 +790,12 @@ void pathToTake(){
 }
 
 void navigate(){
+  findKnown();
   Dijkstra();
   //outputPaths();
   //outputDistances();
+  updateMaze();
+  labelUnreachable();  
   //outputMaze();
   pathToTake();
 }
@@ -790,3 +822,31 @@ void outputDistances(){
   Serial.println(" ");
  }
 }
+
+
+void fillUnreachable(){
+ for (int x=0; x<11;x++){
+  for(int y=0; y<9;y++){
+    if(maze[y][x]==0){
+      maze[y][x]=UNREACHABLE;
+    }
+  }
+ } 
+}
+
+void findKnown(){
+  byte x;
+  byte y;
+  
+  for(byte i=0;i<20;i++){
+    x=(i%5)*2+1;
+    y=(i/5)*2+1;
+    if(maze[y][x]==0){
+      if(maze[y-1][x]!=0 && maze[y][x+1]!=0 && maze[y+1][x]!=0 && maze[y][x-1]!=0){
+        maze[y][x]=1;
+      }
+    }
+  }
+}
+
+

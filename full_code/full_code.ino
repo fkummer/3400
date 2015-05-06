@@ -619,53 +619,6 @@ void wallSense(){
 }
 
 
-
-int getVisitedFront() {
-	if (currDirection == 0)
-		return maze[currY-2][currX];
-	else if (currDirection == 1)
-		return maze[currY][currX+2];
-	else if (currDirection == 2)
-		return maze[currY+2][currX];
-	else
-		return maze[currY][currX-2];
-}
-
-int getVisitedRight() {
-	if (currDirection == 0)
-		return maze[currY][currX+2];
-	else if (currDirection == 1)
-		return maze[currY+2][currX];
-	else if (currDirection == 2)
-		return maze[currY][currX-2];
-	else
-		return maze[currY-2][currX];
-}
-
-int getVisitedLeft() {
-	if (currDirection == 0)
-		return maze[currY][currX-2];
-	else if (currDirection == 1)
-		return maze[currY-2][currX];
-	else if (currDirection == 2)
-		return maze[currY][currX+2];
-	else
-		return maze[currY+2][currX];
-}
-
-int getVisitedBehind() {
-	if (currDirection == 0)
-		return maze[currY+2][currX];
-	else if (currDirection == 1)
-		return maze[currY][currX-2];
-	else if (currDirection == 2)
-		return maze[currY-2][currX];
-	else
-		return maze[currY][currX+2];
-}
-
-
-
 void goTowards(byte dir){
    byte diff = (4+dir-(byte)currDirection)%4;
    if (diff==1){
@@ -680,107 +633,160 @@ void goTowards(byte dir){
    }
 }
 
-byte queue[30];
-byte pointer = 0;
 
-void push(byte value){
-  queue[pointer]=value;
-  pointer++;
-}
+byte DDist[20];
+byte DPath[20];
+byte DQ[20];
 
-byte pop(){
-  pointer--;
-  return queue[pointer];
-}
-
-void pushLeft(){
-  push(((byte)currDirection+3)%4);
-}
-
-void pushFront(){
-  push((byte)currDirection);
-}
+byte DQueue[2];
+byte DPointer = 0;
 
 
-void pushRight(){
-  byte x=((byte) currDirection+1)%4;
-  push(x);
-}
-
-void pushBack(){
-   push(((byte)currDirection+2)%4); 
-}
-
-char hasVisited(byte k){
-  if (k==0){
-    return maze[currY-2][currX];
+byte DQMin(){
+  byte minVal=123;
+  byte minI=123;
+  for(byte c=0; c<20; c++){
+    if(DQ[c] && DDist[c]<minVal){
+       minVal=DDist[c];
+       minI=c;   
+    }
   }
-  else if(k==1){
-    return maze[currY][currX+2];
+  return minI;
+}
+
+
+void Dijkstra(){
+ byte currNode;
+ byte newDist;
+ byte x;
+ byte y;
+ 
+  for (byte k=0; k<20; k++){
+    x=(k%5)*2+1;
+    y=(k/5)*2+1;
+    if (x==currX && y==currY){
+      DDist[k]=0;
+      DPath[k]=123;
+    }
+    else{
+      DDist[k]=123;
+      DPath[k]=123;
+    }
+    DQ[k]=1;
   }
-  else if(k==2){
-    return maze[currY+2][currX];
+  currNode=DQMin();
+  while(currNode!=123){
+    DQ[currNode]=0;
+    if(DDist[currNode]!=123){
+      newDist=DDist[currNode]+1;
+      x=(currNode%5)*2+1;
+      y=(currNode/5)*2+1;
+      if((y>1) && (maze[y-1][x]!=2) && (newDist<DDist[currNode-5])){
+        DDist[currNode-5]=newDist;
+        DPath[currNode-5]=0;
+      }
+      if((x>1) && (maze[y][x-1]!=2) && (newDist<DDist[currNode-1])){
+        DDist[currNode-1]=newDist;
+        DPath[currNode-1]=3;
+      }
+      if(x<9) {
+        if (maze[y][x+1]!=2){
+          if(newDist<DDist[currNode+1]){
+            DDist[currNode+1]=newDist;
+            DPath[currNode+1]=1;
+      }}}
+      if((y<7) && (maze[y+1][x]!=2) && (newDist<DDist[currNode+5])){
+        DDist[currNode+5]=newDist;
+        DPath[currNode+5]=2;
+      }
+    }
+    currNode=DQMin();
   }
-  else{
-    return maze[currY][currX-2]; 
+}
+
+
+
+void labelUnreachable(){
+  
+  
+  
+  
+}
+
+byte minUnvisited(){
+  byte minVal=123;
+  byte minI=123;
+  byte mx;
+  byte my;
+  for(byte c=0; c<20; c++){
+    mx=(c%5)*2+1;
+    my=(c/5)*2+1;
+    if(DDist[c]<minVal && (maze[my][mx]==0)){
+       minVal=DDist[c];
+       minI=c;   
+    }
   }
+  return minI;
+}
+
+
+void pathToTake(){
+  byte target = minUnvisited();
+  if (targ
+  et == 123) while (1);
+  byte dir = DPath[target];
+  byte nextDir = dir;
+  if (dir == 123) while (1);
+  while (nextDir != 123){
+    dir=nextDir;
+    if(dir==0) {
+      target+=5;
+      nextDir = DPath[target];
+    }
+    else if(dir==1) {
+      target-=1;
+      nextDir = DPath[target];
+    }
+    else if(dir==2) {
+      target-=5;
+      nextDir = DPath[target];
+    }
+    else {
+      target+=1;
+      nextDir = DPath[target];
+    }
+  }
+  Serial.println(dir);
+  goTowards(dir);
 }
 
 void navigate(){
-  if(getSensorLeft()==0){
-    if(getVisitedLeft()==0){
-      pushRight();
-      pushLeft();
-    }
-  }
-  if((getSensorRight()==0)){
-    if(getVisitedRight()==0){
-       pushLeft();
-       pushRight();
-    }
-  }
-  if(getSensorFront()==0){
-    if(getVisitedFront()==0){
-       pushBack();
-       pushFront();
-    }
-  }
-  if(pointer>0){
-    byte next = pop();
-    /*
-    while (!hasVisited(next)==0){
-      if(pointer>0){
-        next = pop();
-      }
-      else{
-        Serial.println("done????");
-        while(1){
-         outputMaze();
-        }
-        delay(5000); 
-      }
-    }
-    */
-    goTowards(next);
-  }
- 
-  else{
-    Serial.println("done!!!");
-    while(1){
-     outputMaze();
-    }
-    delay(5000);
-  }
+  Dijkstra();
+  //outputPaths();
+  //outputDistances();
+  //outputMaze();
+  pathToTake();
 }
 
-int getSensorFront(){
-    if (front_wall) return 1; else return 0;  
+void outputPaths(){
+  Serial.println("paths"); 
+  for(byte row=0; row<4; row++){
+  for(byte col=0; col<5; col++){
+    Serial.print(DPath[row*5+col]);
+    Serial.print("  ");
+  } 
+  Serial.println(" ");
+ }
 }
 
-int getSensorLeft(){
-    if (left_wall) return 1; else return 0;  
-}
 
-int getSensorRight(){
-    if (right_wall) return 1; else return 0;  
+void outputDistances(){
+  Serial.println("output"); 
+  for(byte row=0; row<4; row++){
+  for(byte col=0; col<5; col++){
+    Serial.print(DDist[row*5+col]);
+    Serial.print("  ");
+  } 
+  Serial.println(" ");
+ }
 }

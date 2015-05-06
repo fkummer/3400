@@ -62,7 +62,21 @@ char counter; //counter for identifying which signal is read from the mux
 #define THRESH_2 1500
 
 
-int maze [9][11];
+/*int maze [9][11] = {
+  {2,2,2,2,2,2,2,2,2,2,2},
+  {2,0,0,0,0,0,0,0,0,0,2},
+  {2,0,0,0,0,0,0,0,0,0,2},
+  {2,0,0,0,0,0,0,0,0,0,2},
+  {2,0,0,0,0,0,0,0,0,0,2},
+  {2,0,0,0,0,0,0,0,0,0,2},
+  {2,0,0,0,0,0,0,0,0,0,2},
+  {2,0,0,0,0,0,0,0,0,0,2},
+  {2,2,2,2,2,2,2,2,2,2,2},
+};*/
+int maze[9][11];
+
+//correct start is x=9; y=1; dir=3
+
 byte currDirection = 0;
 byte currX = 1;
 byte currY = 1;
@@ -104,13 +118,13 @@ int startup = 0;
 void updateMaze(){
   for(int y=2; y<7; y+=2){
     for(int x=2; x<9;  x+=2){
-     if(maze[x+2][y+2]==WALL || maze[x+2][y+2]==WALL ||
- maze[x+2][y+2]==WALL || maze[x+2][y+2]==WALL){
-       maze[x][y]=WALL;
+     if(maze[y][x+1]==WALL || maze[y][x-1]==WALL ||
+ maze[y+1][x]==WALL || maze[y-1][x]==WALL){
+       maze[y][x]=WALL;
      }
-     else if(maze[x+2][y+2]==NO_WALL && maze[x+2][y+2]==NO_WALL &&
- maze[x+2][y+2]==NO_WALL && maze[x+2][y+2]==NO_WALL){
-        maze[x][y]=NO_WALL;
+     else if(maze[y][x+1]==NO_WALL && maze[y][x-1]==NO_WALL &&
+ maze[y+1][x]==NO_WALL && maze[y-1][x]==NO_WALL){
+        maze[y][x]=NO_WALL;
      }
     }
   } 
@@ -293,6 +307,7 @@ void loop(){
           wallSense();
           transmitMaze();
           navigate();
+          //updateMaze();
           /*
           if(front_wall == 1){
             if (right_wall == 0){  
@@ -362,11 +377,13 @@ void turnLeft(){
         //delay(400);
         myservo1.write(83);
         myservo2.write(83);
-        delay(590);
+        delay(300);
         //myservo1.write(90);
         //myservo2.write(90);
         while (analogRead(A5) < 750); 
-        while (analogRead(A4) > 750);
+        myservo1.write(90);
+        myservo2.write(90);
+        //while (analogRead(A4) > 750);
         /*  qti_right = analogRead(A5);
           Serial.println((int)qti_right);
         } */
@@ -384,11 +401,13 @@ void turnRight() {
         //delay(400);
         myservo1.write(97);
         myservo2.write(97);
-        delay(590);
+        delay(300);
         //myservo1.write(90);
         //myservo2.write(90);
         while (analogRead(A4) < 750);
-        while (analogRead(A5) > 750);
+        myservo1.write(90);
+        myservo2.write(90);
+        //while (analogRead(A5) > 750);
         /*  qti_left = analogRead(A4);
           Serial.println((int)qti_left);
         } */

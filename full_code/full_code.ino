@@ -14,6 +14,10 @@
  version 2 as published by the Free Software Foundation.
  */
 
+#define LOG_OUT 1 // use the log output function
+#define FFT_N 256 // set to 256 point fft
+
+#include <FFT.h> // include the library
 
 #include <SPI.h>
 #include "nRF24L01.h"
@@ -61,7 +65,18 @@ char counter; //counter for identifying which signal is read from the mux
 #define THRESH_2 1500
 
 
-int maze [9][11];
+int maze [9][11] = {
+ {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+ {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
+ {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
+ {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
+ {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
+ {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
+ {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
+ {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
+ {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2}, 
+}
+;
 byte visit [9][11];
 byte currDirection = 0;
 byte currX = 1;
@@ -104,13 +119,13 @@ int startup = 0;
 void updateMaze(){
   for(int y=2; y<7; y+=2){
     for(int x=2; x<9;  x+=2){
-     if(maze[x+2][y+2]==WALL || maze[x+2][y+2]==WALL ||
- maze[x+2][y+2]==WALL || maze[x+2][y+2]==WALL){
-       maze[x][y]=WALL;
+     if((maze[y][x+1]==WALL) || (maze[y][x-1]==WALL) ||
+ (maze[y+1][x]==WALL) || (maze[y-1][x]==WALL)){
+       maze[y][x]=WALL;
      }
-     else if(maze[x+2][y+2]==NO_WALL && maze[x+2][y+2]==NO_WALL &&
- maze[x+2][y+2]==NO_WALL && maze[x+2][y+2]==NO_WALL){
-        maze[x][y]=NO_WALL;
+     else if((maze[y][x+1]==NO_WALL) && (maze[y][x-1]==NO_WALL) &&
+ (maze[y+1][x]==NO_WALL) && (maze[y-1][x]==NO_WALL)){
+        maze[y][x]=NO_WALL;
      }
     }
   } 
@@ -188,7 +203,7 @@ void transmitMaze(void){
 void setup(){
 
   
-  
+  TIMSK0 = 0; // turn off timer0 for lower jitter
   Serial.begin(9600);
   //pinMode(front_sensor, INPUT);
   //pinMode(left_sensor,INPUT);
@@ -225,7 +240,7 @@ void setup(){
   radio.setChannel(0x50);
   // set the power
   // RF24_PA_MIN=-18dBm, RF24_PA_LOW=-12dBm, RF24_PA_MED=-6dBM, and RF24_PA_HIGH=0dBm.
-  radio.setPALevel(RF24_PA_MIN);
+  radio.setPALevel(RF24_PA_MAX);
   //RF24_250KBPS for 250kbs, RF24_1MBPS for 1Mbps, or RF24_2MBPS for 2Mbps
   radio.setDataRate(RF24_250KBPS);
 
@@ -290,6 +305,7 @@ void loop(){
           wallSense();
           transmitMaze();
           navigate();
+          updateMaze();
           /*
           if(front_wall == 1){
             if (right_wall == 0){  
@@ -349,6 +365,7 @@ void loop(){
     //delay(500);*/
    }else{
     started = digitalRead(button); 
+    detectTone();
     //Serial.println("waiting"); 
    }
 }
@@ -359,11 +376,13 @@ void turnLeft(){
         //delay(400);
         myservo1.write(83);
         myservo2.write(83);
-        delay(590);
+        delay(300);
         //myservo1.write(90);
         //myservo2.write(90);
         while (analogRead(A5) < 750); 
-        while (analogRead(A4) > 850);
+        //while (analogRead(A4) > 750);
+        myservo1.write(90);
+        myservo2.write(90);
         /*  qti_right = analogRead(A5);
           Serial.println((int)qti_right);
         } */
@@ -381,11 +400,13 @@ void turnRight() {
         //delay(400);
         myservo1.write(97);
         myservo2.write(97);
-        delay(590);
+        delay(300);
         //myservo1.write(90);
         //myservo2.write(90);
         while (analogRead(A4) < 750);
-        while (analogRead(A5) > 850);
+        //while (analogRead(A5) > 750);
+        myservo1.write(90);
+        myservo2.write(90);
         /*  qti_left = analogRead(A4);
           Serial.println((int)qti_left);
         } */
@@ -781,4 +802,42 @@ int getSensorLeft(){
 
 int getSensorRight(){
     if (right_wall) return 1; else return 0;  
+}
+
+int detectTone(){
+    digitalWrite(4, HIGH); // assigns input digits to the mux
+    digitalWrite(3, HIGH);
+    digitalWrite(2, LOW);
+    cli();  // UDRE interrupt slows this way down on arduino1.0
+    for (int i = 0 ; i < 512 ; i += 2) { // save 256 samples
+
+      float k = analogRead(A2);
+      fft_input[i] = k; // put real data into even bins
+      fft_input[i+1] = 0; // set odd bins to 0
+    }
+    fft_window(); // window the data for better frequency response
+    fft_reorder(); // reorder the data before doing the fft
+    fft_run(); // process the data in the fft
+    fft_mag_log(); // take the output of the fft
+    sei();
+    Serial.println("start");
+    float j = 9;
+    for (byte i = 9; i < FFT_N/2 ; i++) {
+      //Serial.println();
+      //Serial.print("Frequency \t");
+      //Serial.print(j*8200/256);
+     //Serial.print("\t"); 
+      float amp = fft_log_out[i]/64.0;
+     Serial.println(amp); // send out the data
+      if(i >= 20 && i<= 22){
+        if(amp >= .7){
+          started = HIGH;
+        }else{
+          //started = LOW;
+        } 
+      }
+      j++;
+
+    }
+    Serial.flush();
 }

@@ -1,22 +1,3 @@
-
-/*
- Copyright (C) 2011 J. Coliz <maniacbug@ymail.com>
-
- This program is free software; you can redistribute it and/or
- modify it under the terms of the GNU General Public License
- version 2 as published by the Free Software Foundation.
- */
-
-/**
- * Example for Getting Started with nRF24L01+ radios.
- *
- * This is an example of how to use the RF24 class.  Write this sketch to two
- * different nodes.  Put one of the nodes into 'transmit' mode by connecting
- * with the serial monitor and sending a 'T'.  The ping node sends the current
- * time to the pong node, which responds by sending the value back.  The ping
- * node can then see how long the whole cycle took.
- */
-
 #include <SPI.h>
 #include "nRF24L01.h"
 #include "RF24.h"
@@ -38,7 +19,6 @@ RF24 radio(9,10);
 const uint64_t pipes[2] = { 0x000000001CLL, 0x000000001DLL };
 
 // Array of maze is initially all unexplored with walls around it
-
 int maze[9][11] = 
 {
   {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
@@ -52,18 +32,17 @@ int maze[9][11] =
   {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
 };
 
-// Array thats sent to basestation/compressed maze from robot
-
+// Array that's sent to basestation (compressed maze from robot)
 unsigned int send_maze[11];
 
-// Maze array converted to bits
+// Used to convert send_maze to maze by taking one integer off send_maze at a time 
 unsigned int bit_maze;
 
 
-//Most signifcant to least significant
+//Most significant to least significant
 int xPins[4] = {7, 6, 5, 4};
 
-//Most signifcant to least significant
+//Most significant to least significant
 int yPins[4] = {A0, A1, A2, A3};
 
 //Most(A2) to least(A3)
@@ -177,6 +156,7 @@ void loop(void)
       maze[8][m] = 2;
     } 
     
+	// When there's a packet to receive take interpret the data to display
     if ( radio.available()) {
       // Dump the payloads until we've gotten everything
       bool done = false;
@@ -186,12 +166,15 @@ void loop(void)
         done = radio.read( &send_maze, 22 );
       }
       
+	  // The basestation receives an array with 11 integers, each integer represents one column of the maze.
+	  // Take two bits off an integer at a time and put the number those two bits equal onto another array.
+	  // Each integer will put 8 numbers into a column of the maze array.
       for(int m = 0; m <= 10; m++){
-        bit_maze = send_maze[m];
+        bit_maze = send_maze[m];					   // Take integer off send_maze to convert to column of array
         for(int n = 7; n >= 0; n--){
                 if((bit_maze & 3) == 0){               // 0 = unexplored
-                  maze[n][m] = 0;
-                  bit_maze = bit_maze >> 2;
+                  maze[n][m] = 0;					   
+                  bit_maze = bit_maze >> 2;			   // shift the integer so the next two bits can be removed
                 }
                 else if ((bit_maze & 3) == 1){         // 1 = no wall
                   maze[n][m] = 1;
@@ -201,7 +184,7 @@ void loop(void)
                   maze[n][m] = 2;
                   bit_maze = bit_maze >> 2;
                 }
-                else if ((bit_maze & 3) == 3){
+                else if ((bit_maze & 3) == 3){		   // 3 = unexploreable
                   maze[n][m] = 3;
                   bit_maze = bit_maze >> 2;
                 }

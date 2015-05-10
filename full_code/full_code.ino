@@ -158,16 +158,13 @@ void outputMaze(){
 
 void transmitMaze(void){
   radio.stopListening();
-    //
-    // Ping out role. Robot sending data to base station
-    //
     
     // Create array to be sent to base station 
     for(int m = 0; m <= 10; m++){
      for(int n = 0; n <= 7; n++){
         if (maze[n][m] == 0){          // 0 = unexplored
-          bit_maze = bit_maze << 2;    // add 00 onto the end of the bit_maze
-          bit_maze = bit_maze | 0;
+          bit_maze = bit_maze << 2;    // add 00 onto the end of the bit_maze and shift it so the next two bits can be added
+          bit_maze = bit_maze | 0;	   
         }
         else if (maze[n][m] == 1){     // 1 = No wall
           bit_maze = bit_maze << 2;    // add 01 onto the end of the bit_maze
@@ -183,7 +180,7 @@ void transmitMaze(void){
         }
      }
      
-     send_maze[m] = bit_maze;
+     send_maze[m] = bit_maze;		   // Put the integer for the column onto the array to be sent
      bit_maze = 0;
      
     }
@@ -194,17 +191,8 @@ void transmitMaze(void){
     //Transmit the array
     bool ok = radio.write(&send_maze, sizeof(send_maze));
   
-    bit_maze = 0;
-    /*for (int n = 0; n <= 7; n++){
-      for(int m = 0; m <= 10; m++){
-        maze[n][m] += 1;
-        if (maze[n][m] == 4){
-           maze [n][m] = 0;    
-        } 
-      }
-    }*/
-  //delay(1000);
-  radio.startListening(); 
+    bit_maze = 0;					   // Reset bit_maze for next transmission
+    radio.startListening(); 		   // Need to start and stop listening in between transmissions
   
 }
 

@@ -31,10 +31,10 @@ int right_direction;
 int left_direction;
 
   // Variables for reading the line sensor values:
-char qti_left;
-char qti_right;
-int left_side;
-int right_side;
+char qti_left; // front left sensor
+char qti_right; // front right sensor
+int left_side; // left side sensor
+int right_side; // right side sensor
 
 //nav algorithm vars
 
@@ -51,8 +51,6 @@ int error;
 float err_sum = 0;
 float err_diff = 0;
 float prev_err = 0; // this is used for determining the error difference
-
-char counter; //counter for identifying which signal is read from the mux
 
 /*This code is for the IR sensor*/
 
@@ -224,14 +222,9 @@ void setup(){
   pinMode(3,OUTPUT);
   pinMode(2,OUTPUT);
   
-  //qti_left = analogRead(A4); // left front sensor
-  //qti_right = analogRead(A5); //right fron sensor
-  //left_side = analogRead(A3); //left sensor
-  //right_side = analogRead(A2); //right sensor
-  myservo1.write(90);   //left sensor start speed
-  myservo2.write(90);    //right sensor start speed 
-  //delay(100000); //for testing
-   radio.begin();
+  myservo1.write(90);   //fix both servos initially
+  myservo2.write(90); 
+  radio.begin();
 
   // optionally, increase the delay between retries & # of retries
   radio.setRetries(15,15);
@@ -276,7 +269,6 @@ void loop(){
         startup = HIGH;
       }
       //Serial.println("started");
-      //mux();
      // First we read the line sensor values:
       //update_qtis(&qti_left, &qti_right);
       qti_left = analogRead(A4);
@@ -289,13 +281,12 @@ void loop(){
       left_side = analogRead(A3);
       right_side = analogRead(A2);
     
-      error = qti_left - qti_right; 
-      //myservo1.write(101);
-      //myservo2.write(81);
+      error = qti_left - qti_right; // assigns error to be the difference 
+      			            // between two front sensor
       
-      if (left_side > 750 && right_side > 750){
-          delay(210);
-          myservo1.write(90);
+      if (left_side > 750 && right_side > 750){ // if on an intersection
+          delay(210); // moves forward a bit after getting on the intersection
+          myservo1.write(90); // stops the robot to have a stable turn
           myservo2.write(90);
           if(!firstInt){
             firstInt = HIGH;
@@ -306,33 +297,11 @@ void loop(){
           transmitMaze();
           navigate();
           updateMaze();
-          /*
-          if(front_wall == 1){
-            if (right_wall == 0){  
-                turnRight();
-                //delay(75);
-                prev_err = 0;
-            }else{
-              if(left_wall == 0){
-                turnLeft();
-                //delay(30);
-                prev_err = 0;
-              }else{
-                turnRight();
-                //delay(50);
-                turnRight();
-                //delay(50);
-                prev_err = 0;
-              }
-            }
-          }
-          */
         }  
       
-      else{
-        //Serial.println(error);
+      else{ // the robot is on the line
         
-        if (error < 100 && error > -100) { 
+        if (error < 100 && error > -100) { // the error is not very big
           error = 0; 
           right_direction = (81 + 0.08*error);
           left_direction = (100 + 0.08*error);
@@ -343,7 +312,7 @@ void loop(){
           right_direction = (81 + 0.05*error + 0.005*err_diff);
           left_direction = (101 + 0.05*error + 0.005*err_diff);
         }
-        else { //veering to the right
+        else { //veering to the left
           right_direction = (81 + 0.055*error + 0.0055*err_diff);
           left_direction = (101 + 0.055*error + 0.0055*err_diff);
         }
@@ -351,7 +320,6 @@ void loop(){
       //right_direction = 90;  //for tuning the servos
       //left_direction = 90;
       
-      //Serial.222222println(error);
       myservo1.write(left_direction); //uncomment after adjusting servos
       myservo2.write(right_direction); 
       
@@ -377,22 +345,10 @@ void turnLeft(){
         myservo1.write(83);
         myservo2.write(83);
         delay(300);
-        //myservo1.write(90);
-        //myservo2.write(90);
-        while (analogRead(A5) < 750); 
-        //while (analogRead(A4) > 750);
+        while (analogRead(A5) < 750); // turns until front left sensor touches line
         myservo1.write(90);
         myservo2.write(90);
-        /*  qti_right = analogRead(A5);
-          Serial.println((int)qti_right);
-        } */
-        //delay(50);
-        //left_direction = 90;
-        //right_direction = 90;
-        //delay(500);
         currDirection = (currDirection+3)%4;
-        //Serial.println("direction");
-        //Serial.println(currDirection);
         prev_err=0;
 }
 
@@ -401,22 +357,10 @@ void turnRight() {
         myservo1.write(97);
         myservo2.write(97);
         delay(300);
-        //myservo1.write(90);
-        //myservo2.write(90);
-        while (analogRead(A4) < 750);
-        //while (analogRead(A5) > 750);
+        while (analogRead(A4) < 750); // turns until front right sensor touches line
         myservo1.write(90);
         myservo2.write(90);
-        /*  qti_left = analogRead(A4);
-          Serial.println((int)qti_left);
-        } */
-        //delay(100);
-        //left_direction = 90;
-        //right_direction = 90;
-        //delay(500);
         currDirection = (currDirection+1)%4;
-        //Serial.println("direction");
-        //Serial.println(currDirection);
         prev_err=0;
 }
 

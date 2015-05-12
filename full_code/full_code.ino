@@ -365,7 +365,9 @@ void updatePosition(){
  } 
 }
 
-
+/*Polls the wall sensors, does thresholding on the sensons and then 
+global maze variable with the state of the maze around the robot based
+on the wall sensor readings. */
 void wallSense(){
     digitalWrite(4, HIGH); // assigns input digits to the mux
     digitalWrite(3, HIGH);
@@ -528,7 +530,8 @@ void wallSense(){
 
 }
 
-
+/*Turns the robot towards the direction specified by dir.
+0=up;1=right;2=down;3=left*/
 void goTowards(byte dir){
    byte diff = (4+dir-(byte)currDirection)%4;
    if (diff==1){
@@ -543,7 +546,7 @@ void goTowards(byte dir){
    }
 }
 
-
+//Variables for navigation.
 byte DDist[20];
 byte DPath[20];
 byte DQ[20];
@@ -551,7 +554,9 @@ byte DQ[20];
 byte DQueue[2];
 byte DPointer = 0;
 
-
+/*Finds the node that has the shortest calculated path and has not yet been 
+selected by dijkstras. Used by dijkstras.
+*/
 byte DQMin(){
   byte minVal=123;
   byte minI=123;
@@ -564,7 +569,9 @@ byte DQMin(){
   return minI;
 }
 
-
+/* Uses dijkstras algorithm to find the shortest distances and paths to all
+nodes from the current location of the robot using the current state of the
+maze. */
 void Dijkstra(){
  byte currNode;
  byte newDist;
@@ -614,8 +621,7 @@ void Dijkstra(){
   }
 }
 
-
-
+/*Labels all nodes that are known to be unreachable as such.*/
 void labelUnreachable(){
   byte x;
   byte y;
@@ -628,6 +634,9 @@ void labelUnreachable(){
   }
 }
 
+/*Finds the unexplored node with the minimum travel distance. Returns 123 if no
+reachable unexplored nodes. Used in pathToTake().
+*/
 byte minUnvisited(){
   byte minVal=123;
   byte minI=123;
@@ -644,7 +653,8 @@ byte minUnvisited(){
   return minI;
 }
 
-
+/* Finds the direction to head to move towards the closest unexplored node using the
+result of dijkstras. Turns towards this direction. Hangs if no more nodes to visit.*/
 void pathToTake(){
   byte target = minUnvisited();
   if (target == 123) {
@@ -686,6 +696,10 @@ void pathToTake(){
   goTowards(dir);
 }
 
+
+/* Top level function that when called will rotate robot to the currect direction 
+to head towards. Will hang if robot is done exploring. Will also update the global 
+maze state. */
 void navigate(){
   findKnown();
   Dijkstra();
@@ -697,6 +711,8 @@ void navigate(){
   pathToTake();
 }
 
+/*Debugging function that displays the shortest path to each the node
+using the output from dijkstras.*/
 void outputPaths(){
   Serial.println("paths"); 
   for(byte row=0; row<4; row++){
@@ -708,7 +724,8 @@ void outputPaths(){
  }
 }
 
-
+/*Debugging function that displays the distances to all the nodes
+using the output from dijkstras.*/
 void outputDistances(){
   Serial.println("output"); 
   for(byte row=0; row<4; row++){
@@ -720,7 +737,8 @@ void outputDistances(){
  }
 }
 
-
+/* Fills all blocks that are still unexplored as unreachable.
+Should only be called when the robot is done exploring.*/
 void fillUnreachable(){
  for (int x=0; x<11;x++){
   for(int y=0; y<9;y++){

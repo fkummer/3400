@@ -18,7 +18,7 @@ RF24 radio(9,10);
 // Radio pipe addresses for the 2 nodes to communicate.
 const uint64_t pipes[2] = { 0x000000001CLL, 0x000000001DLL };
 
-// Array of maze is initially all unexplored with walls around it
+// Array of maze is initially all unexplored(0) with walls(2) around it
 int maze[9][11] = 
 {
   {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
@@ -56,7 +56,8 @@ int byte1[8];
 
 //Second "byte" to copy information into
 int byte2[8];
-              
+
+//Reads the content of position (x,y) into bytes 1 and 2 for transmission 
 int getPos(int x, int y){
   int col = x;
   int row = y;
@@ -191,6 +192,7 @@ void loop(void)
        }
      }
     
+    //Outputs the content of each position in the array to the pins of the Arduino that connect to the FPGA.
      for(int i = 10; i >= 0; i--){
       for(int j = 8; j >= 0; j--){
          getPos(i,j);

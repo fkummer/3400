@@ -31,20 +31,4 @@ assign VALUE = DATA_IN[1:0];
 assign ENABLE_OUT = ENABLE_IN;
 //assign parity = DATA_IN[9]^DATA_IN[8]^DATA_IN[7]^DATA_IN[6]^DATA_IN[5]^DATA_IN[4]^DATA_IN[3]^DATA_IN[2]^DATA_IN[1]^DATA_IN[0]; //allows for parity detection to be added in future
 
-/*
-always @(posedge CLOCK_50)begin
-	if (RESET) begin
-		ENABLE_OUT<=1'b0;
-		state<=1'b1;
-	end else if(state==1'b1) begin
-		if(ENABLE_OUT==1'b1) begin
-			ENABLE_OUT <= 1'b1; //only enable write to memory if this is first clock cycle that ENABLE_IN is high
-			state <= 1'b0;
-	end
-	end else begin
-		state <= ENABLE_IN==1'b1 ? 1'b0 : 1'b1;
-		ENABLE_OUT <= 1'b0;
-	end
-end
-*/
 endmodule

@@ -62,17 +62,7 @@ char counter; //counter for identifying which signal is read from the mux
 #define THRESH_2 1500
 
 
-/*int maze [9][11] = {
-  {2,2,2,2,2,2,2,2,2,2,2},
-  {2,0,0,0,0,0,0,0,0,0,2},
-  {2,0,0,0,0,0,0,0,0,0,2},
-  {2,0,0,0,0,0,0,0,0,0,2},
-  {2,0,0,0,0,0,0,0,0,0,2},
-  {2,0,0,0,0,0,0,0,0,0,2},
-  {2,0,0,0,0,0,0,0,0,0,2},
-  {2,0,0,0,0,0,0,0,0,0,2},
-  {2,2,2,2,2,2,2,2,2,2,2},
-};*/
+//Initializes a two dimensional array to hold information about the maze
 int maze[9][11];
 
 //correct start is x=9; y=1; dir=3
@@ -142,6 +132,7 @@ void updateEdges(){
   }
 }
 
+//Outputs the maze array to the serial monitor
 void outputMaze(){
   for(int y=0; y<9; y++){
     Serial.print("[");
@@ -206,9 +197,6 @@ void setup(){
   
   
   Serial.begin(9600);
-  //pinMode(front_sensor, INPUT);
-  //pinMode(left_sensor,INPUT);
-  //pinMode(right_sensor,INPUT);
   pinMode(led, OUTPUT);
   
   myservo1.attach(5);  // left wheel
@@ -225,13 +213,9 @@ void setup(){
   pinMode(3,OUTPUT);
   pinMode(2,OUTPUT);
   
-  //qti_left = analogRead(A4); // left front sensor
-  //qti_right = analogRead(A5); //right fron sensor
-  //left_side = analogRead(A3); //left sensor
-  //right_side = analogRead(A2); //right sensor
-  myservo1.write(90);   //left sensor start speed
-  myservo2.write(90);    //right sensor start speed 
-  //delay(100000); //for testing
+
+  myservo1.write(90);   //left sensor start speed, starts stoppped
+  myservo2.write(90);    //right sensor start speed , starts stopped.
    radio.begin();
 
   // optionally, increase the delay between retries & # of retries
@@ -269,32 +253,32 @@ void setup(){
 }
 
 void loop(){
-    //Serial.println("hello world");
-    //Serial.println(started);
+    //Do not start running maze-mapping code until the start button is pressed.
     if(started){
+      //If this is the first iteration of the loop, begin driving forward at the default speed.
       if(startup == LOW){
         myservo1.write(100);
         myservo2.write(80);
         startup = HIGH;
       }
-      //Serial.println("started");
-      //mux();
+    
      // First we read the line sensor values:
-      //update_qtis(&qti_left, &qti_right);
       qti_left = analogRead(A4);
       qti_right = analogRead(A5);
       
+      //Sets mux to read line sensors
       digitalWrite(4, HIGH); // assigns input digits to the mux
       digitalWrite(3, LOW);
       digitalWrite(2, HIGH);
-      //delay(1000);
+      
+      //Read left and right sensors to determine if we're on an intersection.
       left_side = analogRead(A3);
       right_side = analogRead(A2);
-    
-      error = qti_left - qti_right; 
-      //myservo1.write(101);
-      //myservo2.write(81);
       
+      //Determine current error for PID.
+      error = qti_left - qti_right; 
+      
+      //If we are on an intersection, move onto it, stop, updapte our position and our map of the maze, and then turn appropriately.
       if (left_side > 750 && right_side > 750){
           delay(210);
           myservo1.write(90);
@@ -307,41 +291,16 @@ void loop(){
           wallSense();
           transmitMaze();
           navigate();
-          //updateMaze();
-          /*
-          if(front_wall == 1){
-            if (right_wall == 0){  
-                turnRight();
-                //delay(75);
-                prev_err = 0;
-            }else{
-              if(left_wall == 0){
-                turnLeft();
-                //delay(30);
-                prev_err = 0;
-              }else{
-                turnRight();
-                //delay(50);
-                turnRight();
-                //delay(50);
-                prev_err = 0;
-              }
-            }
-          }
-          */
         }  
       
       else{
-        //Serial.println(error);
-        
+        //If we are not on an intersection, but our error is significant, correct for it.  
         if (error < 100 && error > -100) { 
           error = 0; 
           right_direction = (81 + 0.08*error);
           left_direction = (100 + 0.08*error);
         }
         else if (error > 100) { //veering to the right
-          //right_direction = 80 + 0.1*error;
-          //left_direction = 100 + 0.1*error;
           right_direction = (81 + 0.05*error + 0.005*err_diff);
           left_direction = (101 + 0.05*error + 0.005*err_diff);
         }
@@ -349,78 +308,48 @@ void loop(){
           right_direction = (81 + 0.055*error + 0.0055*err_diff);
           left_direction = (101 + 0.055*error + 0.0055*err_diff);
         }
-      }
-      //right_direction = 90;  //for tuning the servos
-      //left_direction = 90;
-      
-      //Serial.222222println(error);
-      myservo1.write(left_direction); //uncomment after adjusting servos
+   
+
+      myservo1.write(left_direction); 
       myservo2.write(right_direction); 
       
-      //myservo1.write(90); //for adjusting servos
-      //myservo2.write(90);
+ 
       err_diff = error - prev_err;
       prev_err = error;  // Save this "P" term to determine the next "D" term
       
-      
-   
-    //delay(500);*/
    }else{
+     //Read start button.
     started = digitalRead(button); 
-    //Serial.println("waiting"); 
+    
    }
 }
 
 
-
+//Turns the robot left by 90 degrees
 void turnLeft(){
-        //delay(400);
         myservo1.write(83);
         myservo2.write(83);
         delay(300);
-        //myservo1.write(90);
-        //myservo2.write(90);
-        while (analogRead(A5) < 750); 
+        while (analogRead(A5) < 750);//Turn until the right-front sensor is over the black. 
         myservo1.write(90);
         myservo2.write(90);
-        //while (analogRead(A4) > 750);
-        /*  qti_right = analogRead(A5);
-          Serial.println((int)qti_right);
-        } */
-        //delay(50);
-        //left_direction = 90;
-        //right_direction = 90;
-        //delay(500);
         currDirection = (currDirection+3)%4;
-        //Serial.println("direction");
-        //Serial.println(currDirection);
         prev_err=0;
 }
 
+//Turns the robot right by 90 degrees.
 void turnRight() { 
-        //delay(400);
         myservo1.write(97);
         myservo2.write(97);
         delay(300);
-        //myservo1.write(90);
-        //myservo2.write(90);
-        while (analogRead(A4) < 750);
+        while (analogRead(A4) < 750);//Turn until the left-front sensor is over the black.
         myservo1.write(90);
         myservo2.write(90);
-        //while (analogRead(A5) > 750);
-        /*  qti_left = analogRead(A4);
-          Serial.println((int)qti_left);
-        } */
-        //delay(100);
-        //left_direction = 90;
-        //right_direction = 90;
-        //delay(500);
         currDirection = (currDirection+1)%4;
-        //Serial.println("direction");
-        //Serial.println(currDirection);
         prev_err=0;
 }
 
+//Updates the robots current position in the maze at intersections based on the direction it last moved in.
 void updatePosition(){
  if (currDirection == 0){
   currY -= 2;
@@ -449,9 +378,6 @@ void wallSense(){
     left += analogRead(left_sensor);
     right += analogRead(right_sensor);
     front += analogRead(front_sensor);
-    //Serial.println(analogRead(left_sensor));
-    //Serial.println(analogRead(right_sensor));
-    //Serial.println(analogRead(front_sensor));
     //closest wall 82
     //further wall 40
     }
@@ -463,7 +389,6 @@ void wallSense(){
             maze[currY][currX-1]=WALL;
           } else{
             maze[currY][currX-1]=NO_WALL;
-            //maze[currY][currX-3]=WALL;
           }
         }else{
           maze[currY][currX-1]=NO_WALL;
@@ -474,7 +399,6 @@ void wallSense(){
             maze[currY][currX+1]=WALL;
           }else{
             maze[currY][currX+1]=NO_WALL;
-            //maze[currY][currX+3]=WALL;
           }
         }else{
           maze[currY][currX+1]=NO_WALL;
@@ -485,7 +409,6 @@ void wallSense(){
             maze[currY-1][currX]=WALL;
           }else{
             maze[currY-1][currX]=NO_WALL;
-            //maze[currY-3][currX]=WALL;
           }
         }else{
           maze[currY-1][currX]=NO_WALL;
@@ -499,7 +422,6 @@ void wallSense(){
             maze[currY-1][currX]=WALL;
           } else{
             maze[currY-1][currX]=NO_WALL;
-            //maze[currY-3][currX]=WALL;
           }
         }else{
           maze[currY-1][currX]=NO_WALL;
@@ -521,7 +443,6 @@ void wallSense(){
             maze[currY][currX+1]=WALL;
           }else{
             maze[currY][currX+1]=NO_WALL;
-            //maze[currY][currX+3]=WALL;
           }
         }else{
           maze[currY][currX+1]=NO_WALL;
@@ -535,7 +456,6 @@ void wallSense(){
             maze[currY][currX+1]=WALL;
           }else{
             maze[currY][currX+1]=NO_WALL;
-            //maze[currY][currX+3]=WALL;
           }
         }else{
           maze[currY][currX+1]=NO_WALL;
@@ -546,7 +466,6 @@ void wallSense(){
             maze[currY][currX-1]=WALL;
           }else{
             maze[currY][currX-1]=NO_WALL;
-            //maze[currY][currX-3]=WALL;
           }
         }else{
           maze[currY][currX-1]=NO_WALL;
@@ -557,7 +476,6 @@ void wallSense(){
             maze[currY+1][currX]=WALL;
           }else{
             maze[currY+1][currX]=NO_WALL;
-            //maze[currY+3][currX]=WALL;
           }
         }else{
           maze[currY+1][currX]=NO_WALL;
@@ -607,16 +525,7 @@ void wallSense(){
     left_wall = (left>THRESH_2) ? ((left>THRESH_1) ? 1 : 2) : 0;
     right_wall = (right>THRESH_2) ? ((right>THRESH_1) ? 1 : 2) : 0;
     front_wall = (front>THRESH_2) ? ((front>THRESH_1) ? 1 : 2) : 0;
-    /*
-    Serial.println("front:");
-    Serial.println(front_wall);
-    Serial.println("left:");
-    Serial.println(left_wall);
-    Serial.println("right:");
-    Serial.println(right_wall);
-    */
-   // outPutMaze();
-    
+
 }
 
 
